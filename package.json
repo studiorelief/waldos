@@ -1,13 +1,13 @@
 {
-  "name": "@finsweet/developer-starter",
-  "version": "0.0.0",
-  "description": "Developer starter template for Finsweet projects.",
+  "name": "@studiorelief/waldos",
+  "version": "1.0.0",
+  "description": "Waldos project by Studio Relief.",
   "homepage": "https://github.com/finsweet/developer-starter#readme",
   "license": "ISC",
   "keywords": [],
   "author": {
-    "name": "Finsweet",
-    "url": "https://finsweet.com/"
+    "name": "Studio Relief",
+    "url": "https://studiorelief.fr"
   },
   "repository": {
     "type": "git",
