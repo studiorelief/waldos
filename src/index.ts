@@ -1,10 +1,12 @@
 import './index.css';
 
-import { goRight } from '$utils/gsap';
-import { swiperTeam } from '$utils/swiper';
+import { fromTo, initScrollAnimation } from '$utils/gsap';
+import { swiperNft, swiperPepos } from '$utils/swiper';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  swiperTeam();
-  goRight();
+  swiperNft();
+  swiperPepos();
+  fromTo();
+  initScrollAnimation();
 });
