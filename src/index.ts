@@ -1,6 +1,14 @@
 import './index.css';
 
-import { fromTo, initScrollAnimation } from '$utils/gsap';
+import {
+  animatePhase2,
+  animatePhase3,
+  animateRoadmapImages,
+  fromTo,
+  hoverFooterLink,
+  hoverFooterLinkInsta,
+  initScrollAnimation,
+} from '$utils/gsap';
 import { swiperNft, swiperPepos } from '$utils/swiper';
 
 window.Webflow ||= [];
@@ -9,4 +17,9 @@ window.Webflow.push(() => {
   swiperPepos();
   fromTo();
   initScrollAnimation();
+  hoverFooterLink();
+  hoverFooterLinkInsta();
+  animatePhase2();
+  animatePhase3();
+  animateRoadmapImages();
 });

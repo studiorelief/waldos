@@ -22,8 +22,11 @@ export function swiperPepos() {
     direction: 'horizontal',
     slidesPerView: 'auto',
     spaceBetween: 64, // variable
-    autoplay: true,
     loop: true,
+    autoplay: {
+      delay: 100, // délai de défilement en millisecondes (2000ms = 2s)
+      disableOnInteraction: false, // continue l'autoplay après l'interaction de l'utilisateur
+    },
     slideActiveClass: 'is-active',
     speed: 1000,
   });
