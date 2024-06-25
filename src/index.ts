@@ -7,6 +7,7 @@ import {
   fromTo,
   hoverFooterLink,
   hoverFooterLinkInsta,
+  hoverNavContainer,
   initScrollAnimation,
 } from '$utils/gsap';
 import { swiperNft, swiperPepos } from '$utils/swiper';
@@ -22,4 +23,5 @@ window.Webflow.push(() => {
   animatePhase2();
   animatePhase3();
   animateRoadmapImages();
+  hoverNavContainer();
 });

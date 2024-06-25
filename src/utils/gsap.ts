@@ -14,8 +14,44 @@ export function initScrollAnimation() {
     if (window.scrollY > 100) {
       gsap.to(navigation, { backgroundColor: 'rgba(112, 0, 255, 0.9)', duration: 0.5 });
     } else {
-      gsap.to(navigation, { backgroundColor: 'transparent', duration: 0.5 });
+      gsap.to(navigation, { backgroundColor: 'rgba(112, 0, 255, 0.9)', duration: 0.5 });
     }
+  });
+}
+
+export function hoverNavContainer() {
+  const containers = document.querySelectorAll('.nav-link-container');
+
+  containers.forEach((container) => {
+    // Enregistrer l'état initial de chaque conteneur
+    const initialStyles = {
+      backgroundColor: getComputedStyle(container).backgroundColor || 'var(--background-primary)',
+      borderRadius: getComputedStyle(container).borderRadius || '0px',
+      boxShadow: getComputedStyle(container).boxShadow || 'none',
+      scale: 1, // État initial de l'échelle
+    };
+
+    container.addEventListener('mouseenter', () => {
+      gsap.to(container, {
+        backgroundColor: '#5400bf',
+        borderRadius: '30px',
+        boxShadow: '0 8px 10px rgba(0, 0, 0, 0.2)',
+        scale: 1.1, // Augmente légèrement la taille
+        duration: 1,
+        ease: 'elastic.out(1, 0.3)',
+      });
+    });
+
+    container.addEventListener('mouseleave', () => {
+      gsap.to(container, {
+        backgroundColor: 'var(--background-primary)', // Utiliser la variable CSS
+        borderRadius: initialStyles.borderRadius,
+        boxShadow: initialStyles.boxShadow,
+        scale: initialStyles.scale, // Revenir à la taille initiale
+        duration: 1,
+        ease: 'elastic.out(1, 0.3)',
+      });
+    });
   });
 }
 
