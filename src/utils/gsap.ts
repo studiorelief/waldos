@@ -5,16 +5,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Navbar - COMPONENTS
 // Background-color Navbar at scroll down
-export function initScrollAnimation() {
+export function scrollNavbar() {
   const navigation = document.querySelector('.navigation') as HTMLElement;
 
   if (!navigation) return;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 0) {
       gsap.to(navigation, {
         backdropFilter: 'blur(20px)',
-        backgroundColor: 'rgba(112, 0, 255, 0.8)', // Utilisation directe de la couleur avec opacité
+        backgroundColor: 'rgba(112, 0, 255, 0.8)',
         duration: 0.5,
       });
     } else {
@@ -97,36 +97,9 @@ export function hoverFooterLinkInsta() {
   });
 }
 
-// HOMEPAGE
-// Déplacer le personnage de Waldos dans la section Hero
-let lastScrollTop = 0;
-
-window.addEventListener('scroll', () => {
-  const st = window.pageYOffset || document.documentElement.scrollTop;
-  const direction = st > lastScrollTop ? 1 : -1; // 1 pour down, -1 pour up
-  lastScrollTop = st <= 0 ? 0 : st;
-
-  if (direction === 1) {
-    // Scroll down
-    gsap.to('.hero_introduce-picture', {
-      x: '2rem', // Déplacement de 1vw à droite
-      duration: 0.8, // Durée de l'animation
-      ease: 'power2.inOut', // Flow
-    });
-  } else {
-    // Scroll up
-    gsap.to('.hero_introduce-picture', {
-      x: '-2rem', // Revenir à la place initiale
-      duration: 0.8, // Durée de l'animation
-      ease: 'power2.inOut', // Flow
-    });
-  }
-});
-
-// HOMEPAGE
-// Progress bar - HOME PAGE
-export function fromTo() {
-  // Assurez-vous que la barre de progression est visible avant l'animation
+//HOME PAGE
+// Progress bar
+export function animateProgressBar() {
   const progressLineFront = document.querySelector('.progress-line_front') as HTMLElement;
 
   if (progressLineFront) {
@@ -136,9 +109,9 @@ export function fromTo() {
       .timeline({
         scrollTrigger: {
           trigger: '.nft_progress-line-content',
-          start: 'top 40%', // Quand le haut est à 40% de la hauteur de l'écran
-          end: 'top -30%', // Quand le haut est à -30% de la hauteur de l'écran
-          scrub: true, // suivre le défilement
+          start: 'top 40%',
+          end: 'top -30%',
+          scrub: true,
         },
       })
       .to(progressLineFront, {
@@ -153,8 +126,6 @@ export function fromTo() {
           }
         },
       });
-  } else {
-    console.error('Element .progress-line_front not found.');
   }
 }
 
@@ -168,9 +139,9 @@ gsap.fromTo(
     duration: 100,
     scrollTrigger: {
       trigger: '.nft_progress-line-content',
-      start: 'top 40%', // When the top it's 40% of viewport
-      end: 'top -30%', // When the top it's -30% of viewport
-      scrub: true, // follow scroll
+      start: 'top 40%',
+      end: 'top -30%',
+      scrub: true,
     },
     onUpdate: function () {
       const progressText = document.querySelector('.progress_anime-text');
@@ -253,13 +224,13 @@ export function animatePhase2() {
       { opacity: 0 }, // opacité initiale
       {
         opacity: 1, // opacité finale
-        duration: 1, // durée de l'animation
+        duration: 1,
         scrollTrigger: {
           trigger: roadmapPhase2,
-          start: 'top 80%', // commence quand le haut est à 80% de la vue
-          end: 'bottom 70%', // termine quand le bas est à 70% de la vue
+          start: 'top 80%',
+          end: 'bottom 70%',
           toggleActions: 'play none none none', // déclenche l'animation uniquement lorsqu'il entre dans la vue
-          scrub: true, // suit le scroll
+          scrub: true,
         },
       }
     );
@@ -275,16 +246,16 @@ export function animatePhase3() {
     const elements = [roadmapPhase3, grow3];
     gsap.fromTo(
       elements,
-      { opacity: 0 }, // opacité initiale
+      { opacity: 0 },
       {
-        opacity: 1, // opacité finale
-        duration: 1, // durée de l'animation
+        opacity: 1,
+        duration: 1,
         scrollTrigger: {
           trigger: roadmapPhase3,
-          start: 'top 80%', // commence quand le haut est à 85% de la vue
-          end: 'bottom 70%', // termine quand le bas est à 50% de la vue
+          start: 'top 80%',
+          end: 'bottom 70%',
           toggleActions: 'play none none none', // déclenche l'animation uniquement lorsqu'il entre dans la vue
-          scrub: true, // suit le scroll
+          scrub: true,
         },
       }
     );
@@ -294,18 +265,173 @@ export function animatePhase3() {
 // PEPOS PAGE
 // Boat
 const imgWrapperBoat = document.querySelector('.img-wrapper_boat');
-
 if (imgWrapperBoat) {
-  gsap.from(imgWrapperBoat, {
-    x: '100%', // at the right screen
-    opacity: 0,
-    scale: 0.2, // start with smallest size
-    duration: 2,
+  // Initial position offscreen to the right
+  gsap.set(imgWrapperBoat, { x: '100%' });
+
+  // Animation to move the boat from right to left
+  gsap.to(imgWrapperBoat, {
+    x: '0', // move to the left of the screen
+    ease: 'power1.out', // smoothing the animation
     scrollTrigger: {
       trigger: imgWrapperBoat,
-      start: 'top 80%', // start when the top it's 80% of viewport
-      end: 'top 60%', // end when the bottom it's 60% of viewport
-      toggleActions: 'restart none none none', // Start when trigger is in viewport
+      start: 'top 60%', // start when the top it's 75% of viewport
+      end: 'top 50%', // end when the top it's 70% of viewport
+      scrub: true, // smooth follow with the scroll
+      markers: false, // show markers for debugging
     },
   });
+}
+
+//PEPOS PAGE
+//Parallax hero
+export function initPeposHeroParallax() {
+  const peposHero5 = document.querySelector('#pepos-hero5') as HTMLElement;
+  if (peposHero5) {
+    gsap.to(peposHero5, {
+      y: '300', // move up by 300px
+      ease: 'power1.out', // effect
+      scrollTrigger: {
+        trigger: '.hero_image-wrapper',
+        start: 'top 120',
+        end: '100%',
+        scrub: true, // smooth catch-up with the scroll
+        markers: false, // show markers for debugging
+      },
+    });
+  }
+  // Parallax effect for #pepos-hero4
+  const peposHero4 = document.querySelector('#pepos-hero4') as HTMLElement;
+  if (peposHero4) {
+    gsap.to(peposHero4, {
+      y: '200',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero_image-wrapper',
+        start: 'top 120',
+        end: '100%',
+        scrub: true,
+      },
+    });
+  }
+  // Parallax effect for #pepos-hero4
+  const peposHero3 = document.querySelector('#pepos-hero3') as HTMLElement;
+  if (peposHero3) {
+    gsap.to(peposHero3, {
+      y: '150',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero_image-wrapper',
+        start: 'top 120',
+        end: '100%',
+        scrub: true,
+      },
+    });
+  }
+}
+
+//Weedos Header - Parallax
+export function initWeedosCloudParallax() {
+  const weedosCloud = document.querySelector('#weedos-cloud') as HTMLElement;
+  if (weedosCloud) {
+    gsap.to(weedosCloud, {
+      y: '300', // move up by 300px
+      ease: 'power1.inOut', // easing for a smooth effect
+      scrollTrigger: {
+        trigger: weedosCloud,
+        start: 'top 150', // start when the top of the wrapper hits the top of the viewport
+        end: '100%', // end when the bottom of the viewport is reached
+        scrub: true, // smooth catch-up with the scroll
+      },
+    });
+  }
+  const weedosCloud1 = document.querySelector('#weedos-cloud1') as HTMLElement;
+  if (weedosCloud) {
+    gsap.to(weedosCloud1, {
+      y: '100', // move up by 300px
+      ease: 'power1.inOut', // easing for a smooth effect
+      scrollTrigger: {
+        trigger: weedosCloud,
+        start: 'top 150', // start when the top of the wrapper hits the top of the viewport
+        end: '100%', // end when the bottom of the viewport is reached
+        scrub: true, // smooth catch-up with the scroll
+      },
+    });
+  }
+}
+
+//HOME PAGE
+//HEADER HERO - PARALLAX
+export function heroHomeParallax() {
+  const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
+  if (heroImg1) {
+    gsap.to(heroImg1, {
+      y: '400', // move up by 300px
+      ease: 'power1.out', // easing effect
+      scrollTrigger: {
+        trigger: '.hero-img1-wrapper', // Ajustez ce sélecteur pour correspondre à la div contenant #hero-img1
+        start: 'top+=100 top', // commence 100px après que le haut de l'élément déclencheur atteint le haut de la vue
+        end: 'bottom+=200 top', // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
+        scrub: true, // smooth catch-up with the scroll
+        markers: true, // show markers for debugging
+      },
+    });
+  }
+
+  const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
+  if (heroImg2) {
+    gsap.to(heroImg2, {
+      y: '350',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img2-wrapper',
+        start: 'top+=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+        markers: true,
+      },
+    });
+  }
+
+  const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
+  if (heroImg3) {
+    gsap.to(heroImg3, {
+      y: '300',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img3-wrapper',
+        start: 'top+=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+        markers: true,
+      },
+    });
+  }
+
+  const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
+  if (heroImg4) {
+    gsap.to(heroImg4, {
+      y: '250',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img4-wrapper',
+        start: 'top+=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
+  if (heroImg5) {
+    gsap.to(heroImg5, {
+      y: '150',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img5-wrapper',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
 }

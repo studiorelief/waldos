@@ -1478,7 +1478,7 @@
       _createTweenType(1, arguments, this);
       return this;
     };
-    _proto2.fromTo = function fromTo2(targets, fromVars, toVars, position) {
+    _proto2.fromTo = function fromTo(targets, fromVars, toVars, position) {
       _createTweenType(2, arguments, this);
       return this;
     };
@@ -2526,7 +2526,7 @@
         callbackScope: scope
       });
     };
-    Tween2.fromTo = function fromTo2(targets, fromVars, toVars) {
+    Tween2.fromTo = function fromTo(targets, fromVars, toVars) {
       return _createTweenType(2, arguments);
     };
     Tween2.set = function set(targets, vars) {
@@ -6616,16 +6616,15 @@
 
   // src/utils/gsap.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2);
-  function initScrollAnimation() {
+  function scrollNavbar() {
     const navigation = document.querySelector(".navigation");
     if (!navigation)
       return;
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 0) {
         gsapWithCSS.to(navigation, {
           backdropFilter: "blur(20px)",
           backgroundColor: "rgba(112, 0, 255, 0.8)",
-          // Utilisation directe de la couleur avec opacité
           duration: 0.5
         });
       } else {
@@ -6694,32 +6693,7 @@
       });
     });
   }
-  var lastScrollTop = 0;
-  window.addEventListener("scroll", () => {
-    const st = window.pageYOffset || document.documentElement.scrollTop;
-    const direction = st > lastScrollTop ? 1 : -1;
-    lastScrollTop = st <= 0 ? 0 : st;
-    if (direction === 1) {
-      gsapWithCSS.to(".hero_introduce-picture", {
-        x: "2rem",
-        // Déplacement de 1vw à droite
-        duration: 0.8,
-        // Durée de l'animation
-        ease: "power2.inOut"
-        // Flow
-      });
-    } else {
-      gsapWithCSS.to(".hero_introduce-picture", {
-        x: "-2rem",
-        // Revenir à la place initiale
-        duration: 0.8,
-        // Durée de l'animation
-        ease: "power2.inOut"
-        // Flow
-      });
-    }
-  });
-  function fromTo() {
+  function animateProgressBar() {
     const progressLineFront = document.querySelector(".progress-line_front");
     if (progressLineFront) {
       gsapWithCSS.set(progressLineFront, { width: "100%", opacity: 1 });
@@ -6727,11 +6701,8 @@
         scrollTrigger: {
           trigger: ".nft_progress-line-content",
           start: "top 40%",
-          // Quand le haut est à 40% de la hauteur de l'écran
           end: "top -30%",
-          // Quand le haut est à -30% de la hauteur de l'écran
           scrub: true
-          // suivre le défilement
         }
       }).to(progressLineFront, {
         width: "0%",
@@ -6747,8 +6718,6 @@
           }
         }
       });
-    } else {
-      console.error("Element .progress-line_front not found.");
     }
   }
   var obj = { count: 0 };
@@ -6762,11 +6731,8 @@
       scrollTrigger: {
         trigger: ".nft_progress-line-content",
         start: "top 40%",
-        // When the top it's 40% of viewport
         end: "top -30%",
-        // When the top it's -30% of viewport
         scrub: true
-        // follow scroll
       },
       onUpdate: function() {
         const progressText = document.querySelector(".progress_anime-text");
@@ -6856,17 +6822,13 @@
           opacity: 1,
           // opacité finale
           duration: 1,
-          // durée de l'animation
           scrollTrigger: {
             trigger: roadmapPhase2,
             start: "top 80%",
-            // commence quand le haut est à 80% de la vue
             end: "bottom 70%",
-            // termine quand le bas est à 70% de la vue
             toggleActions: "play none none none",
             // déclenche l'animation uniquement lorsqu'il entre dans la vue
             scrub: true
-            // suit le scroll
           }
         }
       );
@@ -6880,22 +6842,16 @@
       gsapWithCSS.fromTo(
         elements,
         { opacity: 0 },
-        // opacité initiale
         {
           opacity: 1,
-          // opacité finale
           duration: 1,
-          // durée de l'animation
           scrollTrigger: {
             trigger: roadmapPhase3,
             start: "top 80%",
-            // commence quand le haut est à 85% de la vue
             end: "bottom 70%",
-            // termine quand le bas est à 50% de la vue
             toggleActions: "play none none none",
             // déclenche l'animation uniquement lorsqu'il entre dans la vue
             scrub: true
-            // suit le scroll
           }
         }
       );
@@ -6903,23 +6859,184 @@
   }
   var imgWrapperBoat = document.querySelector(".img-wrapper_boat");
   if (imgWrapperBoat) {
-    gsapWithCSS.from(imgWrapperBoat, {
-      x: "100%",
-      // at the right screen
-      opacity: 0,
-      scale: 0.2,
-      // start with smallest size
-      duration: 2,
+    gsapWithCSS.set(imgWrapperBoat, { x: "100%" });
+    gsapWithCSS.to(imgWrapperBoat, {
+      x: "0",
+      // move to the left of the screen
+      ease: "power1.out",
+      // smoothing the animation
       scrollTrigger: {
         trigger: imgWrapperBoat,
-        start: "top 80%",
-        // start when the top it's 80% of viewport
-        end: "top 60%",
-        // end when the bottom it's 60% of viewport
-        toggleActions: "restart none none none"
-        // Start when trigger is in viewport
+        start: "top 60%",
+        // start when the top it's 75% of viewport
+        end: "top 50%",
+        // end when the top it's 70% of viewport
+        scrub: true,
+        // smooth follow with the scroll
+        markers: false
+        // show markers for debugging
       }
     });
+  }
+  function initPeposHeroParallax() {
+    const peposHero5 = document.querySelector("#pepos-hero5");
+    if (peposHero5) {
+      gsapWithCSS.to(peposHero5, {
+        y: "300",
+        // move up by 300px
+        ease: "power1.out",
+        // effect
+        scrollTrigger: {
+          trigger: ".hero_image-wrapper",
+          start: "top 120",
+          end: "100%",
+          scrub: true,
+          // smooth catch-up with the scroll
+          markers: false
+          // show markers for debugging
+        }
+      });
+    }
+    const peposHero4 = document.querySelector("#pepos-hero4");
+    if (peposHero4) {
+      gsapWithCSS.to(peposHero4, {
+        y: "200",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero_image-wrapper",
+          start: "top 120",
+          end: "100%",
+          scrub: true
+        }
+      });
+    }
+    const peposHero3 = document.querySelector("#pepos-hero3");
+    if (peposHero3) {
+      gsapWithCSS.to(peposHero3, {
+        y: "150",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero_image-wrapper",
+          start: "top 120",
+          end: "100%",
+          scrub: true
+        }
+      });
+    }
+  }
+  function initWeedosCloudParallax() {
+    const weedosCloud = document.querySelector("#weedos-cloud");
+    if (weedosCloud) {
+      gsapWithCSS.to(weedosCloud, {
+        y: "300",
+        // move up by 300px
+        ease: "power1.inOut",
+        // easing for a smooth effect
+        scrollTrigger: {
+          trigger: weedosCloud,
+          start: "top 150",
+          // start when the top of the wrapper hits the top of the viewport
+          end: "100%",
+          // end when the bottom of the viewport is reached
+          scrub: true
+          // smooth catch-up with the scroll
+        }
+      });
+    }
+    const weedosCloud1 = document.querySelector("#weedos-cloud1");
+    if (weedosCloud) {
+      gsapWithCSS.to(weedosCloud1, {
+        y: "100",
+        // move up by 300px
+        ease: "power1.inOut",
+        // easing for a smooth effect
+        scrollTrigger: {
+          trigger: weedosCloud,
+          start: "top 150",
+          // start when the top of the wrapper hits the top of the viewport
+          end: "100%",
+          // end when the bottom of the viewport is reached
+          scrub: true
+          // smooth catch-up with the scroll
+        }
+      });
+    }
+  }
+  function heroHomeParallax() {
+    const heroImg1 = document.querySelector("#hero-img1");
+    if (heroImg1) {
+      gsapWithCSS.to(heroImg1, {
+        y: "400",
+        // move up by 300px
+        ease: "power1.out",
+        // easing effect
+        scrollTrigger: {
+          trigger: ".hero-img1-wrapper",
+          // Ajustez ce sélecteur pour correspondre à la div contenant #hero-img1
+          start: "top+=100 top",
+          // commence 100px après que le haut de l'élément déclencheur atteint le haut de la vue
+          end: "bottom+=200 top",
+          // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
+          scrub: true,
+          // smooth catch-up with the scroll
+          markers: true
+          // show markers for debugging
+        }
+      });
+    }
+    const heroImg2 = document.querySelector("#hero-img2");
+    if (heroImg2) {
+      gsapWithCSS.to(heroImg2, {
+        y: "350",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img2-wrapper",
+          start: "top+=100 top",
+          end: "bottom+=200 top",
+          scrub: true,
+          markers: true
+        }
+      });
+    }
+    const heroImg3 = document.querySelector("#hero-img3");
+    if (heroImg3) {
+      gsapWithCSS.to(heroImg3, {
+        y: "300",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img3-wrapper",
+          start: "top+=100 top",
+          end: "bottom+=200 top",
+          scrub: true,
+          markers: true
+        }
+      });
+    }
+    const heroImg4 = document.querySelector("#hero-img4");
+    if (heroImg4) {
+      gsapWithCSS.to(heroImg4, {
+        y: "250",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img4-wrapper",
+          start: "top+=100 top",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const heroImg5 = document.querySelector("#hero-img5");
+    if (heroImg5) {
+      gsapWithCSS.to(heroImg5, {
+        y: "150",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img5-wrapper",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
   }
 
   // node_modules/.pnpm/swiper@11.1.4/node_modules/swiper/shared/ssr-window.esm.mjs
@@ -16564,13 +16681,16 @@
   window.Webflow.push(() => {
     swiperNft();
     swiperPepos();
-    fromTo();
-    initScrollAnimation();
+    scrollNavbar();
     hoverFooterLink();
     hoverFooterLinkInsta();
     animatePhase2();
     animatePhase3();
     hoverNavContainer();
+    animateProgressBar();
+    initPeposHeroParallax();
+    initWeedosCloudParallax();
+    heroHomeParallax();
   });
 })();
 /*! Bundled license information:
