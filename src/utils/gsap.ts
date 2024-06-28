@@ -6,19 +6,29 @@ gsap.registerPlugin(ScrollTrigger);
 // Navbar - COMPONENTS
 // Background-color Navbar at scroll down
 export function initScrollAnimation() {
-  const navigation = document.querySelector('.navigation');
+  const navigation = document.querySelector('.navigation') as HTMLElement;
 
   if (!navigation) return;
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
-      gsap.to(navigation, { backgroundColor: 'rgba(112, 0, 255, 0.9)', duration: 0.5 });
+      gsap.to(navigation, {
+        backdropFilter: 'blur(20px)',
+        backgroundColor: 'rgba(112, 0, 255, 0.8)', // Utilisation directe de la couleur avec opacité
+        duration: 0.5,
+      });
     } else {
-      gsap.to(navigation, { backgroundColor: 'rgba(112, 0, 255, 0.9)', duration: 0.5 });
+      gsap.to(navigation, {
+        backdropFilter: 'none',
+        backgroundColor: 'rgba(112, 0, 255, 0.8)',
+        duration: 0.5,
+      });
     }
   });
 }
 
+// Navbar - COMPONENTS
+// Hover on Navlinks
 export function hoverNavContainer() {
   const containers = document.querySelectorAll('.nav-link-container');
 
@@ -88,63 +98,91 @@ export function hoverFooterLinkInsta() {
 }
 
 // HOMEPAGE
-// left to right Waldos character in Hero Section
-gsap.to('.hero_introduce-picture', {
-  x: '-2vw', // Déplacement de -2vw à droite
-  duration: 3,
-  yoyo: true, // back to initial statement
-  repeat: -1, // loop
-  ease: 'power1.inOut', // flow
+// Déplacer le personnage de Waldos dans la section Hero
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+  const st = window.pageYOffset || document.documentElement.scrollTop;
+  const direction = st > lastScrollTop ? 1 : -1; // 1 pour down, -1 pour up
+  lastScrollTop = st <= 0 ? 0 : st;
+
+  if (direction === 1) {
+    // Scroll down
+    gsap.to('.hero_introduce-picture', {
+      x: '2rem', // Déplacement de 1vw à droite
+      duration: 0.8, // Durée de l'animation
+      ease: 'power2.inOut', // Flow
+    });
+  } else {
+    // Scroll up
+    gsap.to('.hero_introduce-picture', {
+      x: '-2rem', // Revenir à la place initiale
+      duration: 0.8, // Durée de l'animation
+      ease: 'power2.inOut', // Flow
+    });
+  }
 });
 
 // HOMEPAGE
 // Progress bar - HOME PAGE
 export function fromTo() {
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: '.nft_progress-line-content',
-        start: 'top 40%', // When the top is 40% of the height of the screen
-        end: 'top -30%', // When the top is -30% of the height of the screen
-        scrub: true, // follow scroll
-      },
-    })
-    .fromTo(
-      '.progress-line_front',
-      { width: 0, opacity: 0 }, // initial state
-      { opacity: 1, width: '1%', duration: 1 } // opacity change at 1% width
-    )
-    .to(
-      '.progress-line_front',
-      { width: '100%', duration: 99 } // continue to 100% width
-    );
+  // Assurez-vous que la barre de progression est visible avant l'animation
+  const progressLineFront = document.querySelector('.progress-line_front') as HTMLElement;
 
-  // Progress bar - Text animation 0 at 100 - HOME PAGE
-  const obj = { count: 0 };
-  gsap.fromTo(
-    obj,
-    { count: 0 }, // initial statement
-    {
-      count: 420,
-      duration: 100,
-      scrollTrigger: {
-        trigger: '.nft_progress-line-content',
-        start: 'top 40%', // When the top it's 40% of viewport
-        end: 'top -30%', // When the top it's -30% of viewport
-        scrub: true, // follow scroll
-      },
-      onUpdate: function () {
-        const progressText = document.querySelector('.progress_anime-text');
-        if (progressText instanceof HTMLElement) {
-          progressText.innerText = Math.round(obj.count).toString();
-        }
-      },
-    }
-  );
+  if (progressLineFront) {
+    gsap.set(progressLineFront, { width: '100%', opacity: 1 });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '.nft_progress-line-content',
+          start: 'top 40%', // Quand le haut est à 40% de la hauteur de l'écran
+          end: 'top -30%', // Quand le haut est à -30% de la hauteur de l'écran
+          scrub: true, // suivre le défilement
+        },
+      })
+      .to(progressLineFront, {
+        width: '0%', // Fin à 0%
+        duration: 1, // Durée de l'animation
+        ease: 'power3.inOut', // Lissage doux
+        onUpdate: function () {
+          // Vérifiez si la largeur est à 0% et supprimez le box-shadow
+          const currentWidth = window.getComputedStyle(progressLineFront).width;
+          if (currentWidth === '0px') {
+            progressLineFront.style.boxShadow = 'none';
+          }
+        },
+      });
+  } else {
+    console.error('Element .progress-line_front not found.');
+  }
 }
 
+// Progress bar - Text animation 0 at 100 - HOME PAGE
+const obj = { count: 0 };
+gsap.fromTo(
+  obj,
+  { count: 420 }, // initial statement
+  {
+    count: 0,
+    duration: 100,
+    scrollTrigger: {
+      trigger: '.nft_progress-line-content',
+      start: 'top 40%', // When the top it's 40% of viewport
+      end: 'top -30%', // When the top it's -30% of viewport
+      scrub: true, // follow scroll
+    },
+    onUpdate: function () {
+      const progressText = document.querySelector('.progress_anime-text');
+      if (progressText instanceof HTMLElement) {
+        progressText.innerText = Math.round(obj.count).toString();
+      }
+    },
+  }
+);
+
 // PEPOS PAGE
-// Roadmap Ellipse - PEPOS PAGE
+// Roadmap Ellipse
 const roadmapSteps = document.querySelectorAll<HTMLDivElement>('.roadmap_step');
 roadmapSteps.forEach((step) => {
   const ellipse = step.querySelector('.roadmap_ellipse');
@@ -201,22 +239,25 @@ roadmapSteps.forEach((step) => {
   }
 });
 
-//PEPOS PAGE PHASE HEADING
-// Fonction pour animer roadmap-phase2 lorsqu'il entre dans le viewport
+//PEPOS PAGE - PHASE & GROW DRAWING
+// Fonction pour animer roadmap-phase2 et grow2 lorsqu'ils entrent dans le viewport
 export function animatePhase2() {
   const roadmapPhase2 = document.querySelector('#roadmap-phase2');
+  const grow2 = document.querySelector('#grow2');
 
-  if (roadmapPhase2) {
+  if (roadmapPhase2 && grow2) {
+    const elements = [roadmapPhase2, grow2];
+
     gsap.fromTo(
-      roadmapPhase2,
+      elements,
       { opacity: 0 }, // opacité initiale
       {
         opacity: 1, // opacité finale
         duration: 1, // durée de l'animation
         scrollTrigger: {
           trigger: roadmapPhase2,
-          start: 'top 80%', // commence quand le haut est à 85% de la vue
-          end: 'bottom 70%', // termine quand le bas est à 50% de la vue
+          start: 'top 80%', // commence quand le haut est à 80% de la vue
+          end: 'bottom 70%', // termine quand le bas est à 70% de la vue
           toggleActions: 'play none none none', // déclenche l'animation uniquement lorsqu'il entre dans la vue
           scrub: true, // suit le scroll
         },
@@ -225,45 +266,15 @@ export function animatePhase2() {
   }
 }
 
-// PEPOS PAGE
-// Animation picture on the TOP of road map section
-export function animateRoadmapImages() {
-  const images = document.querySelectorAll<HTMLImageElement>('.roadmap_grow-container img');
-
-  if (images.length >= 3) {
-    gsap.set(images, { opacity: 0 });
-
-    const animateImages = () => {
-      // Animate the first image to be visible immediately
-      gsap.to(images[0], { opacity: 1, duration: 1 });
-
-      // Animate the second image to appear 4 seconds later
-      gsap.to(images[1], { opacity: 1, duration: 1, delay: 2 });
-
-      // Animate the third image to appear 8 seconds later
-      gsap.to(images[2], { opacity: 1, duration: 1, delay: 4 });
-    };
-
-    ScrollTrigger.create({
-      trigger: images[0].parentElement, // Assuming the parent container triggers the animation
-      start: 'top 80%',
-      end: 'bottom 20%',
-      onEnter: () => {
-        gsap.set(images, { opacity: 0 }); // Reset opacity
-        animateImages(); // Start animations
-      },
-      onLeaveBack: () => gsap.set(images, { opacity: 0 }), // Hide images when scrolling back up
-    });
-  }
-}
-
-// Fonction pour animer roadmap-phase3 lorsqu'il entre dans le viewport
+// Fonction pour animer roadmap-phase3 & grow3 lorsqu'il entre dans le viewport
 export function animatePhase3() {
   const roadmapPhase3 = document.querySelector('#roadmap-phase3');
+  const grow3 = document.querySelector('#grow3');
 
-  if (roadmapPhase3) {
+  if (roadmapPhase3 && grow3) {
+    const elements = [roadmapPhase3, grow3];
     gsap.fromTo(
-      roadmapPhase3,
+      elements,
       { opacity: 0 }, // opacité initiale
       {
         opacity: 1, // opacité finale

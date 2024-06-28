@@ -3,7 +3,6 @@ import './index.css';
 import {
   animatePhase2,
   animatePhase3,
-  animateRoadmapImages,
   fromTo,
   hoverFooterLink,
   hoverFooterLinkInsta,
@@ -22,6 +21,5 @@ window.Webflow.push(() => {
   hoverFooterLinkInsta();
   animatePhase2();
   animatePhase3();
-  animateRoadmapImages();
   hoverNavContainer();
 });
