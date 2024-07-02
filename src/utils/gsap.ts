@@ -10,6 +10,13 @@ export function scrollNavbar() {
 
   if (!navigation) return;
 
+  // Ensure the navigation bar is positioned at the top
+  navigation.style.position = 'fixed';
+  navigation.style.top = '0';
+  navigation.style.left = '0';
+  navigation.style.width = '100%';
+  navigation.style.zIndex = '1000';
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
       gsap.to(navigation, {
@@ -94,6 +101,22 @@ export function hoverFooterLinkInsta() {
     link.addEventListener('mouseleave', () => {
       gsap.to(link, { scale: 1, rotate: 0, duration: 0.5, ease: 'bounce.out' });
     });
+  });
+}
+
+// HOMEPAGE
+//Hero background Parallax
+const backgroundHero = document.querySelector('#hero-pattern1') as HTMLElement;
+if (backgroundHero) {
+  gsap.to(backgroundHero, {
+    y: '500',
+    ease: 'power1.out',
+    scrollTrigger: {
+      trigger: '.hero_content-wrapper',
+      start: 'top-=200',
+      end: 'bottom',
+      scrub: true,
+    },
   });
 }
 
@@ -335,11 +358,11 @@ export function initWeedosCloudParallax() {
   const weedosCloud = document.querySelector('#weedos-cloud') as HTMLElement;
   if (weedosCloud) {
     gsap.to(weedosCloud, {
-      y: '300', // move up by 300px
+      y: '-900',
       ease: 'power1.inOut', // easing for a smooth effect
       scrollTrigger: {
         trigger: weedosCloud,
-        start: 'top 150', // start when the top of the wrapper hits the top of the viewport
+        start: 'top 400', // start when the top of the wrapper hits the top of the viewport
         end: '100%', // end when the bottom of the viewport is reached
         scrub: true, // smooth catch-up with the scroll
       },
@@ -348,11 +371,11 @@ export function initWeedosCloudParallax() {
   const weedosCloud1 = document.querySelector('#weedos-cloud1') as HTMLElement;
   if (weedosCloud) {
     gsap.to(weedosCloud1, {
-      y: '100', // move up by 300px
+      y: '300', // move up by 300px
       ease: 'power1.inOut', // easing for a smooth effect
       scrollTrigger: {
         trigger: weedosCloud,
-        start: 'top 150', // start when the top of the wrapper hits the top of the viewport
+        start: 'top 400', // start when the top of the wrapper hits the top of the viewport
         end: '100%', // end when the bottom of the viewport is reached
         scrub: true, // smooth catch-up with the scroll
       },
@@ -366,14 +389,14 @@ export function heroHomeParallax() {
   const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
   if (heroImg1) {
     gsap.to(heroImg1, {
-      y: '400', // move up by 300px
+      y: '800',
       ease: 'power1.out', // easing effect
       scrollTrigger: {
-        trigger: '.hero-img1-wrapper', // Ajustez ce sélecteur pour correspondre à la div contenant #hero-img1
-        start: 'top+=100 top', // commence 100px après que le haut de l'élément déclencheur atteint le haut de la vue
+        trigger: '.hero-img1-wrapper',
+        start: 'top -100',
         end: 'bottom+=200 top', // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
         scrub: true, // smooth catch-up with the scroll
-        markers: true, // show markers for debugging
+        markers: false,
       },
     });
   }
@@ -381,14 +404,13 @@ export function heroHomeParallax() {
   const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
   if (heroImg2) {
     gsap.to(heroImg2, {
-      y: '350',
+      y: '800',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.hero-img2-wrapper',
-        start: 'top+=100 top',
+        start: 'top-=100 top',
         end: 'bottom+=200 top',
         scrub: true,
-        markers: true,
       },
     });
   }
@@ -396,14 +418,13 @@ export function heroHomeParallax() {
   const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
   if (heroImg3) {
     gsap.to(heroImg3, {
-      y: '300',
+      y: '500',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.hero-img3-wrapper',
-        start: 'top+=100 top',
+        start: 'top-=100 top',
         end: 'bottom+=200 top',
         scrub: true,
-        markers: true,
       },
     });
   }
@@ -411,11 +432,11 @@ export function heroHomeParallax() {
   const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
   if (heroImg4) {
     gsap.to(heroImg4, {
-      y: '250',
+      y: '500',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.hero-img4-wrapper',
-        start: 'top+=100 top',
+        start: 'top-=100 top',
         end: 'bottom+=200 top',
         scrub: true,
       },
@@ -429,6 +450,7 @@ export function heroHomeParallax() {
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.hero-img5-wrapper',
+        start: 'top-=100 top',
         end: 'bottom+=200 top',
         scrub: true,
       },

@@ -31,3 +31,17 @@ export function swiperPepos() {
     speed: 1000,
   });
 }
+
+export function swiperGoodies() {
+  new Swiper('.goodies-swiper', {
+    direction: 'horizontal',
+    slidesPerView: 'auto',
+    spaceBetween: 64, // variable
+    slideActiveClass: 'is-active',
+    speed: 1000,
+    navigation: {
+      prevEl: '.swiper-button-prev',
+      nextEl: '.swiper-button-next',
+    },
+  });
+}

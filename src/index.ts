@@ -12,12 +12,13 @@ import {
   initWeedosCloudParallax,
   scrollNavbar,
 } from '$utils/gsap';
-import { swiperNft, swiperPepos } from '$utils/swiper';
+import { swiperGoodies, swiperNft, swiperPepos } from '$utils/swiper';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
   swiperNft();
   swiperPepos();
+  swiperGoodies();
   scrollNavbar();
   hoverFooterLink();
   hoverFooterLinkInsta();

@@ -6620,6 +6620,11 @@
     const navigation = document.querySelector(".navigation");
     if (!navigation)
       return;
+    navigation.style.position = "fixed";
+    navigation.style.top = "0";
+    navigation.style.left = "0";
+    navigation.style.width = "100%";
+    navigation.style.zIndex = "1000";
     window.addEventListener("scroll", () => {
       if (window.scrollY > 0) {
         gsapWithCSS.to(navigation, {
@@ -6691,6 +6696,19 @@
       link.addEventListener("mouseleave", () => {
         gsapWithCSS.to(link, { scale: 1, rotate: 0, duration: 0.5, ease: "bounce.out" });
       });
+    });
+  }
+  var backgroundHero = document.querySelector("#hero-pattern1");
+  if (backgroundHero) {
+    gsapWithCSS.to(backgroundHero, {
+      y: "500",
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: ".hero_content-wrapper",
+        start: "top-=200",
+        end: "bottom",
+        scrub: true
+      }
     });
   }
   function animateProgressBar() {
@@ -6928,13 +6946,12 @@
     const weedosCloud = document.querySelector("#weedos-cloud");
     if (weedosCloud) {
       gsapWithCSS.to(weedosCloud, {
-        y: "300",
-        // move up by 300px
+        y: "-900",
         ease: "power1.inOut",
         // easing for a smooth effect
         scrollTrigger: {
           trigger: weedosCloud,
-          start: "top 150",
+          start: "top 400",
           // start when the top of the wrapper hits the top of the viewport
           end: "100%",
           // end when the bottom of the viewport is reached
@@ -6946,13 +6963,13 @@
     const weedosCloud1 = document.querySelector("#weedos-cloud1");
     if (weedosCloud) {
       gsapWithCSS.to(weedosCloud1, {
-        y: "100",
+        y: "300",
         // move up by 300px
         ease: "power1.inOut",
         // easing for a smooth effect
         scrollTrigger: {
           trigger: weedosCloud,
-          start: "top 150",
+          start: "top 400",
           // start when the top of the wrapper hits the top of the viewport
           end: "100%",
           // end when the bottom of the viewport is reached
@@ -6966,60 +6983,54 @@
     const heroImg1 = document.querySelector("#hero-img1");
     if (heroImg1) {
       gsapWithCSS.to(heroImg1, {
-        y: "400",
-        // move up by 300px
+        y: "800",
         ease: "power1.out",
         // easing effect
         scrollTrigger: {
           trigger: ".hero-img1-wrapper",
-          // Ajustez ce sélecteur pour correspondre à la div contenant #hero-img1
-          start: "top+=100 top",
-          // commence 100px après que le haut de l'élément déclencheur atteint le haut de la vue
+          start: "top -100",
           end: "bottom+=200 top",
           // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
           scrub: true,
           // smooth catch-up with the scroll
-          markers: true
-          // show markers for debugging
+          markers: false
         }
       });
     }
     const heroImg2 = document.querySelector("#hero-img2");
     if (heroImg2) {
       gsapWithCSS.to(heroImg2, {
-        y: "350",
+        y: "800",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".hero-img2-wrapper",
-          start: "top+=100 top",
+          start: "top-=100 top",
           end: "bottom+=200 top",
-          scrub: true,
-          markers: true
+          scrub: true
         }
       });
     }
     const heroImg3 = document.querySelector("#hero-img3");
     if (heroImg3) {
       gsapWithCSS.to(heroImg3, {
-        y: "300",
+        y: "500",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".hero-img3-wrapper",
-          start: "top+=100 top",
+          start: "top-=100 top",
           end: "bottom+=200 top",
-          scrub: true,
-          markers: true
+          scrub: true
         }
       });
     }
     const heroImg4 = document.querySelector("#hero-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "250",
+        y: "500",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".hero-img4-wrapper",
-          start: "top+=100 top",
+          start: "top-=100 top",
           end: "bottom+=200 top",
           scrub: true
         }
@@ -7032,6 +7043,7 @@
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".hero-img5-wrapper",
+          start: "top-=100 top",
           end: "bottom+=200 top",
           scrub: true
         }
@@ -16675,12 +16687,27 @@
       speed: 1e3
     });
   }
+  function swiperGoodies() {
+    new Swiper(".goodies-swiper", {
+      direction: "horizontal",
+      slidesPerView: "auto",
+      spaceBetween: 64,
+      // variable
+      slideActiveClass: "is-active",
+      speed: 1e3,
+      navigation: {
+        prevEl: ".swiper-button-prev",
+        nextEl: ".swiper-button-next"
+      }
+    });
+  }
 
   // src/index.ts
   window.Webflow ||= [];
   window.Webflow.push(() => {
     swiperNft();
     swiperPepos();
+    swiperGoodies();
     scrollNavbar();
     hoverFooterLink();
     hoverFooterLinkInsta();
