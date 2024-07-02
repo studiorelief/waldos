@@ -7,7 +7,7 @@ export function swiperNft() {
   new Swiper('.swiper', {
     direction: 'horizontal',
     slidesPerView: 'auto',
-    spaceBetween: 64, // variable
+    spaceBetween: 50, // variable
     slideActiveClass: 'is-active',
     speed: 1000,
     navigation: {
@@ -21,14 +21,13 @@ export function swiperPepos() {
   new Swiper('.pepos-swiper', {
     direction: 'horizontal',
     slidesPerView: 'auto',
-    spaceBetween: 64, // variable
+    spaceBetween: 50, // variable
     loop: true,
     autoplay: {
-      delay: 100, // délai de défilement en millisecondes (2000ms = 2s)
-      disableOnInteraction: false, // continue l'autoplay après l'interaction de l'utilisateur
+      delay: 0, // délai de défilement en millisecondes (2000ms = 2s)
     },
     slideActiveClass: 'is-active',
-    speed: 1000,
+    speed: 800,
   });
 }
 

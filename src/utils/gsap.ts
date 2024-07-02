@@ -120,60 +120,176 @@ if (backgroundHero) {
   });
 }
 
-//HOME PAGE
-// Progress bar
+// HOME PAGE
+// Progress bar and Text animation
 export function animateProgressBar() {
   const progressLineFront = document.querySelector('.progress-line_front') as HTMLElement;
+  const progressText = document.querySelector('.progress_anime-text') as HTMLElement;
+  const totalCount = 420;
 
-  if (progressLineFront) {
-    gsap.set(progressLineFront, { width: '100%', opacity: 1 });
+  if (progressLineFront && progressText) {
+    // Set initial width and opacity
+    gsap.set(progressLineFront, { width: '99%', opacity: 1 });
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: '.nft_progress-line-content',
-          start: 'top 40%',
-          end: 'top -30%',
-          scrub: true,
-        },
-      })
-      .to(progressLineFront, {
-        width: '0%', // Fin à 0%
-        duration: 1, // Durée de l'animation
-        ease: 'power3.inOut', // Lissage doux
+    // Timeline for animation
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#swiper-nft',
+        start: 'top 40%',
+        end: 'top -30%',
+        scrub: true,
+        markers: true,
         onUpdate: function () {
-          // Vérifiez si la largeur est à 0% et supprimez le box-shadow
-          const currentWidth = window.getComputedStyle(progressLineFront).width;
-          if (currentWidth === '0px') {
-            progressLineFront.style.boxShadow = 'none';
+          if (progressLineFront.parentElement) {
+            // Calculate the progress percentage based on the scroll position
+            const progress =
+              parseFloat(window.getComputedStyle(progressLineFront).width) /
+              (progressLineFront.parentElement.offsetWidth * 0.99); // Adjust for 99% width
+            // Update the text based on the progress
+            const currentCount = Math.round(totalCount * progress);
+            progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount} NFT LEFT`;
           }
         },
-      });
+      },
+    });
+
+    // Animation for progress line
+    timeline.to(progressLineFront, {
+      width: '1%', // End at 1% to ensure the counter reaches 0
+      duration: 1, // Duration of the animation
+      ease: 'power3.inOut', // Smooth easing
+      onUpdate: function () {
+        if (progressLineFront.parentElement) {
+          const progress =
+            parseFloat(window.getComputedStyle(progressLineFront).width) /
+            (progressLineFront.parentElement.offsetWidth * 0.99); // Adjust for 99% width
+          const currentCount = Math.round(totalCount * progress);
+          progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount} NFT LEFT`;
+          // Remove box-shadow if the width is close to 1%
+          const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
+          if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
+            progressLineFront.style.boxShadow = 'none';
+          }
+        }
+      },
+    });
   }
 }
 
-// Progress bar - Text animation 0 at 100 - HOME PAGE
-const obj = { count: 0 };
-gsap.fromTo(
-  obj,
-  { count: 420 }, // initial statement
-  {
-    count: 0,
-    duration: 100,
+//HOME PAGE
+//HEADER HERO - PARALLAX
+export function heroHomeParallax() {
+  const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
+  if (heroImg1) {
+    gsap.to(heroImg1, {
+      y: '800',
+      ease: 'power1.out', // easing effect
+      scrollTrigger: {
+        trigger: '.hero-img1-wrapper',
+        start: 'top -100',
+        end: 'bottom+=200 top', // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
+        scrub: true, // smooth catch-up with the scroll
+        markers: false,
+      },
+    });
+  }
+
+  const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
+  if (heroImg2) {
+    gsap.to(heroImg2, {
+      y: '800',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img2-wrapper',
+        start: 'top-=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
+  if (heroImg3) {
+    gsap.to(heroImg3, {
+      y: '500',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img3-wrapper',
+        start: 'top-=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
+  if (heroImg4) {
+    gsap.to(heroImg4, {
+      y: '500',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img4-wrapper',
+        start: 'top-=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
+  if (heroImg5) {
+    gsap.to(heroImg5, {
+      y: '150',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero-img5-wrapper',
+        start: 'top-=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+}
+
+//HOME PAGE
+// girl on top of pepos token
+const girlOnTop = document.querySelector('#girl-on-top');
+if (girlOnTop) {
+  // Initial position offscreen to the right
+  gsap.set(girlOnTop, { x: '100%' });
+
+  // Animation to move the boat from right to left
+  gsap.to(girlOnTop, {
+    x: '0', // move to the left of the screen
+    ease: 'power1.out', // smoothing the animation
     scrollTrigger: {
-      trigger: '.nft_progress-line-content',
-      start: 'top 40%',
-      end: 'top -30%',
+      trigger: '#nft-grid1',
+      start: 'top 50%', // start when the top it's 75% of viewport
+      end: 'top -100', // end when the top it's 70% of viewport
+      scrub: true, // smooth follow with the scroll
+    },
+  });
+}
+
+//HOME PAGE
+// man on hero content
+const manSlide = document.querySelector('#waldos-guy-hero');
+if (manSlide) {
+  // Initial position offscreen to the right
+  gsap.set(manSlide, { x: '-100%' });
+
+  // Animation to move the guy from lefdt to right
+  gsap.to(manSlide, {
+    x: '0',
+    ease: 'power1.out',
+    scrollTrigger: {
+      trigger: '#hero-heading',
+      start: 'top +800',
+      end: 'top -100',
       scrub: true,
     },
-    onUpdate: function () {
-      const progressText = document.querySelector('.progress_anime-text');
-      if (progressText instanceof HTMLElement) {
-        progressText.innerText = Math.round(obj.count).toString();
-      }
-    },
-  }
-);
+  });
+}
 
 // PEPOS PAGE
 // Roadmap Ellipse
@@ -298,8 +414,8 @@ if (imgWrapperBoat) {
     ease: 'power1.out', // smoothing the animation
     scrollTrigger: {
       trigger: imgWrapperBoat,
-      start: 'top 60%', // start when the top it's 75% of viewport
-      end: 'top 50%', // end when the top it's 70% of viewport
+      start: 'top 80%', // start when the top of the element is 80% of the viewport
+      end: 'top 20%', // end when the top of the element is 20% of the viewport
       scrub: true, // smooth follow with the scroll
       markers: false, // show markers for debugging
     },
@@ -353,12 +469,28 @@ export function initPeposHeroParallax() {
   }
 }
 
+// Parallax effect for #pepos-hero4
+const peposHero2 = document.querySelector('#pepos-hero2') as HTMLElement;
+if (peposHero2) {
+  gsap.to(peposHero2, {
+    y: '75',
+    ease: 'power1.out',
+    scrollTrigger: {
+      trigger: '.hero_image-wrapper',
+      start: 'top 120',
+      end: '100%',
+      scrub: true,
+    },
+  });
+}
+
+//PEPOS PAGE
 //Weedos Header - Parallax
 export function initWeedosCloudParallax() {
   const weedosCloud = document.querySelector('#weedos-cloud') as HTMLElement;
   if (weedosCloud) {
     gsap.to(weedosCloud, {
-      y: '-900',
+      x: '-900',
       ease: 'power1.inOut', // easing for a smooth effect
       scrollTrigger: {
         trigger: weedosCloud,
@@ -371,88 +503,13 @@ export function initWeedosCloudParallax() {
   const weedosCloud1 = document.querySelector('#weedos-cloud1') as HTMLElement;
   if (weedosCloud) {
     gsap.to(weedosCloud1, {
-      y: '300', // move up by 300px
+      x: '300', // move up by 300px
       ease: 'power1.inOut', // easing for a smooth effect
       scrollTrigger: {
         trigger: weedosCloud,
         start: 'top 400', // start when the top of the wrapper hits the top of the viewport
         end: '100%', // end when the bottom of the viewport is reached
         scrub: true, // smooth catch-up with the scroll
-      },
-    });
-  }
-}
-
-//HOME PAGE
-//HEADER HERO - PARALLAX
-export function heroHomeParallax() {
-  const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
-  if (heroImg1) {
-    gsap.to(heroImg1, {
-      y: '800',
-      ease: 'power1.out', // easing effect
-      scrollTrigger: {
-        trigger: '.hero-img1-wrapper',
-        start: 'top -100',
-        end: 'bottom+=200 top', // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
-        scrub: true, // smooth catch-up with the scroll
-        markers: false,
-      },
-    });
-  }
-
-  const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
-  if (heroImg2) {
-    gsap.to(heroImg2, {
-      y: '800',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.hero-img2-wrapper',
-        start: 'top-=100 top',
-        end: 'bottom+=200 top',
-        scrub: true,
-      },
-    });
-  }
-
-  const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
-  if (heroImg3) {
-    gsap.to(heroImg3, {
-      y: '500',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.hero-img3-wrapper',
-        start: 'top-=100 top',
-        end: 'bottom+=200 top',
-        scrub: true,
-      },
-    });
-  }
-
-  const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
-  if (heroImg4) {
-    gsap.to(heroImg4, {
-      y: '500',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.hero-img4-wrapper',
-        start: 'top-=100 top',
-        end: 'bottom+=200 top',
-        scrub: true,
-      },
-    });
-  }
-
-  const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
-  if (heroImg5) {
-    gsap.to(heroImg5, {
-      y: '150',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.hero-img5-wrapper',
-        start: 'top-=100 top',
-        end: 'bottom+=200 top',
-        scrub: true,
       },
     });
   }
