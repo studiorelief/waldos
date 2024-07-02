@@ -89,8 +89,8 @@
   var _warn = function _warn2(message, suppress) {
     return !suppress && console.warn(message);
   };
-  var _addGlobal = function _addGlobal2(name, obj2) {
-    return name && (_globals[name] = obj2) && _installScope && (_installScope[name] = obj2) || _globals;
+  var _addGlobal = function _addGlobal2(name, obj) {
+    return name && (_globals[name] = obj) && _installScope && (_installScope[name] = obj) || _globals;
   };
   var _emptyFunc = function _emptyFunc2() {
     return 0;
@@ -178,16 +178,16 @@
   var _passThrough = function _passThrough2(p) {
     return p;
   };
-  var _setDefaults = function _setDefaults2(obj2, defaults3) {
+  var _setDefaults = function _setDefaults2(obj, defaults3) {
     for (var p in defaults3) {
-      p in obj2 || (obj2[p] = defaults3[p]);
+      p in obj || (obj[p] = defaults3[p]);
     }
-    return obj2;
+    return obj;
   };
   var _setKeyframeDefaults = function _setKeyframeDefaults2(excludeDuration) {
-    return function(obj2, defaults3) {
+    return function(obj, defaults3) {
       for (var p in defaults3) {
-        p in obj2 || p === "duration" && excludeDuration || p === "ease" || (obj2[p] = defaults3[p]);
+        p in obj || p === "duration" && excludeDuration || p === "ease" || (obj[p] = defaults3[p]);
       }
     };
   };
@@ -203,10 +203,10 @@
     }
     return base;
   };
-  var _copyExcluding = function _copyExcluding2(obj2, excluding) {
+  var _copyExcluding = function _copyExcluding2(obj, excluding) {
     var copy = {}, p;
-    for (p in obj2) {
-      p in excluding || (copy[p] = obj2[p]);
+    for (p in obj) {
+      p in excluding || (copy[p] = obj[p]);
     }
     return copy;
   };
@@ -1037,15 +1037,15 @@
   var _customEaseExp = /^[\d.\-M][\d.\-,\s]/;
   var _quotesExp = /["']/g;
   var _parseObjectInString = function _parseObjectInString2(value) {
-    var obj2 = {}, split = value.substr(1, value.length - 3).split(":"), key = split[0], i = 1, l = split.length, index, val, parsedVal;
+    var obj = {}, split = value.substr(1, value.length - 3).split(":"), key = split[0], i = 1, l = split.length, index, val, parsedVal;
     for (; i < l; i++) {
       val = split[i];
       index = i !== l - 1 ? val.lastIndexOf(",") : val.length;
       parsedVal = val.substr(0, index);
-      obj2[key] = isNaN(parsedVal) ? parsedVal.replace(_quotesExp, "").trim() : +parsedVal;
+      obj[key] = isNaN(parsedVal) ? parsedVal.replace(_quotesExp, "").trim() : +parsedVal;
       key = val.substr(index + 1).trim();
     }
-    return obj2;
+    return obj;
   };
   var _valueInParentheses = function _valueInParentheses2(value) {
     var open = value.indexOf("(") + 1, close = value.indexOf(")"), nested = value.indexOf("(", open);
@@ -1665,8 +1665,8 @@
       _isNumber(position) || (position = _parsePosition(this, position, child));
       if (!(child instanceof Animation)) {
         if (_isArray(child)) {
-          child.forEach(function(obj2) {
-            return _this2.add(obj2, position);
+          child.forEach(function(obj) {
+            return _this2.add(obj, position);
           });
           return this;
         }
@@ -2194,23 +2194,23 @@
     }
     return copy;
   };
-  var _parseKeyframe = function _parseKeyframe2(prop, obj2, allProps, easeEach) {
-    var ease = obj2.ease || easeEach || "power1.inOut", p, a;
-    if (_isArray(obj2)) {
+  var _parseKeyframe = function _parseKeyframe2(prop, obj, allProps, easeEach) {
+    var ease = obj.ease || easeEach || "power1.inOut", p, a;
+    if (_isArray(obj)) {
       a = allProps[prop] || (allProps[prop] = []);
-      obj2.forEach(function(value, i) {
+      obj.forEach(function(value, i) {
         return a.push({
-          t: i / (obj2.length - 1) * 100,
+          t: i / (obj.length - 1) * 100,
           v: value,
           e: ease
         });
       });
     } else {
-      for (p in obj2) {
+      for (p in obj) {
         a = allProps[p] || (allProps[p] = []);
         p === "ease" || a.push({
           t: parseFloat(prop),
-          v: obj2[p],
+          v: obj[p],
           e: ease
         });
       }
@@ -4887,11 +4887,11 @@
     var position = _getComputedStyle(element).position;
     element.style.position = position === "absolute" || position === "fixed" ? position : "relative";
   };
-  var _setDefaults3 = function _setDefaults4(obj2, defaults3) {
+  var _setDefaults3 = function _setDefaults4(obj, defaults3) {
     for (var p in defaults3) {
-      p in obj2 || (obj2[p] = defaults3[p]);
+      p in obj || (obj[p] = defaults3[p]);
     }
-    return obj2;
+    return obj;
   };
   var _getBounds = function _getBounds2(element, withoutTransforms) {
     var tween = withoutTransforms && _getComputedStyle(element)[_transformProp2] !== "matrix(1, 0, 0, 1, 0, 0)" && gsap3.to(element, {
@@ -5109,8 +5109,8 @@
   };
   var _clearScrollMemory = function _clearScrollMemory2(scrollRestoration, force) {
     _scrollers.cache++;
-    (force || !_refreshingAll) && _scrollers.forEach(function(obj2) {
-      return _isFunction3(obj2) && obj2.cacheID++ && (obj2.rec = 0);
+    (force || !_refreshingAll) && _scrollers.forEach(function(obj) {
+      return _isFunction3(obj) && obj.cacheID++ && (obj.rec = 0);
     });
     _isString3(scrollRestoration) && (_win4.history.scrollRestoration = _scrollRestoration = scrollRestoration);
   };
@@ -5142,16 +5142,16 @@
     }
     _refresh100vh();
     _refreshingAll = ScrollTrigger2.isRefreshing = true;
-    _scrollers.forEach(function(obj2) {
-      return _isFunction3(obj2) && ++obj2.cacheID && (obj2.rec = obj2());
+    _scrollers.forEach(function(obj) {
+      return _isFunction3(obj) && ++obj.cacheID && (obj.rec = obj());
     });
     var refreshInits = _dispatch3("refreshInit");
     _sort && ScrollTrigger2.sort();
     skipRevert || _revertAll();
-    _scrollers.forEach(function(obj2) {
-      if (_isFunction3(obj2)) {
-        obj2.smooth && (obj2.target.style.scrollBehavior = "auto");
-        obj2(0);
+    _scrollers.forEach(function(obj) {
+      if (_isFunction3(obj)) {
+        obj.smooth && (obj.target.style.scrollBehavior = "auto");
+        obj(0);
       }
     });
     _triggers.slice(0).forEach(function(t) {
@@ -5177,12 +5177,12 @@
     refreshInits.forEach(function(result) {
       return result && result.render && result.render(-1);
     });
-    _scrollers.forEach(function(obj2) {
-      if (_isFunction3(obj2)) {
-        obj2.smooth && requestAnimationFrame(function() {
-          return obj2.target.style.scrollBehavior = "smooth";
+    _scrollers.forEach(function(obj) {
+      if (_isFunction3(obj)) {
+        obj.smooth && requestAnimationFrame(function() {
+          return obj.target.style.scrollBehavior = "smooth";
         });
-        obj2.rec && obj2(obj2.rec);
+        obj.rec && obj(obj.rec);
       }
     });
     _clearScrollMemory(_scrollRestoration, 1);
@@ -6713,53 +6713,151 @@
   }
   function animateProgressBar() {
     const progressLineFront = document.querySelector(".progress-line_front");
-    if (progressLineFront) {
-      gsapWithCSS.set(progressLineFront, { width: "100%", opacity: 1 });
-      gsapWithCSS.timeline({
+    const progressText = document.querySelector(".progress_anime-text");
+    const totalCount = 420;
+    if (progressLineFront && progressText) {
+      gsapWithCSS.set(progressLineFront, { width: "99%", opacity: 1 });
+      const timeline2 = gsapWithCSS.timeline({
         scrollTrigger: {
-          trigger: ".nft_progress-line-content",
+          trigger: "#swiper-nft",
           start: "top 40%",
           end: "top -30%",
-          scrub: true
+          scrub: true,
+          markers: true,
+          onUpdate: function() {
+            if (progressLineFront.parentElement) {
+              const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / (progressLineFront.parentElement.offsetWidth * 0.99);
+              const currentCount = Math.round(totalCount * progress);
+              progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount} NFT LEFT`;
+            }
+          }
         }
-      }).to(progressLineFront, {
-        width: "0%",
-        // Fin à 0%
+      });
+      timeline2.to(progressLineFront, {
+        width: "1%",
+        // End at 1% to ensure the counter reaches 0
         duration: 1,
-        // Durée de l'animation
+        // Duration of the animation
         ease: "power3.inOut",
-        // Lissage doux
+        // Smooth easing
         onUpdate: function() {
-          const currentWidth = window.getComputedStyle(progressLineFront).width;
-          if (currentWidth === "0px") {
-            progressLineFront.style.boxShadow = "none";
+          if (progressLineFront.parentElement) {
+            const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / (progressLineFront.parentElement.offsetWidth * 0.99);
+            const currentCount = Math.round(totalCount * progress);
+            progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount} NFT LEFT`;
+            const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
+            if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
+              progressLineFront.style.boxShadow = "none";
+            }
           }
         }
       });
     }
   }
-  var obj = { count: 0 };
-  gsapWithCSS.fromTo(
-    obj,
-    { count: 420 },
-    // initial statement
-    {
-      count: 0,
-      duration: 100,
-      scrollTrigger: {
-        trigger: ".nft_progress-line-content",
-        start: "top 40%",
-        end: "top -30%",
-        scrub: true
-      },
-      onUpdate: function() {
-        const progressText = document.querySelector(".progress_anime-text");
-        if (progressText instanceof HTMLElement) {
-          progressText.innerText = Math.round(obj.count).toString();
+  function heroHomeParallax() {
+    const heroImg1 = document.querySelector("#hero-img1");
+    if (heroImg1) {
+      gsapWithCSS.to(heroImg1, {
+        y: "800",
+        ease: "power1.out",
+        // easing effect
+        scrollTrigger: {
+          trigger: ".hero-img1-wrapper",
+          start: "top -100",
+          end: "bottom+=200 top",
+          // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
+          scrub: true,
+          // smooth catch-up with the scroll
+          markers: false
         }
-      }
+      });
     }
-  );
+    const heroImg2 = document.querySelector("#hero-img2");
+    if (heroImg2) {
+      gsapWithCSS.to(heroImg2, {
+        y: "800",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img2-wrapper",
+          start: "top-=100 top",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const heroImg3 = document.querySelector("#hero-img3");
+    if (heroImg3) {
+      gsapWithCSS.to(heroImg3, {
+        y: "500",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img3-wrapper",
+          start: "top-=100 top",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const heroImg4 = document.querySelector("#hero-img4");
+    if (heroImg4) {
+      gsapWithCSS.to(heroImg4, {
+        y: "500",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img4-wrapper",
+          start: "top-=100 top",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const heroImg5 = document.querySelector("#hero-img5");
+    if (heroImg5) {
+      gsapWithCSS.to(heroImg5, {
+        y: "150",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".hero-img5-wrapper",
+          start: "top-=100 top",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+  }
+  var girlOnTop = document.querySelector("#girl-on-top");
+  if (girlOnTop) {
+    gsapWithCSS.set(girlOnTop, { x: "100%" });
+    gsapWithCSS.to(girlOnTop, {
+      x: "0",
+      // move to the left of the screen
+      ease: "power1.out",
+      // smoothing the animation
+      scrollTrigger: {
+        trigger: "#nft-grid1",
+        start: "top 50%",
+        // start when the top it's 75% of viewport
+        end: "top -100",
+        // end when the top it's 70% of viewport
+        scrub: true
+        // smooth follow with the scroll
+      }
+    });
+  }
+  var manSlide = document.querySelector("#waldos-guy-hero");
+  if (manSlide) {
+    gsapWithCSS.set(manSlide, { x: "-100%" });
+    gsapWithCSS.to(manSlide, {
+      x: "0",
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: "#hero-heading",
+        start: "top +800",
+        end: "top -100",
+        scrub: true
+      }
+    });
+  }
   var roadmapSteps = document.querySelectorAll(".roadmap_step");
   roadmapSteps.forEach((step) => {
     const ellipse = step.querySelector(".roadmap_ellipse");
@@ -6885,10 +6983,10 @@
       // smoothing the animation
       scrollTrigger: {
         trigger: imgWrapperBoat,
-        start: "top 60%",
-        // start when the top it's 75% of viewport
-        end: "top 50%",
-        // end when the top it's 70% of viewport
+        start: "top 80%",
+        // start when the top of the element is 80% of the viewport
+        end: "top 20%",
+        // end when the top of the element is 20% of the viewport
         scrub: true,
         // smooth follow with the scroll
         markers: false
@@ -6942,11 +7040,24 @@
       });
     }
   }
+  var peposHero2 = document.querySelector("#pepos-hero2");
+  if (peposHero2) {
+    gsapWithCSS.to(peposHero2, {
+      y: "75",
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: ".hero_image-wrapper",
+        start: "top 120",
+        end: "100%",
+        scrub: true
+      }
+    });
+  }
   function initWeedosCloudParallax() {
     const weedosCloud = document.querySelector("#weedos-cloud");
     if (weedosCloud) {
       gsapWithCSS.to(weedosCloud, {
-        y: "-900",
+        x: "-900",
         ease: "power1.inOut",
         // easing for a smooth effect
         scrollTrigger: {
@@ -6963,7 +7074,7 @@
     const weedosCloud1 = document.querySelector("#weedos-cloud1");
     if (weedosCloud) {
       gsapWithCSS.to(weedosCloud1, {
-        y: "300",
+        x: "300",
         // move up by 300px
         ease: "power1.inOut",
         // easing for a smooth effect
@@ -6979,81 +7090,10 @@
       });
     }
   }
-  function heroHomeParallax() {
-    const heroImg1 = document.querySelector("#hero-img1");
-    if (heroImg1) {
-      gsapWithCSS.to(heroImg1, {
-        y: "800",
-        ease: "power1.out",
-        // easing effect
-        scrollTrigger: {
-          trigger: ".hero-img1-wrapper",
-          start: "top -100",
-          end: "bottom+=200 top",
-          // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
-          scrub: true,
-          // smooth catch-up with the scroll
-          markers: false
-        }
-      });
-    }
-    const heroImg2 = document.querySelector("#hero-img2");
-    if (heroImg2) {
-      gsapWithCSS.to(heroImg2, {
-        y: "800",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".hero-img2-wrapper",
-          start: "top-=100 top",
-          end: "bottom+=200 top",
-          scrub: true
-        }
-      });
-    }
-    const heroImg3 = document.querySelector("#hero-img3");
-    if (heroImg3) {
-      gsapWithCSS.to(heroImg3, {
-        y: "500",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".hero-img3-wrapper",
-          start: "top-=100 top",
-          end: "bottom+=200 top",
-          scrub: true
-        }
-      });
-    }
-    const heroImg4 = document.querySelector("#hero-img4");
-    if (heroImg4) {
-      gsapWithCSS.to(heroImg4, {
-        y: "500",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".hero-img4-wrapper",
-          start: "top-=100 top",
-          end: "bottom+=200 top",
-          scrub: true
-        }
-      });
-    }
-    const heroImg5 = document.querySelector("#hero-img5");
-    if (heroImg5) {
-      gsapWithCSS.to(heroImg5, {
-        y: "150",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".hero-img5-wrapper",
-          start: "top-=100 top",
-          end: "bottom+=200 top",
-          scrub: true
-        }
-      });
-    }
-  }
 
   // node_modules/.pnpm/swiper@11.1.4/node_modules/swiper/shared/ssr-window.esm.mjs
-  function isObject(obj2) {
-    return obj2 !== null && typeof obj2 === "object" && "constructor" in obj2 && obj2.constructor === Object;
+  function isObject(obj) {
+    return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
   }
   function extend(target, src) {
     if (target === void 0) {
@@ -7208,8 +7248,8 @@
     }
     return classes2.trim().split(" ").filter((c) => !!c.trim());
   }
-  function deleteProps(obj2) {
-    const object = obj2;
+  function deleteProps(obj) {
+    const object = obj;
     Object.keys(object).forEach((key) => {
       try {
         object[key] = null;
@@ -10699,14 +10739,14 @@
     _emitClasses: false
   };
   function moduleExtendParams(params, allModulesParams) {
-    return function extendParams(obj2) {
-      if (obj2 === void 0) {
-        obj2 = {};
+    return function extendParams(obj) {
+      if (obj === void 0) {
+        obj = {};
       }
-      const moduleParamName = Object.keys(obj2)[0];
-      const moduleParams = obj2[moduleParamName];
+      const moduleParamName = Object.keys(obj)[0];
+      const moduleParams = obj[moduleParamName];
       if (typeof moduleParams !== "object" || moduleParams === null) {
-        extend2(allModulesParams, obj2);
+        extend2(allModulesParams, obj);
         return;
       }
       if (params[moduleParamName] === true) {
@@ -10721,7 +10761,7 @@
         params[moduleParamName].auto = true;
       }
       if (!(moduleParamName in params && "enabled" in moduleParams)) {
-        extend2(allModulesParams, obj2);
+        extend2(allModulesParams, obj);
         return;
       }
       if (typeof params[moduleParamName] === "object" && !("enabled" in params[moduleParamName])) {
@@ -10731,7 +10771,7 @@
         params[moduleParamName] = {
           enabled: false
         };
-      extend2(allModulesParams, obj2);
+      extend2(allModulesParams, obj);
     };
   }
   var prototypes = {
@@ -16660,7 +16700,7 @@
     new Swiper(".swiper", {
       direction: "horizontal",
       slidesPerView: "auto",
-      spaceBetween: 64,
+      spaceBetween: 50,
       // variable
       slideActiveClass: "is-active",
       speed: 1e3,
@@ -16674,17 +16714,15 @@
     new Swiper(".pepos-swiper", {
       direction: "horizontal",
       slidesPerView: "auto",
-      spaceBetween: 64,
+      spaceBetween: 50,
       // variable
       loop: true,
       autoplay: {
-        delay: 100,
+        delay: 0
         // délai de défilement en millisecondes (2000ms = 2s)
-        disableOnInteraction: false
-        // continue l'autoplay après l'interaction de l'utilisateur
       },
       slideActiveClass: "is-active",
-      speed: 1e3
+      speed: 800
     });
   }
   function swiperGoodies() {
