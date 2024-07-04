@@ -3,12 +3,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Navbar - COMPONENTS
-// Background-color Navbar at scroll down
 export function scrollNavbar() {
-  const navigation = document.querySelector('.navigation') as HTMLElement;
+  const navigation = document.querySelector('.navbar') as HTMLElement;
+  const menuButton = document.querySelector('.navbar_menu-button') as HTMLElement;
+  let isMenuOpen = false;
 
-  if (!navigation) return;
+  if (!navigation || !menuButton) return;
 
   // Ensure the navigation bar is positioned at the top
   navigation.style.position = 'fixed';
@@ -17,6 +17,7 @@ export function scrollNavbar() {
   navigation.style.width = '100%';
   navigation.style.zIndex = '1000';
 
+  // Handle scroll behavior
   window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
       gsap.to(navigation, {
@@ -32,8 +33,18 @@ export function scrollNavbar() {
       });
     }
   });
-}
 
+  // Handle menu button click
+  menuButton.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  });
+}
 // Navbar - COMPONENTS
 // Hover on Navlinks
 export function hoverNavContainer() {
@@ -113,7 +124,7 @@ if (backgroundHero) {
     ease: 'power1.out',
     scrollTrigger: {
       trigger: '.hero_content-wrapper',
-      start: 'top-=200',
+      start: 'top-=50',
       end: 'bottom',
       scrub: true,
     },
@@ -121,7 +132,7 @@ if (backgroundHero) {
 }
 
 // HOME PAGE
-// Progress bar and Text animation
+// Progress bar and counter animation
 export function animateProgressBar() {
   const progressLineFront = document.querySelector('.progress-line_front') as HTMLElement;
   const progressText = document.querySelector('.progress_anime-text') as HTMLElement;
@@ -138,7 +149,6 @@ export function animateProgressBar() {
         start: 'top 40%',
         end: 'top -30%',
         scrub: true,
-        markers: true,
         onUpdate: function () {
           if (progressLineFront.parentElement) {
             // Calculate the progress percentage based on the scroll position
@@ -363,7 +373,7 @@ export function animatePhase2() {
       { opacity: 0 }, // opacité initiale
       {
         opacity: 1, // opacité finale
-        duration: 1,
+        duration: 2,
         scrollTrigger: {
           trigger: roadmapPhase2,
           start: 'top 80%',
@@ -388,7 +398,7 @@ export function animatePhase3() {
       { opacity: 0 },
       {
         opacity: 1,
-        duration: 1,
+        duration: 2,
         scrollTrigger: {
           trigger: roadmapPhase3,
           start: 'top 80%',
@@ -410,14 +420,14 @@ if (imgWrapperBoat) {
 
   // Animation to move the boat from right to left
   gsap.to(imgWrapperBoat, {
-    x: '0', // move to the left of the screen
-    ease: 'power1.out', // smoothing the animation
+    x: '0',
+    ease: 'power1.out',
     scrollTrigger: {
       trigger: imgWrapperBoat,
-      start: 'top 80%', // start when the top of the element is 80% of the viewport
-      end: 'top 20%', // end when the top of the element is 20% of the viewport
-      scrub: true, // smooth follow with the scroll
-      markers: false, // show markers for debugging
+      start: 'top 80%',
+      end: 'top 20%',
+      scrub: true,
+      markers: false,
     },
   });
 }
@@ -453,7 +463,7 @@ export function initPeposHeroParallax() {
       },
     });
   }
-  // Parallax effect for #pepos-hero4
+  // Parallax effect for #pepos-hero3
   const peposHero3 = document.querySelector('#pepos-hero3') as HTMLElement;
   if (peposHero3) {
     gsap.to(peposHero3, {
@@ -469,7 +479,7 @@ export function initPeposHeroParallax() {
   }
 }
 
-// Parallax effect for #pepos-hero4
+// Parallax effect for #pepos-hero2
 const peposHero2 = document.querySelector('#pepos-hero2') as HTMLElement;
 if (peposHero2) {
   gsap.to(peposHero2, {
