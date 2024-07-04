@@ -26,6 +26,7 @@ export function swiperPepos() {
     autoplay: {
       delay: 0, // délai de défilement en millisecondes (2000ms = 2s)
     },
+    centeredSlides: false,
     slideActiveClass: 'is-active',
     speed: 800,
   });
