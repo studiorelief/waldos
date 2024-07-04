@@ -3,6 +3,9 @@
 .swiper-button-next::after {
   content: none !important;
 }
+.swiper .swiper-wrapper {
+  transition-timing-function: linear;
+}
 
 /* node_modules/.pnpm/swiper@11.1.4/node_modules/swiper/swiper-bundle.css */
 @font-face {

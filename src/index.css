@@ -2,3 +2,7 @@
 .swiper-button-next::after {
   content: none !important; /* Désactive les flèches */
 }
+/* swiper linear loop */
+.swiper .swiper-wrapper {
+  transition-timing-function: linear;
+}

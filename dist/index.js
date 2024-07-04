@@ -6767,11 +6767,11 @@
     const heroImg1 = document.querySelector("#hero-img1");
     if (heroImg1) {
       gsapWithCSS.to(heroImg1, {
-        y: "800",
+        y: "600",
         ease: "power1.out",
         // easing effect
         scrollTrigger: {
-          trigger: ".hero-img1-wrapper",
+          trigger: "#hero-img-wrapper",
           start: "top -100",
           end: "bottom+=200 top",
           // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
@@ -6784,10 +6784,10 @@
     const heroImg2 = document.querySelector("#hero-img2");
     if (heroImg2) {
       gsapWithCSS.to(heroImg2, {
-        y: "800",
+        y: "600",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".hero-img2-wrapper",
+          trigger: "#hero-img-wrapper",
           start: "top-=100 top",
           end: "bottom+=200 top",
           scrub: true
@@ -6797,10 +6797,10 @@
     const heroImg3 = document.querySelector("#hero-img3");
     if (heroImg3) {
       gsapWithCSS.to(heroImg3, {
-        y: "500",
+        y: "400",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".hero-img3-wrapper",
+          trigger: "#hero-img-wrapper",
           start: "top-=100 top",
           end: "bottom+=200 top",
           scrub: true
@@ -6810,10 +6810,10 @@
     const heroImg4 = document.querySelector("#hero-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "500",
+        y: "400",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".hero-img4-wrapper",
+          trigger: "#hero-img-wrapper",
           start: "top-=100 top",
           end: "bottom+=200 top",
           scrub: true
@@ -6826,7 +6826,7 @@
         y: "150",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".hero-img5-wrapper",
+          trigger: "#hero-img-wrapper",
           start: "top-=100 top",
           end: "bottom+=200 top",
           scrub: true
@@ -7060,7 +7060,7 @@
     const weedosCloud = document.querySelector("#weedos-cloud");
     if (weedosCloud) {
       gsapWithCSS.to(weedosCloud, {
-        x: "-900",
+        x: "-600",
         ease: "power1.inOut",
         // easing for a smooth effect
         scrollTrigger: {
@@ -7077,7 +7077,7 @@
     const weedosCloud1 = document.querySelector("#weedos-cloud1");
     if (weedosCloud) {
       gsapWithCSS.to(weedosCloud1, {
-        x: "300",
+        x: "150",
         // move up by 300px
         ease: "power1.inOut",
         // easing for a smooth effect
@@ -16724,6 +16724,7 @@
         delay: 0
         // délai de défilement en millisecondes (2000ms = 2s)
       },
+      centeredSlides: false,
       slideActiveClass: "is-active",
       speed: 800
     });
