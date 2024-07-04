@@ -6617,8 +6617,10 @@
   // src/utils/gsap.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   function scrollNavbar() {
-    const navigation = document.querySelector(".navigation");
-    if (!navigation)
+    const navigation = document.querySelector(".navbar");
+    const menuButton = document.querySelector(".navbar_menu-button");
+    let isMenuOpen = false;
+    if (!navigation || !menuButton)
       return;
     navigation.style.position = "fixed";
     navigation.style.top = "0";
@@ -6638,6 +6640,14 @@
           backgroundColor: "rgba(112, 0, 255, 0.8)",
           duration: 0.5
         });
+      }
+    });
+    menuButton.addEventListener("click", () => {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
       }
     });
   }
@@ -6705,7 +6715,7 @@
       ease: "power1.out",
       scrollTrigger: {
         trigger: ".hero_content-wrapper",
-        start: "top-=200",
+        start: "top-=50",
         end: "bottom",
         scrub: true
       }
@@ -6723,7 +6733,6 @@
           start: "top 40%",
           end: "top -30%",
           scrub: true,
-          markers: true,
           onUpdate: function() {
             if (progressLineFront.parentElement) {
               const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / (progressLineFront.parentElement.offsetWidth * 0.99);
@@ -6937,7 +6946,7 @@
         {
           opacity: 1,
           // opacité finale
-          duration: 1,
+          duration: 2,
           scrollTrigger: {
             trigger: roadmapPhase2,
             start: "top 80%",
@@ -6960,7 +6969,7 @@
         { opacity: 0 },
         {
           opacity: 1,
-          duration: 1,
+          duration: 2,
           scrollTrigger: {
             trigger: roadmapPhase3,
             start: "top 80%",
@@ -6978,19 +6987,13 @@
     gsapWithCSS.set(imgWrapperBoat, { x: "100%" });
     gsapWithCSS.to(imgWrapperBoat, {
       x: "0",
-      // move to the left of the screen
       ease: "power1.out",
-      // smoothing the animation
       scrollTrigger: {
         trigger: imgWrapperBoat,
         start: "top 80%",
-        // start when the top of the element is 80% of the viewport
         end: "top 20%",
-        // end when the top of the element is 20% of the viewport
         scrub: true,
-        // smooth follow with the scroll
         markers: false
-        // show markers for debugging
       }
     });
   }
