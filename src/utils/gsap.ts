@@ -83,6 +83,24 @@ export function hoverNavContainer() {
   });
 }
 
+// Function to add the boxShadow on hover
+export function addHoverEffect(): void {
+  // Get the button element by class name
+  const btn = document.querySelector('.btn-join-quest') as HTMLElement;
+
+  if (btn) {
+    // Add event listener for mouseover
+    btn.addEventListener('mouseover', () => {
+      btn.style.boxShadow = '0 8px 10px rgba(0, 0, 0, 0.2)';
+    });
+
+    // Add event listener for mouseout
+    btn.addEventListener('mouseout', () => {
+      btn.style.boxShadow = '';
+    });
+  }
+}
+
 // Footer - COMPONENTS
 // Hover on Social Network Logo - FOOTER
 export function hoverFooterLink() {
@@ -523,4 +541,21 @@ export function initWeedosCloudParallax() {
       },
     });
   }
+}
+
+// Fonction pour animer les éléments
+export function animateIntroElements(): void {
+  // Animation pour 'intro_logo-text' (fade in)
+  gsap.fromTo(
+    '.intro_logo-text',
+    { opacity: 0 }, // état initial
+    { opacity: 1, duration: 2, ease: 'power2.inOut' } // état final
+  );
+
+  // Animation pour 'intro_logo-weed' (scale up)
+  gsap.fromTo(
+    '.intro_logo-weed',
+    { scale: 0 }, // état initial
+    { scale: 1, duration: 2, ease: 'power2.inOut' } // état final
+  );
 }
