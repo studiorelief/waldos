@@ -21,14 +21,14 @@ export function scrollNavbar() {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
       gsap.to(navigation, {
-        backdropFilter: 'blur(20px)',
-        backgroundColor: 'rgba(112, 0, 255, 0.8)',
+        //backdropFilter: 'blur(20px)',
+        //backgroundColor: 'rgba(112, 0, 255, 0.8)',
         duration: 0.5,
       });
     } else {
       gsap.to(navigation, {
-        backdropFilter: 'none',
-        backgroundColor: 'rgba(112, 0, 255, 0.8)',
+        //backdropFilter: 'none',
+        //backgroundColor: 'rgba(112, 0, 255, 0.8)',
         duration: 0.5,
       });
     }
@@ -543,8 +543,8 @@ export function initWeedosCloudParallax() {
   }
 }
 
-// Fonction pour animer les éléments
-export function animateIntroElements(): void {
+// INTRO SECTION
+/*export function animateIntroElements(): void {
   // Animation pour 'intro_logo-text' (fade in)
   gsap.fromTo(
     '.intro_logo-text',
@@ -559,3 +559,20 @@ export function animateIntroElements(): void {
     { scale: 1, duration: 2, ease: 'power2.inOut' } // état final
   );
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const introWrapper = document.querySelector('.intro-wrapper');
+  const introButton = document.getElementById('intro-button');
+
+  if (introWrapper && introButton) {
+    // Add no-scroll class to body to prevent scrolling
+    document.body.classList.add('no-scroll');
+
+    // Add event listener to the button
+    introButton.addEventListener('click', function () {
+      // Remove the intro section and no-scroll class
+      introWrapper.style.display = 'none';
+      document.body.classList.remove('no-scroll');
+    });
+  }
+});*/
