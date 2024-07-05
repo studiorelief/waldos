@@ -6686,6 +6686,17 @@
       });
     });
   }
+  function addHoverEffect() {
+    const btn = document.querySelector(".btn-join-quest");
+    if (btn) {
+      btn.addEventListener("mouseover", () => {
+        btn.style.boxShadow = "0 8px 10px rgba(0, 0, 0, 0.2)";
+      });
+      btn.addEventListener("mouseout", () => {
+        btn.style.boxShadow = "";
+      });
+    }
+  }
   function hoverFooterLink() {
     const footerLinks = document.querySelectorAll(".footer_link");
     footerLinks.forEach((link) => {
@@ -7092,6 +7103,22 @@
         }
       });
     }
+  }
+  function animateIntroElements() {
+    gsapWithCSS.fromTo(
+      ".intro_logo-text",
+      { opacity: 0 },
+      // état initial
+      { opacity: 1, duration: 2, ease: "power2.inOut" }
+      // état final
+    );
+    gsapWithCSS.fromTo(
+      ".intro_logo-weed",
+      { scale: 0 },
+      // état initial
+      { scale: 1, duration: 2, ease: "power2.inOut" }
+      // état final
+    );
   }
 
   // node_modules/.pnpm/swiper@11.1.4/node_modules/swiper/shared/ssr-window.esm.mjs
@@ -16760,6 +16787,8 @@
     initPeposHeroParallax();
     initWeedosCloudParallax();
     heroHomeParallax();
+    addHoverEffect();
+    animateIntroElements();
   });
 })();
 /*! Bundled license information:
