@@ -2,7 +2,6 @@ import './index.css';
 
 import {
   addHoverEffect,
-  animateIntroElements,
   animatePhase2,
   animatePhase3,
   animateProgressBar,
@@ -32,5 +31,4 @@ window.Webflow.push(() => {
   initWeedosCloudParallax();
   heroHomeParallax();
   addHoverEffect();
-  animateIntroElements();
 });

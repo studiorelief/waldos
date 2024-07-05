@@ -6630,14 +6630,14 @@
     window.addEventListener("scroll", () => {
       if (window.scrollY > 0) {
         gsapWithCSS.to(navigation, {
-          backdropFilter: "blur(20px)",
-          backgroundColor: "rgba(112, 0, 255, 0.8)",
+          //backdropFilter: 'blur(20px)',
+          //backgroundColor: 'rgba(112, 0, 255, 0.8)',
           duration: 0.5
         });
       } else {
         gsapWithCSS.to(navigation, {
-          backdropFilter: "none",
-          backgroundColor: "rgba(112, 0, 255, 0.8)",
+          //backdropFilter: 'none',
+          //backgroundColor: 'rgba(112, 0, 255, 0.8)',
           duration: 0.5
         });
       }
@@ -7103,22 +7103,6 @@
         }
       });
     }
-  }
-  function animateIntroElements() {
-    gsapWithCSS.fromTo(
-      ".intro_logo-text",
-      { opacity: 0 },
-      // état initial
-      { opacity: 1, duration: 2, ease: "power2.inOut" }
-      // état final
-    );
-    gsapWithCSS.fromTo(
-      ".intro_logo-weed",
-      { scale: 0 },
-      // état initial
-      { scale: 1, duration: 2, ease: "power2.inOut" }
-      // état final
-    );
   }
 
   // node_modules/.pnpm/swiper@11.1.4/node_modules/swiper/shared/ssr-window.esm.mjs
@@ -16788,7 +16772,6 @@
     initWeedosCloudParallax();
     heroHomeParallax();
     addHoverEffect();
-    animateIntroElements();
   });
 })();
 /*! Bundled license information:
