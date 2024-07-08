@@ -13,6 +13,7 @@ import {
   hoverNavContainer,
   initPeposHeroParallax,
   initWeedosCloudParallax,
+  peposTokenParallax,
   scrollNavbar,
 } from '$utils/gsap';
 import { swiperGoodies, swiperNft, swiperPepos } from '$utils/swiper';
@@ -35,4 +36,5 @@ window.Webflow.push(() => {
   addHoverEffect();
   animateIntro();
   ctaShopParallax();
+  peposTokenParallax();
 });
