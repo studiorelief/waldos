@@ -83,9 +83,33 @@ export function hoverNavContainer() {
   });
 }
 
-//NAVBAR
+//NAVBAR && COUNTDOWN
 // Function to add the boxShadow on hover - btn Joint The Quest
 export function addHoverEffect(): void {
+  // Get the button elements by class names
+  const btns = document.querySelectorAll(
+    '.btn-join-quest, .countdown_btn'
+  ) as NodeListOf<HTMLElement>;
+
+  // Iterate over each button and add event listeners
+  btns.forEach((btn) => {
+    if (btn) {
+      // Add event listener for mouseover
+      btn.addEventListener('mouseover', () => {
+        btn.style.boxShadow = '0 8px 10px rgba(0, 0, 0, 0.2)';
+      });
+
+      // Add event listener for mouseout
+      btn.addEventListener('mouseout', () => {
+        btn.style.boxShadow = '';
+      });
+    }
+  });
+}
+
+//NAVBAR
+// Function to add the boxShadow on hover - btn Joint The Quest
+/*export function addHoverEffect(): void {
   // Get the button element by class name
   const btn = document.querySelector('.btn-join-quest') as HTMLElement;
 
@@ -100,7 +124,7 @@ export function addHoverEffect(): void {
       btn.style.boxShadow = '';
     });
   }
-}
+}*/
 
 // Footer - COMPONENTS
 // Hover on Social Network Logo - FOOTER
@@ -134,6 +158,25 @@ export function hoverFooterLinkInsta() {
   });
 }
 
+// INTRO
+//logo animation
+export function animateIntro() {
+  const logoWeed = document.querySelector('.intro_logo-weed') as HTMLElement;
+  const logoText = document.querySelector('.intro_logo-text') as HTMLElement;
+
+  if (logoWeed && logoText) {
+    // Scale up animation for .intro_logo-weed
+    gsap.fromTo(logoWeed, { scale: 0 }, { scale: 1, duration: 0.4, ease: 'power3.out' });
+
+    // Fade in animation for .intro_logo-text
+    gsap.fromTo(
+      logoText,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.4, ease: 'power3.out', delay: 0.3 }
+    );
+  }
+}
+
 // HOMEPAGE
 //Hero background Parallax
 const backgroundHero = document.querySelector('#hero-pattern1') as HTMLElement;
@@ -159,14 +202,14 @@ export function animateProgressBar() {
 
   if (progressLineFront && progressText) {
     // Set initial width and opacity
-    gsap.set(progressLineFront, { width: '1%', opacity: 1 });
+    gsap.set(progressLineFront, { width: '3%', opacity: 1 });
 
     // Timeline for animation
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: '.nft_progress-line-content',
         start: 'top 50%',
-        end: 'top -30%',
+        end: 'top -10%',
         scrub: true,
         onUpdate: function () {
           if (progressLineFront.parentElement) {
@@ -318,6 +361,52 @@ if (manSlide) {
       scrub: true,
     },
   });
+}
+
+//HOME PAGE
+//HEADER HERO - PARALLAX
+export function ctaShopParallax() {
+  const heroImg2 = document.querySelector('#cta-img2') as HTMLElement;
+  if (heroImg2) {
+    gsap.to(heroImg2, {
+      y: '100',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_cta-shop',
+        start: 'top-=100 top',
+        end: 'bottom',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg3 = document.querySelector('#cta-img3') as HTMLElement;
+  if (heroImg3) {
+    gsap.to(heroImg3, {
+      y: '200',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_cta-shop',
+        start: 'top-=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg4 = document.querySelector('#cta-img4') as HTMLElement;
+  if (heroImg4) {
+    gsap.to(heroImg4, {
+      y: '300',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_cta-shop',
+        start: 'top-=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
 }
 
 // PEPOS PAGE
