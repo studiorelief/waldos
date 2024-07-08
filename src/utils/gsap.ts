@@ -83,7 +83,8 @@ export function hoverNavContainer() {
   });
 }
 
-// Function to add the boxShadow on hover
+//NAVBAR
+// Function to add the boxShadow on hover - btn Joint The Quest
 export function addHoverEffect(): void {
   // Get the button element by class name
   const btn = document.querySelector('.btn-join-quest') as HTMLElement;
@@ -154,17 +155,17 @@ if (backgroundHero) {
 export function animateProgressBar() {
   const progressLineFront = document.querySelector('.progress-line_front') as HTMLElement;
   const progressText = document.querySelector('.progress_anime-text') as HTMLElement;
-  const totalCount = 420;
+  const totalCount = 117;
 
   if (progressLineFront && progressText) {
     // Set initial width and opacity
-    gsap.set(progressLineFront, { width: '99%', opacity: 1 });
+    gsap.set(progressLineFront, { width: '1%', opacity: 1 });
 
     // Timeline for animation
     const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: '#swiper-nft',
-        start: 'top 40%',
+        trigger: '.nft_progress-line-content',
+        start: 'top 50%',
         end: 'top -30%',
         scrub: true,
         onUpdate: function () {
@@ -175,7 +176,7 @@ export function animateProgressBar() {
               (progressLineFront.parentElement.offsetWidth * 0.99); // Adjust for 99% width
             // Update the text based on the progress
             const currentCount = Math.round(totalCount * progress);
-            progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount} NFT LEFT`;
+            progressText.innerText = `${Math.min(currentCount, totalCount)}`;
           }
         },
       },
@@ -183,7 +184,7 @@ export function animateProgressBar() {
 
     // Animation for progress line
     timeline.to(progressLineFront, {
-      width: '1%', // End at 1% to ensure the counter reaches 0
+      width: '99%', // End at 1% to ensure the counter reaches 0
       duration: 1, // Duration of the animation
       ease: 'power3.inOut', // Smooth easing
       onUpdate: function () {
@@ -192,7 +193,7 @@ export function animateProgressBar() {
             parseFloat(window.getComputedStyle(progressLineFront).width) /
             (progressLineFront.parentElement.offsetWidth * 0.99); // Adjust for 99% width
           const currentCount = Math.round(totalCount * progress);
-          progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount} NFT LEFT`;
+          progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount}`;
           // Remove box-shadow if the width is close to 1%
           const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
           if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
@@ -210,7 +211,7 @@ export function heroHomeParallax() {
   const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
   if (heroImg1) {
     gsap.to(heroImg1, {
-      y: '600',
+      y: '200',
       ease: 'power1.out', // easing effect
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -225,7 +226,7 @@ export function heroHomeParallax() {
   const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
   if (heroImg2) {
     gsap.to(heroImg2, {
-      y: '600',
+      y: '200',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -239,7 +240,7 @@ export function heroHomeParallax() {
   const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
   if (heroImg3) {
     gsap.to(heroImg3, {
-      y: '400',
+      y: '100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -253,7 +254,7 @@ export function heroHomeParallax() {
   const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
   if (heroImg4) {
     gsap.to(heroImg4, {
-      y: '400',
+      y: '100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -311,7 +312,7 @@ if (manSlide) {
     x: '0',
     ease: 'power1.out',
     scrollTrigger: {
-      trigger: '#hero-heading',
+      trigger: '.hero_content',
       start: 'top +800',
       end: 'top -100',
       scrub: true,
@@ -542,37 +543,3 @@ export function initWeedosCloudParallax() {
     });
   }
 }
-
-// INTRO SECTION
-/*export function animateIntroElements(): void {
-  // Animation pour 'intro_logo-text' (fade in)
-  gsap.fromTo(
-    '.intro_logo-text',
-    { opacity: 0 }, // état initial
-    { opacity: 1, duration: 2, ease: 'power2.inOut' } // état final
-  );
-
-  // Animation pour 'intro_logo-weed' (scale up)
-  gsap.fromTo(
-    '.intro_logo-weed',
-    { scale: 0 }, // état initial
-    { scale: 1, duration: 2, ease: 'power2.inOut' } // état final
-  );
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  const introWrapper = document.querySelector('.intro-wrapper');
-  const introButton = document.getElementById('intro-button');
-
-  if (introWrapper && introButton) {
-    // Add no-scroll class to body to prevent scrolling
-    document.body.classList.add('no-scroll');
-
-    // Add event listener to the button
-    introButton.addEventListener('click', function () {
-      // Remove the intro section and no-scroll class
-      introWrapper.style.display = 'none';
-      document.body.classList.remove('no-scroll');
-    });
-  }
-});*/

@@ -6735,26 +6735,26 @@
   function animateProgressBar() {
     const progressLineFront = document.querySelector(".progress-line_front");
     const progressText = document.querySelector(".progress_anime-text");
-    const totalCount = 420;
+    const totalCount = 117;
     if (progressLineFront && progressText) {
-      gsapWithCSS.set(progressLineFront, { width: "99%", opacity: 1 });
+      gsapWithCSS.set(progressLineFront, { width: "1%", opacity: 1 });
       const timeline2 = gsapWithCSS.timeline({
         scrollTrigger: {
-          trigger: "#swiper-nft",
-          start: "top 40%",
+          trigger: ".nft_progress-line-content",
+          start: "top 50%",
           end: "top -30%",
           scrub: true,
           onUpdate: function() {
             if (progressLineFront.parentElement) {
               const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / (progressLineFront.parentElement.offsetWidth * 0.99);
               const currentCount = Math.round(totalCount * progress);
-              progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount} NFT LEFT`;
+              progressText.innerText = `${Math.min(currentCount, totalCount)}`;
             }
           }
         }
       });
       timeline2.to(progressLineFront, {
-        width: "1%",
+        width: "99%",
         // End at 1% to ensure the counter reaches 0
         duration: 1,
         // Duration of the animation
@@ -6764,7 +6764,7 @@
           if (progressLineFront.parentElement) {
             const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / (progressLineFront.parentElement.offsetWidth * 0.99);
             const currentCount = Math.round(totalCount * progress);
-            progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount} NFT LEFT`;
+            progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount}`;
             const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
             if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
               progressLineFront.style.boxShadow = "none";
@@ -6778,7 +6778,7 @@
     const heroImg1 = document.querySelector("#hero-img1");
     if (heroImg1) {
       gsapWithCSS.to(heroImg1, {
-        y: "600",
+        y: "200",
         ease: "power1.out",
         // easing effect
         scrollTrigger: {
@@ -6795,7 +6795,7 @@
     const heroImg2 = document.querySelector("#hero-img2");
     if (heroImg2) {
       gsapWithCSS.to(heroImg2, {
-        y: "600",
+        y: "200",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
@@ -6808,7 +6808,7 @@
     const heroImg3 = document.querySelector("#hero-img3");
     if (heroImg3) {
       gsapWithCSS.to(heroImg3, {
-        y: "400",
+        y: "100",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
@@ -6821,7 +6821,7 @@
     const heroImg4 = document.querySelector("#hero-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "400",
+        y: "100",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
@@ -6871,7 +6871,7 @@
       x: "0",
       ease: "power1.out",
       scrollTrigger: {
-        trigger: "#hero-heading",
+        trigger: ".hero_content",
         start: "top +800",
         end: "top -100",
         scrub: true
