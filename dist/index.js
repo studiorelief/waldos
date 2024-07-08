@@ -6702,7 +6702,7 @@
     });
   }
   function hoverFooterLink() {
-    const footerLinks = document.querySelectorAll(".footer_link");
+    const footerLinks = document.querySelectorAll(".footer_social-icon");
     footerLinks.forEach((link) => {
       link.addEventListener("mouseenter", () => {
         gsapWithCSS.to(link, { scale: 1.2, duration: 0.2, ease: "bounce.out" });
@@ -6727,13 +6727,13 @@
     const logoWeed = document.querySelector(".intro_logo-weed");
     const logoText = document.querySelector(".intro_logo-text");
     if (logoWeed && logoText) {
-      gsapWithCSS.fromTo(logoWeed, { scale: 0 }, { scale: 1, duration: 0.4, ease: "power3.out" });
       gsapWithCSS.fromTo(
         logoText,
         { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: "power3.out", delay: 0.3 }
+        { opacity: 1, duration: 0.4, ease: "power3.out", delay: 0.8 }
       );
     }
+    gsapWithCSS.fromTo(logoWeed, { scale: 0 }, { scale: 1, duration: 2, ease: "power3.out" });
   }
   var backgroundHero = document.querySelector("#hero-pattern1");
   if (backgroundHero) {
@@ -6762,8 +6762,9 @@
           scrub: true,
           onUpdate: function() {
             if (progressLineFront.parentElement) {
-              const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / (progressLineFront.parentElement.offsetWidth * 0.99);
-              const currentCount = Math.round(totalCount * progress);
+              const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
+              const adjustedProgress = Math.max(0, progress / 0.96);
+              const currentCount = Math.round(totalCount * adjustedProgress);
               progressText.innerText = `${Math.min(currentCount, totalCount)}`;
             }
           }
@@ -6771,16 +6772,17 @@
       });
       timeline2.to(progressLineFront, {
         width: "99%",
-        // End at 1% to ensure the counter reaches 0
+        // End at 99% to ensure the counter reaches 117
         duration: 1,
         // Duration of the animation
         ease: "power3.inOut",
         // Smooth easing
         onUpdate: function() {
           if (progressLineFront.parentElement) {
-            const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / (progressLineFront.parentElement.offsetWidth * 0.99);
-            const currentCount = Math.round(totalCount * progress);
-            progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount}`;
+            const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
+            const adjustedProgress = Math.max(0, progress / 0.96);
+            const currentCount = Math.round(totalCount * adjustedProgress);
+            progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
             const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
             if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
               progressLineFront.style.boxShadow = "none";
@@ -6794,28 +6796,27 @@
     const heroImg1 = document.querySelector("#hero-img1");
     if (heroImg1) {
       gsapWithCSS.to(heroImg1, {
-        y: "200",
+        y: "80",
         ease: "power1.out",
         // easing effect
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
-          start: "top -100",
+          start: "top +150",
           end: "bottom+=200 top",
           // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
-          scrub: true,
+          scrub: true
           // smooth catch-up with the scroll
-          markers: false
         }
       });
     }
     const heroImg2 = document.querySelector("#hero-img2");
     if (heroImg2) {
       gsapWithCSS.to(heroImg2, {
-        y: "200",
+        y: "100",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
-          start: "top-=100 top",
+          start: "top +150",
           end: "bottom+=200 top",
           scrub: true
         }
@@ -6824,11 +6825,11 @@
     const heroImg3 = document.querySelector("#hero-img3");
     if (heroImg3) {
       gsapWithCSS.to(heroImg3, {
-        y: "100",
+        y: "50",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
-          start: "top-=100 top",
+          start: "top +150",
           end: "bottom+=200 top",
           scrub: true
         }
@@ -6837,11 +6838,11 @@
     const heroImg4 = document.querySelector("#hero-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "100",
+        y: "50",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
-          start: "top-=100 top",
+          start: "top +150",
           end: "bottom+=200 top",
           scrub: true
         }
@@ -6850,7 +6851,7 @@
     const heroImg5 = document.querySelector("#hero-img5");
     if (heroImg5) {
       gsapWithCSS.to(heroImg5, {
-        y: "150",
+        y: "100",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
@@ -6894,15 +6895,69 @@
       }
     });
   }
+  function peposTokenParallax() {
+    const tokenImg3 = document.querySelector("#token3");
+    if (tokenImg3) {
+      gsapWithCSS.to(tokenImg3, {
+        y: "50",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_token",
+          start: "top +500",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const tokenImg4 = document.querySelector("#token4");
+    if (tokenImg4) {
+      gsapWithCSS.to(tokenImg4, {
+        y: "80",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_token",
+          start: "top +500",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const tokenImg5 = document.querySelector("#token5");
+    if (tokenImg5) {
+      gsapWithCSS.to(tokenImg5, {
+        y: "80",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_token",
+          start: "top +500",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+  }
   function ctaShopParallax() {
-    const heroImg2 = document.querySelector("#cta-img2");
-    if (heroImg2) {
-      gsapWithCSS.to(heroImg2, {
-        y: "100",
+    const heroImg1 = document.querySelector("#cta-img1");
+    if (heroImg1) {
+      gsapWithCSS.to(heroImg1, {
+        y: "-50",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_cta-shop",
-          start: "top-=100 top",
+          start: "top +900",
+          end: "bottom -500",
+          scrub: true
+        }
+      });
+    }
+    const heroImg2 = document.querySelector("#cta-img2");
+    if (heroImg2) {
+      gsapWithCSS.to(heroImg2, {
+        y: "-50",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_cta-shop",
+          start: "top +900",
           end: "bottom",
           scrub: true
         }
@@ -6911,12 +6966,12 @@
     const heroImg3 = document.querySelector("#cta-img3");
     if (heroImg3) {
       gsapWithCSS.to(heroImg3, {
-        y: "200",
+        y: "80",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_cta-shop",
-          start: "top-=100 top",
-          end: "bottom+=200 top",
+          start: "top +900",
+          end: "bottom -500",
           scrub: true
         }
       });
@@ -6924,12 +6979,12 @@
     const heroImg4 = document.querySelector("#cta-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "300",
+        y: "80",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_cta-shop",
-          start: "top-=100 top",
-          end: "bottom+=200 top",
+          start: "top +900",
+          end: "bottom -500",
           scrub: true
         }
       });
@@ -16831,6 +16886,7 @@
     addHoverEffect();
     animateIntro();
     ctaShopParallax();
+    peposTokenParallax();
   });
 })();
 /*! Bundled license information:

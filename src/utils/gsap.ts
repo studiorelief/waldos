@@ -129,7 +129,7 @@ export function addHoverEffect(): void {
 // Footer - COMPONENTS
 // Hover on Social Network Logo - FOOTER
 export function hoverFooterLink() {
-  const footerLinks = document.querySelectorAll<HTMLDivElement>('.footer_link');
+  const footerLinks = document.querySelectorAll<HTMLDivElement>('.footer_social-icon');
 
   footerLinks.forEach((link) => {
     link.addEventListener('mouseenter', () => {
@@ -165,16 +165,15 @@ export function animateIntro() {
   const logoText = document.querySelector('.intro_logo-text') as HTMLElement;
 
   if (logoWeed && logoText) {
-    // Scale up animation for .intro_logo-weed
-    gsap.fromTo(logoWeed, { scale: 0 }, { scale: 1, duration: 0.4, ease: 'power3.out' });
-
     // Fade in animation for .intro_logo-text
     gsap.fromTo(
       logoText,
       { opacity: 0 },
-      { opacity: 1, duration: 0.4, ease: 'power3.out', delay: 0.3 }
+      { opacity: 1, duration: 0.4, ease: 'power3.out', delay: 0.8 }
     );
   }
+  // Scale up animation for .intro_logo-weed
+  gsap.fromTo(logoWeed, { scale: 0 }, { scale: 1, duration: 2, ease: 'power3.out' });
 }
 
 // HOMEPAGE
@@ -216,9 +215,12 @@ export function animateProgressBar() {
             // Calculate the progress percentage based on the scroll position
             const progress =
               parseFloat(window.getComputedStyle(progressLineFront).width) /
-              (progressLineFront.parentElement.offsetWidth * 0.99); // Adjust for 99% width
-            // Update the text based on the progress
-            const currentCount = Math.round(totalCount * progress);
+                progressLineFront.parentElement.offsetWidth -
+              0.03; // Adjust for 3% starting point
+
+            // Update the text based on the adjusted progress
+            const adjustedProgress = Math.max(0, progress / 0.96); // Adjust for 96% remaining (99% - 3%)
+            const currentCount = Math.round(totalCount * adjustedProgress);
             progressText.innerText = `${Math.min(currentCount, totalCount)}`;
           }
         },
@@ -227,16 +229,19 @@ export function animateProgressBar() {
 
     // Animation for progress line
     timeline.to(progressLineFront, {
-      width: '99%', // End at 1% to ensure the counter reaches 0
+      width: '99%', // End at 99% to ensure the counter reaches 117
       duration: 1, // Duration of the animation
       ease: 'power3.inOut', // Smooth easing
       onUpdate: function () {
         if (progressLineFront.parentElement) {
           const progress =
             parseFloat(window.getComputedStyle(progressLineFront).width) /
-            (progressLineFront.parentElement.offsetWidth * 0.99); // Adjust for 99% width
-          const currentCount = Math.round(totalCount * progress);
-          progressText.innerText = `${Math.max(0, currentCount)} / ${totalCount}`;
+              progressLineFront.parentElement.offsetWidth -
+            0.03; // Adjust for 3% starting point
+
+          const adjustedProgress = Math.max(0, progress / 0.96); // Adjust for 96% remaining (99% - 3%)
+          const currentCount = Math.round(totalCount * adjustedProgress);
+          progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
           // Remove box-shadow if the width is close to 1%
           const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
           if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
@@ -247,21 +252,19 @@ export function animateProgressBar() {
     });
   }
 }
-
 //HOME PAGE
 //HEADER HERO - PARALLAX
 export function heroHomeParallax() {
   const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
   if (heroImg1) {
     gsap.to(heroImg1, {
-      y: '200',
+      y: '80',
       ease: 'power1.out', // easing effect
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
-        start: 'top -100',
+        start: 'top +150',
         end: 'bottom+=200 top', // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
         scrub: true, // smooth catch-up with the scroll
-        markers: false,
       },
     });
   }
@@ -269,11 +272,11 @@ export function heroHomeParallax() {
   const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
   if (heroImg2) {
     gsap.to(heroImg2, {
-      y: '200',
+      y: '100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
-        start: 'top-=100 top',
+        start: 'top +150',
         end: 'bottom+=200 top',
         scrub: true,
       },
@@ -283,11 +286,11 @@ export function heroHomeParallax() {
   const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
   if (heroImg3) {
     gsap.to(heroImg3, {
-      y: '100',
+      y: '50',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
-        start: 'top-=100 top',
+        start: 'top +150',
         end: 'bottom+=200 top',
         scrub: true,
       },
@@ -297,11 +300,11 @@ export function heroHomeParallax() {
   const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
   if (heroImg4) {
     gsap.to(heroImg4, {
-      y: '100',
+      y: '50',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
-        start: 'top-=100 top',
+        start: 'top +150',
         end: 'bottom+=200 top',
         scrub: true,
       },
@@ -311,7 +314,7 @@ export function heroHomeParallax() {
   const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
   if (heroImg5) {
     gsap.to(heroImg5, {
-      y: '150',
+      y: '100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -364,16 +367,102 @@ if (manSlide) {
 }
 
 //HOME PAGE
-//HEADER HERO - PARALLAX
+//PEPOS TOKEN HEADER - PARALLAX
+export function peposTokenParallax() {
+  /*const tokenImg1 = document.querySelector('#token1') as HTMLElement;
+  if (tokenImg1) {
+    gsap.to(tokenImg1, {
+      y: '50',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_token',
+        start: 'top +500',
+        end: 'bottom',
+        scrub: true,
+      },
+    });
+  }
+  const tokenImg2 = document.querySelector('#token2') as HTMLElement;
+  if (tokenImg2) {
+    gsap.to(tokenImg2, {
+      y: '50',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_token',
+        start: 'top +500',
+        end: 'bottom',
+        scrub: true,
+      },
+    });
+  }*/
+
+  const tokenImg3 = document.querySelector('#token3') as HTMLElement;
+  if (tokenImg3) {
+    gsap.to(tokenImg3, {
+      y: '50',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_token',
+        start: 'top +500',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const tokenImg4 = document.querySelector('#token4') as HTMLElement;
+  if (tokenImg4) {
+    gsap.to(tokenImg4, {
+      y: '80',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_token',
+        start: 'top +500',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const tokenImg5 = document.querySelector('#token5') as HTMLElement;
+  if (tokenImg5) {
+    gsap.to(tokenImg5, {
+      y: '80',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_token',
+        start: 'top +500',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+}
+
+//HOME PAGE
+//CTA SHOP HEADER - PARALLAX
 export function ctaShopParallax() {
-  const heroImg2 = document.querySelector('#cta-img2') as HTMLElement;
-  if (heroImg2) {
-    gsap.to(heroImg2, {
-      y: '100',
+  const heroImg1 = document.querySelector('#cta-img1') as HTMLElement;
+  if (heroImg1) {
+    gsap.to(heroImg1, {
+      y: '-50',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_cta-shop',
-        start: 'top-=100 top',
+        start: 'top +900',
+        end: 'bottom -500',
+        scrub: true,
+      },
+    });
+  }
+  const heroImg2 = document.querySelector('#cta-img2') as HTMLElement;
+  if (heroImg2) {
+    gsap.to(heroImg2, {
+      y: '-50',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_cta-shop',
+        start: 'top +900',
         end: 'bottom',
         scrub: true,
       },
@@ -383,12 +472,12 @@ export function ctaShopParallax() {
   const heroImg3 = document.querySelector('#cta-img3') as HTMLElement;
   if (heroImg3) {
     gsap.to(heroImg3, {
-      y: '200',
+      y: '80',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_cta-shop',
-        start: 'top-=100 top',
-        end: 'bottom+=200 top',
+        start: 'top +900',
+        end: 'bottom -500',
         scrub: true,
       },
     });
@@ -397,12 +486,12 @@ export function ctaShopParallax() {
   const heroImg4 = document.querySelector('#cta-img4') as HTMLElement;
   if (heroImg4) {
     gsap.to(heroImg4, {
-      y: '300',
+      y: '80',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_cta-shop',
-        start: 'top-=100 top',
-        end: 'bottom+=200 top',
+        start: 'top +900',
+        end: 'bottom -500',
         scrub: true,
       },
     });
