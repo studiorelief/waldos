@@ -6687,15 +6687,19 @@
     });
   }
   function addHoverEffect() {
-    const btn = document.querySelector(".btn-join-quest");
-    if (btn) {
-      btn.addEventListener("mouseover", () => {
-        btn.style.boxShadow = "0 8px 10px rgba(0, 0, 0, 0.2)";
-      });
-      btn.addEventListener("mouseout", () => {
-        btn.style.boxShadow = "";
-      });
-    }
+    const btns = document.querySelectorAll(
+      ".btn-join-quest, .countdown_btn"
+    );
+    btns.forEach((btn) => {
+      if (btn) {
+        btn.addEventListener("mouseover", () => {
+          btn.style.boxShadow = "0 8px 10px rgba(0, 0, 0, 0.2)";
+        });
+        btn.addEventListener("mouseout", () => {
+          btn.style.boxShadow = "";
+        });
+      }
+    });
   }
   function hoverFooterLink() {
     const footerLinks = document.querySelectorAll(".footer_link");
@@ -6719,6 +6723,18 @@
       });
     });
   }
+  function animateIntro() {
+    const logoWeed = document.querySelector(".intro_logo-weed");
+    const logoText = document.querySelector(".intro_logo-text");
+    if (logoWeed && logoText) {
+      gsapWithCSS.fromTo(logoWeed, { scale: 0 }, { scale: 1, duration: 0.4, ease: "power3.out" });
+      gsapWithCSS.fromTo(
+        logoText,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: "power3.out", delay: 0.3 }
+      );
+    }
+  }
   var backgroundHero = document.querySelector("#hero-pattern1");
   if (backgroundHero) {
     gsapWithCSS.to(backgroundHero, {
@@ -6737,12 +6753,12 @@
     const progressText = document.querySelector(".progress_anime-text");
     const totalCount = 117;
     if (progressLineFront && progressText) {
-      gsapWithCSS.set(progressLineFront, { width: "1%", opacity: 1 });
+      gsapWithCSS.set(progressLineFront, { width: "3%", opacity: 1 });
       const timeline2 = gsapWithCSS.timeline({
         scrollTrigger: {
           trigger: ".nft_progress-line-content",
           start: "top 50%",
-          end: "top -30%",
+          end: "top -10%",
           scrub: true,
           onUpdate: function() {
             if (progressLineFront.parentElement) {
@@ -6877,6 +6893,47 @@
         scrub: true
       }
     });
+  }
+  function ctaShopParallax() {
+    const heroImg2 = document.querySelector("#cta-img2");
+    if (heroImg2) {
+      gsapWithCSS.to(heroImg2, {
+        y: "100",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_cta-shop",
+          start: "top-=100 top",
+          end: "bottom",
+          scrub: true
+        }
+      });
+    }
+    const heroImg3 = document.querySelector("#cta-img3");
+    if (heroImg3) {
+      gsapWithCSS.to(heroImg3, {
+        y: "200",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_cta-shop",
+          start: "top-=100 top",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const heroImg4 = document.querySelector("#cta-img4");
+    if (heroImg4) {
+      gsapWithCSS.to(heroImg4, {
+        y: "300",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_cta-shop",
+          start: "top-=100 top",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
   }
   var roadmapSteps = document.querySelectorAll(".roadmap_step");
   roadmapSteps.forEach((step) => {
@@ -16772,6 +16829,8 @@
     initWeedosCloudParallax();
     heroHomeParallax();
     addHoverEffect();
+    animateIntro();
+    ctaShopParallax();
   });
 })();
 /*! Bundled license information:

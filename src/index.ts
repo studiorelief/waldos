@@ -2,9 +2,11 @@ import './index.css';
 
 import {
   addHoverEffect,
+  animateIntro,
   animatePhase2,
   animatePhase3,
   animateProgressBar,
+  ctaShopParallax,
   heroHomeParallax,
   hoverFooterLink,
   hoverFooterLinkInsta,
@@ -31,4 +33,6 @@ window.Webflow.push(() => {
   initWeedosCloudParallax();
   heroHomeParallax();
   addHoverEffect();
+  animateIntro();
+  ctaShopParallax();
 });
