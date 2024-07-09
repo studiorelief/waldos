@@ -9,7 +9,6 @@ import {
   ctaShopParallax,
   heroHomeParallax,
   hoverFooterLink,
-  hoverFooterLinkInsta,
   hoverNavContainer,
   initPeposHeroParallax,
   initWeedosCloudParallax,
@@ -25,7 +24,6 @@ window.Webflow.push(() => {
   swiperGoodies();
   scrollNavbar();
   hoverFooterLink();
-  hoverFooterLinkInsta();
   animatePhase2();
   animatePhase3();
   hoverNavContainer();

@@ -126,10 +126,10 @@ export function addHoverEffect(): void {
   }
 }*/
 
-// Footer - COMPONENTS
+// SOCIAL NAV - COMPONENTS
 // Hover on Social Network Logo - FOOTER
 export function hoverFooterLink() {
-  const footerLinks = document.querySelectorAll<HTMLDivElement>('.footer_social-icon');
+  const footerLinks = document.querySelectorAll<HTMLDivElement>('.social_logo-content');
 
   footerLinks.forEach((link) => {
     link.addEventListener('mouseenter', () => {
@@ -142,21 +142,21 @@ export function hoverFooterLink() {
   });
 }
 
-// Footer - COMPONENTS
+// SOCIAL NAV - COMPONENTS
 // Hover on Instagram Logo
-export function hoverFooterLinkInsta() {
+/*export function hoverFooterLinkInsta() {
   const footerLinks = document.querySelectorAll<HTMLDivElement>('.is-instagram');
 
   footerLinks.forEach((link) => {
     link.addEventListener('mouseenter', () => {
-      gsap.to(link, { scale: 1.2, rotate: -90, duration: 0.2, ease: 'power1.in' });
+      gsap.to(link, { scale: 1.1, rotate: -90, duration: 0.2, ease: 'power1.in' });
     });
 
     link.addEventListener('mouseleave', () => {
       gsap.to(link, { scale: 1, rotate: 0, duration: 0.5, ease: 'bounce.out' });
     });
   });
-}
+}*/
 
 // INTRO
 //logo animation
@@ -197,7 +197,7 @@ if (backgroundHero) {
 export function animateProgressBar() {
   const progressLineFront = document.querySelector('.progress-line_front') as HTMLElement;
   const progressText = document.querySelector('.progress_anime-text') as HTMLElement;
-  const totalCount = 117;
+  const totalCount = 116;
 
   if (progressLineFront && progressText) {
     // Set initial width and opacity
@@ -258,7 +258,7 @@ export function heroHomeParallax() {
   const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
   if (heroImg1) {
     gsap.to(heroImg1, {
-      y: '80',
+      y: '500',
       ease: 'power1.out', // easing effect
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -272,7 +272,7 @@ export function heroHomeParallax() {
   const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
   if (heroImg2) {
     gsap.to(heroImg2, {
-      y: '100',
+      y: '400',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -286,13 +286,14 @@ export function heroHomeParallax() {
   const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
   if (heroImg3) {
     gsap.to(heroImg3, {
-      y: '50',
+      y: '300',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
         start: 'top +150',
         end: 'bottom+=200 top',
         scrub: true,
+        markers: true,
       },
     });
   }
@@ -300,7 +301,7 @@ export function heroHomeParallax() {
   const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
   if (heroImg4) {
     gsap.to(heroImg4, {
-      y: '50',
+      y: '200',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -369,7 +370,7 @@ if (manSlide) {
 //HOME PAGE
 //PEPOS TOKEN HEADER - PARALLAX
 export function peposTokenParallax() {
-  /*const tokenImg1 = document.querySelector('#token1') as HTMLElement;
+  const tokenImg1 = document.querySelector('#token1') as HTMLElement;
   if (tokenImg1) {
     gsap.to(tokenImg1, {
       y: '50',
@@ -394,7 +395,7 @@ export function peposTokenParallax() {
         scrub: true,
       },
     });
-  }*/
+  }
 
   const tokenImg3 = document.querySelector('#token3') as HTMLElement;
   if (tokenImg3) {

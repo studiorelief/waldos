@@ -28,7 +28,7 @@ export function swiperPepos() {
     },
     centeredSlides: false,
     slideActiveClass: 'is-active',
-    speed: 800,
+    speed: 1500,
   });
 }
 
