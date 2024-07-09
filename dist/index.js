@@ -6702,24 +6702,13 @@
     });
   }
   function hoverFooterLink() {
-    const footerLinks = document.querySelectorAll(".footer_social-icon");
+    const footerLinks = document.querySelectorAll(".social_logo-content");
     footerLinks.forEach((link) => {
       link.addEventListener("mouseenter", () => {
         gsapWithCSS.to(link, { scale: 1.2, duration: 0.2, ease: "bounce.out" });
       });
       link.addEventListener("mouseleave", () => {
         gsapWithCSS.to(link, { scale: 1, duration: 0.5, ease: "bounce.out" });
-      });
-    });
-  }
-  function hoverFooterLinkInsta() {
-    const footerLinks = document.querySelectorAll(".is-instagram");
-    footerLinks.forEach((link) => {
-      link.addEventListener("mouseenter", () => {
-        gsapWithCSS.to(link, { scale: 1.2, rotate: -90, duration: 0.2, ease: "power1.in" });
-      });
-      link.addEventListener("mouseleave", () => {
-        gsapWithCSS.to(link, { scale: 1, rotate: 0, duration: 0.5, ease: "bounce.out" });
       });
     });
   }
@@ -6751,7 +6740,7 @@
   function animateProgressBar() {
     const progressLineFront = document.querySelector(".progress-line_front");
     const progressText = document.querySelector(".progress_anime-text");
-    const totalCount = 117;
+    const totalCount = 116;
     if (progressLineFront && progressText) {
       gsapWithCSS.set(progressLineFront, { width: "3%", opacity: 1 });
       const timeline2 = gsapWithCSS.timeline({
@@ -6796,7 +6785,7 @@
     const heroImg1 = document.querySelector("#hero-img1");
     if (heroImg1) {
       gsapWithCSS.to(heroImg1, {
-        y: "80",
+        y: "500",
         ease: "power1.out",
         // easing effect
         scrollTrigger: {
@@ -6812,7 +6801,7 @@
     const heroImg2 = document.querySelector("#hero-img2");
     if (heroImg2) {
       gsapWithCSS.to(heroImg2, {
-        y: "100",
+        y: "400",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
@@ -6825,20 +6814,21 @@
     const heroImg3 = document.querySelector("#hero-img3");
     if (heroImg3) {
       gsapWithCSS.to(heroImg3, {
-        y: "50",
+        y: "300",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
           start: "top +150",
           end: "bottom+=200 top",
-          scrub: true
+          scrub: true,
+          markers: true
         }
       });
     }
     const heroImg4 = document.querySelector("#hero-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "50",
+        y: "200",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
@@ -6896,6 +6886,32 @@
     });
   }
   function peposTokenParallax() {
+    const tokenImg1 = document.querySelector("#token1");
+    if (tokenImg1) {
+      gsapWithCSS.to(tokenImg1, {
+        y: "50",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_token",
+          start: "top +500",
+          end: "bottom",
+          scrub: true
+        }
+      });
+    }
+    const tokenImg2 = document.querySelector("#token2");
+    if (tokenImg2) {
+      gsapWithCSS.to(tokenImg2, {
+        y: "50",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".section_token",
+          start: "top +500",
+          end: "bottom",
+          scrub: true
+        }
+      });
+    }
     const tokenImg3 = document.querySelector("#token3");
     if (tokenImg3) {
       gsapWithCSS.to(tokenImg3, {
@@ -16849,7 +16865,7 @@
       },
       centeredSlides: false,
       slideActiveClass: "is-active",
-      speed: 800
+      speed: 1500
     });
   }
   function swiperGoodies() {
@@ -16875,7 +16891,6 @@
     swiperGoodies();
     scrollNavbar();
     hoverFooterLink();
-    hoverFooterLinkInsta();
     animatePhase2();
     animatePhase3();
     hoverNavContainer();
