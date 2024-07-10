@@ -7,13 +7,11 @@ import {
   animatePhase3,
   animateProgressBar,
   ctaShopParallax,
-  heroHomeParallax,
-  hoverFooterLink,
   hoverNavContainer,
+  hoverSocialLink,
   initPeposHeroParallax,
   initWeedosCloudParallax,
   peposTokenParallax,
-  scrollNavbar,
 } from '$utils/gsap';
 import { swiperGoodies, swiperNft, swiperPepos } from '$utils/swiper';
 
@@ -22,15 +20,13 @@ window.Webflow.push(() => {
   swiperNft();
   swiperPepos();
   swiperGoodies();
-  scrollNavbar();
-  hoverFooterLink();
+  hoverSocialLink();
   animatePhase2();
   animatePhase3();
   hoverNavContainer();
   animateProgressBar();
   initPeposHeroParallax();
   initWeedosCloudParallax();
-  heroHomeParallax();
   addHoverEffect();
   animateIntro();
   ctaShopParallax();

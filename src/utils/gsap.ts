@@ -3,48 +3,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function scrollNavbar() {
-  const navigation = document.querySelector('.navbar') as HTMLElement;
-  const menuButton = document.querySelector('.navbar_menu-button') as HTMLElement;
-  let isMenuOpen = false;
-
-  if (!navigation || !menuButton) return;
-
-  // Ensure the navigation bar is positioned at the top
-  navigation.style.position = 'fixed';
-  navigation.style.top = '0';
-  navigation.style.left = '0';
-  navigation.style.width = '100%';
-  navigation.style.zIndex = '1000';
-
-  // Handle scroll behavior
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-      gsap.to(navigation, {
-        //backdropFilter: 'blur(20px)',
-        //backgroundColor: 'rgba(112, 0, 255, 0.8)',
-        duration: 0.5,
-      });
-    } else {
-      gsap.to(navigation, {
-        //backdropFilter: 'none',
-        //backgroundColor: 'rgba(112, 0, 255, 0.8)',
-        duration: 0.5,
-      });
-    }
-  });
-
-  // Handle menu button click
-  menuButton.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
-
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  });
-}
 // Navbar - COMPONENTS
 // Hover on Navlinks
 export function hoverNavContainer() {
@@ -107,28 +65,9 @@ export function addHoverEffect(): void {
   });
 }
 
-//NAVBAR
-// Function to add the boxShadow on hover - btn Joint The Quest
-/*export function addHoverEffect(): void {
-  // Get the button element by class name
-  const btn = document.querySelector('.btn-join-quest') as HTMLElement;
-
-  if (btn) {
-    // Add event listener for mouseover
-    btn.addEventListener('mouseover', () => {
-      btn.style.boxShadow = '0 8px 10px rgba(0, 0, 0, 0.2)';
-    });
-
-    // Add event listener for mouseout
-    btn.addEventListener('mouseout', () => {
-      btn.style.boxShadow = '';
-    });
-  }
-}*/
-
 // SOCIAL NAV - COMPONENTS
 // Hover on Social Network Logo - FOOTER
-export function hoverFooterLink() {
+export function hoverSocialLink() {
   const footerLinks = document.querySelectorAll<HTMLDivElement>('.social_logo-content');
 
   footerLinks.forEach((link) => {
@@ -141,22 +80,6 @@ export function hoverFooterLink() {
     });
   });
 }
-
-// SOCIAL NAV - COMPONENTS
-// Hover on Instagram Logo
-/*export function hoverFooterLinkInsta() {
-  const footerLinks = document.querySelectorAll<HTMLDivElement>('.is-instagram');
-
-  footerLinks.forEach((link) => {
-    link.addEventListener('mouseenter', () => {
-      gsap.to(link, { scale: 1.1, rotate: -90, duration: 0.2, ease: 'power1.in' });
-    });
-
-    link.addEventListener('mouseleave', () => {
-      gsap.to(link, { scale: 1, rotate: 0, duration: 0.5, ease: 'bounce.out' });
-    });
-  });
-}*/
 
 // INTRO
 //logo animation
@@ -248,80 +171,6 @@ export function animateProgressBar() {
             progressLineFront.style.boxShadow = 'none';
           }
         }
-      },
-    });
-  }
-}
-//HOME PAGE
-//HEADER HERO - PARALLAX
-export function heroHomeParallax() {
-  const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
-  if (heroImg1) {
-    gsap.to(heroImg1, {
-      y: '500',
-      ease: 'power1.out', // easing effect
-      scrollTrigger: {
-        trigger: '#hero-img-wrapper',
-        start: 'top +150',
-        end: 'bottom+=200 top', // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
-        scrub: true, // smooth catch-up with the scroll
-      },
-    });
-  }
-
-  const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
-  if (heroImg2) {
-    gsap.to(heroImg2, {
-      y: '400',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '#hero-img-wrapper',
-        start: 'top +150',
-        end: 'bottom+=200 top',
-        scrub: true,
-      },
-    });
-  }
-
-  const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
-  if (heroImg3) {
-    gsap.to(heroImg3, {
-      y: '300',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '#hero-img-wrapper',
-        start: 'top +150',
-        end: 'bottom+=200 top',
-        scrub: true,
-        markers: true,
-      },
-    });
-  }
-
-  const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
-  if (heroImg4) {
-    gsap.to(heroImg4, {
-      y: '200',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '#hero-img-wrapper',
-        start: 'top +150',
-        end: 'bottom+=200 top',
-        scrub: true,
-      },
-    });
-  }
-
-  const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
-  if (heroImg5) {
-    gsap.to(heroImg5, {
-      y: '100',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '#hero-img-wrapper',
-        start: 'top-=100 top',
-        end: 'bottom+=200 top',
-        scrub: true,
       },
     });
   }
