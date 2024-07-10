@@ -6692,14 +6692,13 @@
   var backgroundHero = document.querySelector("#hero-pattern1");
   if (backgroundHero) {
     gsapWithCSS.to(backgroundHero, {
-      y: "200",
+      y: "250",
       ease: "power1.out",
       scrollTrigger: {
-        trigger: ".hero_image-wrapper",
-        start: "top",
-        end: "bottom -800",
-        scrub: true,
-        markers: true
+        trigger: ".navigation",
+        start: "top top",
+        end: "bottom -2800",
+        scrub: true
       }
     });
   }
@@ -6858,12 +6857,12 @@
     const tokenImg1 = document.querySelector("#token1");
     if (tokenImg1) {
       gsapWithCSS.to(tokenImg1, {
-        y: "-50",
+        y: "500",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".a--button-fat",
-          start: "top",
-          end: "bottom =800",
+          start: "top-300",
+          end: "bottom -1000",
           scrub: true,
           markers: true
         }
@@ -6872,12 +6871,12 @@
     const tokenImg2 = document.querySelector("#token2");
     if (tokenImg2) {
       gsapWithCSS.to(tokenImg2, {
-        y: "-100",
+        y: "400",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".section_token",
-          start: "top +500",
-          end: "bottom",
+          trigger: ".a--button-fat",
+          start: "top",
+          end: "bottom -1000",
           scrub: true
         }
       });
@@ -6885,12 +6884,12 @@
     const tokenImg3 = document.querySelector("#token3");
     if (tokenImg3) {
       gsapWithCSS.to(tokenImg3, {
-        y: "50",
+        y: "200",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".section_token",
-          start: "top +500",
-          end: "bottom+=200 top",
+          trigger: ".a--button-fat",
+          start: "top",
+          end: "bottom -1000",
           scrub: true
         }
       });
@@ -6898,12 +6897,12 @@
     const tokenImg4 = document.querySelector("#token4");
     if (tokenImg4) {
       gsapWithCSS.to(tokenImg4, {
-        y: "50",
+        y: "300",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".section_token",
-          start: "top +500",
-          end: "bottom+=200 top",
+          trigger: ".a--button-fat",
+          start: "top",
+          end: "bottom -1000",
           scrub: true
         }
       });
@@ -6911,12 +6910,12 @@
     const tokenImg5 = document.querySelector("#token5");
     if (tokenImg5) {
       gsapWithCSS.to(tokenImg5, {
-        y: "250",
+        y: "100",
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".section_token",
-          start: "top +500",
-          end: "bottom+=200 top",
+          trigger: ".a--button-fat",
+          start: "top",
+          end: "bottom -1000",
           scrub: true
         }
       });

@@ -104,14 +104,13 @@ export function animateIntro() {
 const backgroundHero = document.querySelector('#hero-pattern1') as HTMLElement;
 if (backgroundHero) {
   gsap.to(backgroundHero, {
-    y: '200',
+    y: '250',
     ease: 'power1.out',
     scrollTrigger: {
-      trigger: '.hero_image-wrapper',
-      start: 'top',
-      end: 'bottom -800',
+      trigger: '.navigation',
+      start: 'top top',
+      end: 'bottom -2800',
       scrub: true,
-      markers: true,
     },
   });
 }
@@ -296,12 +295,12 @@ export function peposTokenParallax() {
   const tokenImg1 = document.querySelector('#token1') as HTMLElement;
   if (tokenImg1) {
     gsap.to(tokenImg1, {
-      y: '-50',
+      y: '500',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.a--button-fat',
-        start: 'top',
-        end: 'bottom =800',
+        start: 'top-300',
+        end: 'bottom -1000',
         scrub: true,
         markers: true,
       },
@@ -310,12 +309,12 @@ export function peposTokenParallax() {
   const tokenImg2 = document.querySelector('#token2') as HTMLElement;
   if (tokenImg2) {
     gsap.to(tokenImg2, {
-      y: '-100',
+      y: '400',
       ease: 'power1.out',
       scrollTrigger: {
-        trigger: '.section_token',
-        start: 'top +500',
-        end: 'bottom',
+        trigger: '.a--button-fat',
+        start: 'top',
+        end: 'bottom -1000',
         scrub: true,
       },
     });
@@ -324,12 +323,12 @@ export function peposTokenParallax() {
   const tokenImg3 = document.querySelector('#token3') as HTMLElement;
   if (tokenImg3) {
     gsap.to(tokenImg3, {
-      y: '50',
+      y: '200',
       ease: 'power1.out',
       scrollTrigger: {
-        trigger: '.section_token',
-        start: 'top +500',
-        end: 'bottom+=200 top',
+        trigger: '.a--button-fat',
+        start: 'top',
+        end: 'bottom -1000',
         scrub: true,
       },
     });
@@ -338,12 +337,12 @@ export function peposTokenParallax() {
   const tokenImg4 = document.querySelector('#token4') as HTMLElement;
   if (tokenImg4) {
     gsap.to(tokenImg4, {
-      y: '50',
+      y: '300',
       ease: 'power1.out',
       scrollTrigger: {
-        trigger: '.section_token',
-        start: 'top +500',
-        end: 'bottom+=200 top',
+        trigger: '.a--button-fat',
+        start: 'top',
+        end: 'bottom -1000',
         scrub: true,
       },
     });
@@ -352,12 +351,12 @@ export function peposTokenParallax() {
   const tokenImg5 = document.querySelector('#token5') as HTMLElement;
   if (tokenImg5) {
     gsap.to(tokenImg5, {
-      y: '250',
+      y: '100',
       ease: 'power1.out',
       scrollTrigger: {
-        trigger: '.section_token',
-        start: 'top +500',
-        end: 'bottom+=200 top',
+        trigger: '.a--button-fat',
+        start: 'top',
+        end: 'bottom -1000',
         scrub: true,
       },
     });
