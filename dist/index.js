@@ -6616,41 +6616,6 @@
 
   // src/utils/gsap.ts
   gsapWithCSS.registerPlugin(ScrollTrigger2);
-  function scrollNavbar() {
-    const navigation = document.querySelector(".navbar");
-    const menuButton = document.querySelector(".navbar_menu-button");
-    let isMenuOpen = false;
-    if (!navigation || !menuButton)
-      return;
-    navigation.style.position = "fixed";
-    navigation.style.top = "0";
-    navigation.style.left = "0";
-    navigation.style.width = "100%";
-    navigation.style.zIndex = "1000";
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 0) {
-        gsapWithCSS.to(navigation, {
-          //backdropFilter: 'blur(20px)',
-          //backgroundColor: 'rgba(112, 0, 255, 0.8)',
-          duration: 0.5
-        });
-      } else {
-        gsapWithCSS.to(navigation, {
-          //backdropFilter: 'none',
-          //backgroundColor: 'rgba(112, 0, 255, 0.8)',
-          duration: 0.5
-        });
-      }
-    });
-    menuButton.addEventListener("click", () => {
-      isMenuOpen = !isMenuOpen;
-      if (isMenuOpen) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "auto";
-      }
-    });
-  }
   function hoverNavContainer() {
     const containers = document.querySelectorAll(".nav-link-container");
     containers.forEach((container) => {
@@ -6701,7 +6666,7 @@
       }
     });
   }
-  function hoverFooterLink() {
+  function hoverSocialLink() {
     const footerLinks = document.querySelectorAll(".social_logo-content");
     footerLinks.forEach((link) => {
       link.addEventListener("mouseenter", () => {
@@ -6820,8 +6785,7 @@
           trigger: "#hero-img-wrapper",
           start: "top +150",
           end: "bottom+=200 top",
-          scrub: true,
-          markers: true
+          scrub: true
         }
       });
     }
@@ -16889,8 +16853,7 @@
     swiperNft();
     swiperPepos();
     swiperGoodies();
-    scrollNavbar();
-    hoverFooterLink();
+    hoverSocialLink();
     animatePhase2();
     animatePhase3();
     hoverNavContainer();
