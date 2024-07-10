@@ -6854,29 +6854,15 @@
     });
   }
   function peposTokenParallax() {
-    const tokenImg1 = document.querySelector("#token1");
-    if (tokenImg1) {
-      gsapWithCSS.to(tokenImg1, {
-        y: "500",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".a--button-fat",
-          start: "top-300",
-          end: "bottom -1000",
-          scrub: true,
-          markers: true
-        }
-      });
-    }
     const tokenImg2 = document.querySelector("#token2");
     if (tokenImg2) {
       gsapWithCSS.to(tokenImg2, {
-        y: "400",
+        y: "-100",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".a--button-fat",
           start: "top",
-          end: "bottom -1000",
+          end: "bottom -3000",
           scrub: true
         }
       });
@@ -6884,12 +6870,12 @@
     const tokenImg3 = document.querySelector("#token3");
     if (tokenImg3) {
       gsapWithCSS.to(tokenImg3, {
-        y: "200",
+        y: "-50",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".a--button-fat",
           start: "top",
-          end: "bottom -1000",
+          end: "bottom -3000",
           scrub: true
         }
       });
@@ -6902,7 +6888,7 @@
         scrollTrigger: {
           trigger: ".a--button-fat",
           start: "top",
-          end: "bottom -1000",
+          end: "bottom -3000",
           scrub: true
         }
       });
@@ -6915,7 +6901,7 @@
         scrollTrigger: {
           trigger: ".a--button-fat",
           start: "top",
-          end: "bottom -1000",
+          end: "bottom -3000",
           scrub: true
         }
       });
