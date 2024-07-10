@@ -7,6 +7,7 @@ import {
   animatePhase3,
   animateProgressBar,
   ctaShopParallax,
+  heroHomeParallax,
   hoverNavContainer,
   hoverSocialLink,
   initPeposHeroParallax,
@@ -27,6 +28,7 @@ window.Webflow.push(() => {
   animateProgressBar();
   initPeposHeroParallax();
   initWeedosCloudParallax();
+  heroHomeParallax();
   addHoverEffect();
   animateIntro();
   ctaShopParallax();

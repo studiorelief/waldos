@@ -6802,19 +6802,6 @@
         }
       });
     }
-    const heroImg5 = document.querySelector("#hero-img5");
-    if (heroImg5) {
-      gsapWithCSS.to(heroImg5, {
-        y: "100",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: "#hero-img-wrapper",
-          start: "top-=100 top",
-          end: "bottom+=200 top",
-          scrub: true
-        }
-      });
-    }
   }
   var girlOnTop = document.querySelector("#girl-on-top");
   if (girlOnTop) {
@@ -6850,23 +6837,10 @@
     });
   }
   function peposTokenParallax() {
-    const tokenImg1 = document.querySelector("#token1");
-    if (tokenImg1) {
-      gsapWithCSS.to(tokenImg1, {
-        y: "50",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".section_token",
-          start: "top +500",
-          end: "bottom",
-          scrub: true
-        }
-      });
-    }
     const tokenImg2 = document.querySelector("#token2");
     if (tokenImg2) {
       gsapWithCSS.to(tokenImg2, {
-        y: "50",
+        y: "-100",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_token",
@@ -6892,7 +6866,7 @@
     const tokenImg4 = document.querySelector("#token4");
     if (tokenImg4) {
       gsapWithCSS.to(tokenImg4, {
-        y: "80",
+        y: "50",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_token",
@@ -6905,7 +6879,7 @@
     const tokenImg5 = document.querySelector("#token5");
     if (tokenImg5) {
       gsapWithCSS.to(tokenImg5, {
-        y: "80",
+        y: "250",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_token",
@@ -6920,7 +6894,7 @@
     const heroImg1 = document.querySelector("#cta-img1");
     if (heroImg1) {
       gsapWithCSS.to(heroImg1, {
-        y: "-50",
+        y: "-100",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_cta-shop",
@@ -6933,7 +6907,7 @@
     const heroImg2 = document.querySelector("#cta-img2");
     if (heroImg2) {
       gsapWithCSS.to(heroImg2, {
-        y: "-50",
+        y: "-80",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_cta-shop",
@@ -6943,23 +6917,10 @@
         }
       });
     }
-    const heroImg3 = document.querySelector("#cta-img3");
-    if (heroImg3) {
-      gsapWithCSS.to(heroImg3, {
-        y: "80",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".section_cta-shop",
-          start: "top +900",
-          end: "bottom -500",
-          scrub: true
-        }
-      });
-    }
     const heroImg4 = document.querySelector("#cta-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "80",
+        y: "180",
         ease: "power1.out",
         scrollTrigger: {
           trigger: ".section_cta-shop",
