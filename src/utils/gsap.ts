@@ -292,29 +292,15 @@ if (manSlide) {
 //HOME PAGE
 //PEPOS TOKEN HEADER - PARALLAX
 export function peposTokenParallax() {
-  const tokenImg1 = document.querySelector('#token1') as HTMLElement;
-  if (tokenImg1) {
-    gsap.to(tokenImg1, {
-      y: '500',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.a--button-fat',
-        start: 'top-300',
-        end: 'bottom -1000',
-        scrub: true,
-        markers: true,
-      },
-    });
-  }
   const tokenImg2 = document.querySelector('#token2') as HTMLElement;
   if (tokenImg2) {
     gsap.to(tokenImg2, {
-      y: '400',
+      y: '-100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.a--button-fat',
         start: 'top',
-        end: 'bottom -1000',
+        end: 'bottom -3000',
         scrub: true,
       },
     });
@@ -323,12 +309,12 @@ export function peposTokenParallax() {
   const tokenImg3 = document.querySelector('#token3') as HTMLElement;
   if (tokenImg3) {
     gsap.to(tokenImg3, {
-      y: '200',
+      y: '-50',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.a--button-fat',
         start: 'top',
-        end: 'bottom -1000',
+        end: 'bottom -3000',
         scrub: true,
       },
     });
@@ -342,7 +328,7 @@ export function peposTokenParallax() {
       scrollTrigger: {
         trigger: '.a--button-fat',
         start: 'top',
-        end: 'bottom -1000',
+        end: 'bottom -3000',
         scrub: true,
       },
     });
@@ -356,7 +342,7 @@ export function peposTokenParallax() {
       scrollTrigger: {
         trigger: '.a--button-fat',
         start: 'top',
-        end: 'bottom -1000',
+        end: 'bottom -3000',
         scrub: true,
       },
     });
