@@ -175,6 +175,79 @@ export function animateProgressBar() {
     });
   }
 }
+//HOME PAGE
+//HEADER HERO - PARALLAX
+export function heroHomeParallax() {
+  const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
+  if (heroImg1) {
+    gsap.to(heroImg1, {
+      y: '100',
+      ease: 'power1.out', // easing effect
+      scrollTrigger: {
+        trigger: '#hero-img-wrapper',
+        start: 'top +150',
+        end: 'bottom+=200 top', // termine 200px après que le bas de l'élément déclencheur atteint le haut de la vue
+        scrub: true, // smooth catch-up with the scroll
+      },
+    });
+  }
+
+  const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
+  if (heroImg2) {
+    gsap.to(heroImg2, {
+      y: '200',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '#hero-img-wrapper',
+        start: 'top +150',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg3 = document.querySelector('#hero-img3') as HTMLElement;
+  if (heroImg3) {
+    gsap.to(heroImg3, {
+      y: '300',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '#hero-img-wrapper',
+        start: 'top +150',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
+  if (heroImg4) {
+    gsap.to(heroImg4, {
+      y: '400',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '#hero-img-wrapper',
+        start: 'top +150',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+
+  const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
+  if (heroImg5) {
+    gsap.to(heroImg5, {
+      y: '500',
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '#hero-img-wrapper',
+        start: 'top-=100 top',
+        end: 'bottom+=200 top',
+        scrub: true,
+      },
+    });
+  }
+}
 
 //HOME PAGE
 // girl on top of pepos token
@@ -219,10 +292,10 @@ if (manSlide) {
 //HOME PAGE
 //PEPOS TOKEN HEADER - PARALLAX
 export function peposTokenParallax() {
-  const tokenImg1 = document.querySelector('#token1') as HTMLElement;
+  /*const tokenImg1 = document.querySelector('#token1') as HTMLElement;
   if (tokenImg1) {
     gsap.to(tokenImg1, {
-      y: '50',
+      y: '-50',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_token',
@@ -231,11 +304,11 @@ export function peposTokenParallax() {
         scrub: true,
       },
     });
-  }
+  }*/
   const tokenImg2 = document.querySelector('#token2') as HTMLElement;
   if (tokenImg2) {
     gsap.to(tokenImg2, {
-      y: '50',
+      y: '-100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_token',
@@ -263,7 +336,7 @@ export function peposTokenParallax() {
   const tokenImg4 = document.querySelector('#token4') as HTMLElement;
   if (tokenImg4) {
     gsap.to(tokenImg4, {
-      y: '80',
+      y: '50',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_token',
@@ -277,7 +350,7 @@ export function peposTokenParallax() {
   const tokenImg5 = document.querySelector('#token5') as HTMLElement;
   if (tokenImg5) {
     gsap.to(tokenImg5, {
-      y: '80',
+      y: '250',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_token',
@@ -295,7 +368,7 @@ export function ctaShopParallax() {
   const heroImg1 = document.querySelector('#cta-img1') as HTMLElement;
   if (heroImg1) {
     gsap.to(heroImg1, {
-      y: '-50',
+      y: '-100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_cta-shop',
@@ -308,7 +381,7 @@ export function ctaShopParallax() {
   const heroImg2 = document.querySelector('#cta-img2') as HTMLElement;
   if (heroImg2) {
     gsap.to(heroImg2, {
-      y: '-50',
+      y: '-80',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_cta-shop',
@@ -319,10 +392,10 @@ export function ctaShopParallax() {
     });
   }
 
-  const heroImg3 = document.querySelector('#cta-img3') as HTMLElement;
+  /*const heroImg3 = document.querySelector('#cta-img3') as HTMLElement;
   if (heroImg3) {
     gsap.to(heroImg3, {
-      y: '80',
+      y: '-100',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_cta-shop',
@@ -331,12 +404,12 @@ export function ctaShopParallax() {
         scrub: true,
       },
     });
-  }
+  }*/
 
   const heroImg4 = document.querySelector('#cta-img4') as HTMLElement;
   if (heroImg4) {
     gsap.to(heroImg4, {
-      y: '80',
+      y: '180',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_cta-shop',
