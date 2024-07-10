@@ -181,7 +181,7 @@ export function heroHomeParallax() {
   const heroImg1 = document.querySelector('#hero-img1') as HTMLElement;
   if (heroImg1) {
     gsap.to(heroImg1, {
-      y: '500',
+      y: '100',
       ease: 'power1.out', // easing effect
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -195,7 +195,7 @@ export function heroHomeParallax() {
   const heroImg2 = document.querySelector('#hero-img2') as HTMLElement;
   if (heroImg2) {
     gsap.to(heroImg2, {
-      y: '400',
+      y: '200',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -223,7 +223,7 @@ export function heroHomeParallax() {
   const heroImg4 = document.querySelector('#hero-img4') as HTMLElement;
   if (heroImg4) {
     gsap.to(heroImg4, {
-      y: '200',
+      y: '400',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -234,10 +234,10 @@ export function heroHomeParallax() {
     });
   }
 
-  /*const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
+  const heroImg5 = document.querySelector('#hero-img5') as HTMLElement;
   if (heroImg5) {
     gsap.to(heroImg5, {
-      y: '-50',
+      y: '500',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '#hero-img-wrapper',
@@ -246,7 +246,7 @@ export function heroHomeParallax() {
         scrub: true,
       },
     });
-  }*/
+  }
 }
 
 //HOME PAGE

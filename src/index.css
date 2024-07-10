@@ -8,12 +8,3 @@
 .swiper .swiper-wrapper {
   transition-timing-function: linear;
 }
-/*Désactive la propriété left pour responsive  - center flèche*/
-
-.swiper-button-prev, .swiper-rtl .swiper-button-next {
-  left: unset !important;  
-}
-/* Désactive la propriété right pour responsive - center flèche */
-.swiper-button-next, .swiper-rtl .swiper-button-prev {
-  right: unset !important;
-}

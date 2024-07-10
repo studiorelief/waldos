@@ -6750,7 +6750,7 @@
     const heroImg1 = document.querySelector("#hero-img1");
     if (heroImg1) {
       gsapWithCSS.to(heroImg1, {
-        y: "500",
+        y: "100",
         ease: "power1.out",
         // easing effect
         scrollTrigger: {
@@ -6766,7 +6766,7 @@
     const heroImg2 = document.querySelector("#hero-img2");
     if (heroImg2) {
       gsapWithCSS.to(heroImg2, {
-        y: "400",
+        y: "200",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
@@ -6792,11 +6792,24 @@
     const heroImg4 = document.querySelector("#hero-img4");
     if (heroImg4) {
       gsapWithCSS.to(heroImg4, {
-        y: "200",
+        y: "400",
         ease: "power1.out",
         scrollTrigger: {
           trigger: "#hero-img-wrapper",
           start: "top +150",
+          end: "bottom+=200 top",
+          scrub: true
+        }
+      });
+    }
+    const heroImg5 = document.querySelector("#hero-img5");
+    if (heroImg5) {
+      gsapWithCSS.to(heroImg5, {
+        y: "500",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: "#hero-img-wrapper",
+          start: "top-=100 top",
           end: "bottom+=200 top",
           scrub: true
         }
