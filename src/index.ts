@@ -3,6 +3,7 @@ import './index.css';
 import {
   addHoverEffect,
   animateIntro,
+  animateMobileProgressBar,
   animatePhase2,
   animatePhase3,
   animateProgressBar,
@@ -26,6 +27,7 @@ window.Webflow.push(() => {
   animatePhase3();
   hoverNavContainer();
   animateProgressBar();
+  animateMobileProgressBar();
   initPeposHeroParallax();
   initWeedosCloudParallax();
   heroHomeParallax();

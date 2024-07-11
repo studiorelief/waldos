@@ -6624,7 +6624,6 @@
         borderRadius: getComputedStyle(container).borderRadius || "0px",
         boxShadow: getComputedStyle(container).boxShadow || "none",
         scale: 1
-        // État initial de l'échelle
       };
       container.addEventListener("mouseenter", () => {
         gsapWithCSS.to(container, {
@@ -6632,7 +6631,6 @@
           borderRadius: "30px",
           boxShadow: "0 8px 10px rgba(0, 0, 0, 0.2)",
           scale: 1.1,
-          // Augmente légèrement la taille
           duration: 1,
           ease: "elastic.out(1, 0.3)"
         });
@@ -6640,11 +6638,10 @@
       container.addEventListener("mouseleave", () => {
         gsapWithCSS.to(container, {
           backgroundColor: "var(--background-primary)",
-          // Utiliser la variable CSS
           borderRadius: initialStyles.borderRadius,
           boxShadow: initialStyles.boxShadow,
           scale: initialStyles.scale,
-          // Revenir à la taille initiale
+          // Return to original size
           duration: 1,
           ease: "elastic.out(1, 0.3)"
         });
@@ -6717,7 +6714,7 @@
           onUpdate: function() {
             if (progressLineFront.parentElement) {
               const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
-              const adjustedProgress = Math.max(0, progress / 0.95);
+              const adjustedProgress = Math.max(0, progress / 0.96);
               const currentCount = Math.round(totalCount * adjustedProgress);
               progressText.innerText = `${Math.min(currentCount, totalCount)}`;
             }
@@ -6725,8 +6722,8 @@
         }
       });
       timeline2.to(progressLineFront, {
-        width: "98%",
-        // End at 98% to ensure the counter reaches 116
+        width: "99%",
+        // End at 99% to ensure the counter reaches 117
         duration: 1,
         // Duration of the animation
         ease: "power3.inOut",
@@ -6734,7 +6731,51 @@
         onUpdate: function() {
           if (progressLineFront.parentElement) {
             const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
-            const adjustedProgress = Math.max(0, progress / 0.95);
+            const adjustedProgress = Math.max(0, progress / 0.96);
+            const currentCount = Math.round(totalCount * adjustedProgress);
+            progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
+            const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
+            if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
+              progressLineFront.style.boxShadow = "none";
+            }
+          }
+        }
+      });
+    }
+  }
+  function animateMobileProgressBar() {
+    const progressLineFront = document.querySelector(".progress-line_mobile_front");
+    const progressText = document.querySelector(".progress_mobile-anime-text");
+    const totalCount = 116;
+    if (progressLineFront && progressText) {
+      gsapWithCSS.set(progressLineFront, { width: "3%", opacity: 1 });
+      const timeline2 = gsapWithCSS.timeline({
+        scrollTrigger: {
+          trigger: ".nft_progress-line-content",
+          start: "top 50%",
+          end: "top -10%",
+          scrub: true,
+          onUpdate: function() {
+            if (progressLineFront.parentElement) {
+              const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
+              const adjustedProgress = Math.max(0, progress / 0.92);
+              const currentCount = Math.round(totalCount * adjustedProgress);
+              progressText.innerText = `${Math.min(currentCount, totalCount)}`;
+            }
+          }
+        }
+      });
+      timeline2.to(progressLineFront, {
+        width: "95%",
+        // End at 95% to ensure the counter reaches 116
+        duration: 1,
+        // Duration of the animation
+        ease: "power3.inOut",
+        // Smooth easing
+        onUpdate: function() {
+          if (progressLineFront.parentElement) {
+            const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
+            const adjustedProgress = Math.max(0, progress / 0.92);
             const currentCount = Math.round(totalCount * adjustedProgress);
             progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
             const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
@@ -6756,14 +6797,11 @@
         gsapWithCSS.to(heroImg1, {
           y: "100",
           ease: "power1.out",
-          // easing effect
           scrollTrigger: {
             trigger: ".navigation",
             start: "top",
             end: "bottom+=700 top",
-            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
             scrub: true
-            // smooth catch-up with the scroll
           }
         });
       }
@@ -6826,17 +6864,12 @@
     gsapWithCSS.set(girlOnTop, { x: "100%" });
     gsapWithCSS.to(girlOnTop, {
       x: "0",
-      // move to the left of the screen
       ease: "power1.out",
-      // smoothing the animation
       scrollTrigger: {
         trigger: "#nft-grid1",
         start: "top 50%",
-        // start when the top it's 75% of viewport
         end: "top -100",
-        // end when the top it's 70% of viewport
         scrub: true
-        // smooth follow with the scroll
       }
     });
   }
@@ -6959,6 +6992,20 @@
       }
     }
   }
+  var imgWrapperBoat = document.querySelector(".img-wrapper_boat");
+  if (imgWrapperBoat) {
+    gsapWithCSS.set(imgWrapperBoat, { x: "100%" });
+    gsapWithCSS.to(imgWrapperBoat, {
+      x: "0",
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: imgWrapperBoat,
+        start: "top 80%",
+        end: "top 20%",
+        scrub: true
+      }
+    });
+  }
   var roadmapSteps = document.querySelectorAll(".roadmap_step");
   roadmapSteps.forEach((step) => {
     const ellipse = step.querySelector(".roadmap_ellipse");
@@ -6968,19 +7015,14 @@
       gsapWithCSS.fromTo(
         ellipse,
         { width: "2rem", height: "2rem" },
-        // initial size
         {
           width: "6rem",
           height: "6rem",
-          // final size
           scrollTrigger: {
             trigger: ellipse,
             start: "top 85%",
-            // start when the top is 85% of viewport
             end: "bottom 50%",
-            // end when the bottom is 50% of viewport
             scrub: true
-            // follow scroll
           }
         }
       );
@@ -6989,18 +7031,13 @@
       gsapWithCSS.fromTo(
         img,
         { opacity: 0 },
-        // initial opacity
         {
           opacity: 1,
-          // final opacity
           scrollTrigger: {
             trigger: ellipse,
             start: "top 85%",
-            // start when the top is 85% of viewport
             end: "bottom 50%",
-            // end when the bottom is 50% of viewport
             scrub: true
-            // follow scroll
           }
         }
       );
@@ -7009,18 +7046,13 @@
       gsapWithCSS.fromTo(
         textContent,
         { opacity: 0 },
-        // initial opacity
         {
           opacity: 1,
-          // final opacity
           scrollTrigger: {
             trigger: ellipse,
             start: "top 85%",
-            // start when the top is 85% of viewport
             end: "bottom 50%",
-            // end when the bottom is 50% of viewport
             scrub: true
-            // follow scroll
           }
         }
       );
@@ -7034,17 +7066,14 @@
       gsapWithCSS.fromTo(
         elements,
         { opacity: 0 },
-        // opacité initiale
         {
           opacity: 1,
-          // opacité finale
           duration: 2,
           scrollTrigger: {
             trigger: roadmapPhase2,
             start: "top 80%",
             end: "bottom 70%",
             toggleActions: "play none none none",
-            // déclenche l'animation uniquement lorsqu'il entre dans la vue
             scrub: true
           }
         }
@@ -7074,34 +7103,17 @@
       );
     }
   }
-  var imgWrapperBoat = document.querySelector(".img-wrapper_boat");
-  if (imgWrapperBoat) {
-    gsapWithCSS.set(imgWrapperBoat, { x: "100%" });
-    gsapWithCSS.to(imgWrapperBoat, {
-      x: "0",
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: imgWrapperBoat,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true
-      }
-    });
-  }
   function initPeposHeroParallax() {
     const peposHero5 = document.querySelector("#pepos-hero5");
     if (peposHero5) {
       gsapWithCSS.to(peposHero5, {
         y: "300",
-        // move up by 300px
         ease: "power1.out",
-        // effect
         scrollTrigger: {
           trigger: ".hero_image-wrapper",
           start: "top 120",
           end: "100%",
           scrub: true
-          // smooth catch-up with the scroll
         }
       });
     }
@@ -7151,15 +7163,11 @@
       gsapWithCSS.to(weedosCloud, {
         x: "-600",
         ease: "power1.inOut",
-        // easing for a smooth effect
         scrollTrigger: {
           trigger: weedosCloud,
           start: "top 400",
-          // start when the top of the wrapper hits the top of the viewport
           end: "100%",
-          // end when the bottom of the viewport is reached
           scrub: true
-          // smooth catch-up with the scroll
         }
       });
     }
@@ -7167,17 +7175,12 @@
     if (weedosCloud) {
       gsapWithCSS.to(weedosCloud1, {
         x: "150",
-        // move up by 300px
         ease: "power1.inOut",
-        // easing for a smooth effect
         scrollTrigger: {
           trigger: weedosCloud,
           start: "top 400",
-          // start when the top of the wrapper hits the top of the viewport
           end: "100%",
-          // end when the bottom of the viewport is reached
           scrub: true
-          // smooth catch-up with the scroll
         }
       });
     }
@@ -16858,6 +16861,7 @@
     animatePhase3();
     hoverNavContainer();
     animateProgressBar();
+    animateMobileProgressBar();
     initPeposHeroParallax();
     initWeedosCloudParallax();
     heroHomeParallax();
