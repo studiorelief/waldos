@@ -16795,11 +16795,24 @@
       spaceBetween: 50,
       // variable
       slideActiveClass: "is-active",
-      slidesPerGroup: 3,
       speed: 1e3,
       navigation: {
         prevEl: ".swiper-button-prev",
         nextEl: ".swiper-button-next"
+      },
+      breakpoints: {
+        // Paramètres pour les écrans d'ordinateur
+        1024: {
+          slidesPerGroup: 3
+        },
+        // Paramètres pour les tablettes
+        768: {
+          slidesPerGroup: 1
+        },
+        // Paramètres pour les téléphones
+        0: {
+          slidesPerGroup: 1
+        }
       }
     });
   }
