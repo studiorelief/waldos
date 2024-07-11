@@ -9,6 +9,7 @@ export function swiperNft() {
     slidesPerView: 'auto',
     spaceBetween: 50, // variable
     slideActiveClass: 'is-active',
+    slidesPerGroup: 3,
     speed: 1000,
     navigation: {
       prevEl: '.swiper-button-prev',

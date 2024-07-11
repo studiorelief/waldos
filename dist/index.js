@@ -6717,7 +6717,7 @@
           onUpdate: function() {
             if (progressLineFront.parentElement) {
               const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
-              const adjustedProgress = Math.max(0, progress / 0.96);
+              const adjustedProgress = Math.max(0, progress / 0.95);
               const currentCount = Math.round(totalCount * adjustedProgress);
               progressText.innerText = `${Math.min(currentCount, totalCount)}`;
             }
@@ -6725,8 +6725,8 @@
         }
       });
       timeline2.to(progressLineFront, {
-        width: "99%",
-        // End at 99% to ensure the counter reaches 117
+        width: "98%",
+        // End at 98% to ensure the counter reaches 116
         duration: 1,
         // Duration of the animation
         ease: "power3.inOut",
@@ -6734,7 +6734,7 @@
         onUpdate: function() {
           if (progressLineFront.parentElement) {
             const progress = parseFloat(window.getComputedStyle(progressLineFront).width) / progressLineFront.parentElement.offsetWidth - 0.03;
-            const adjustedProgress = Math.max(0, progress / 0.96);
+            const adjustedProgress = Math.max(0, progress / 0.95);
             const currentCount = Math.round(totalCount * adjustedProgress);
             progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
             const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
@@ -7084,8 +7084,7 @@
         trigger: imgWrapperBoat,
         start: "top 80%",
         end: "top 20%",
-        scrub: true,
-        markers: false
+        scrub: true
       }
     });
   }
@@ -7101,10 +7100,8 @@
           trigger: ".hero_image-wrapper",
           start: "top 120",
           end: "100%",
-          scrub: true,
+          scrub: true
           // smooth catch-up with the scroll
-          markers: false
-          // show markers for debugging
         }
       });
     }
@@ -16798,6 +16795,7 @@
       spaceBetween: 50,
       // variable
       slideActiveClass: "is-active",
+      slidesPerGroup: 3,
       speed: 1e3,
       navigation: {
         prevEl: ".swiper-button-prev",
