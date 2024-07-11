@@ -6747,77 +6747,82 @@
     }
   }
   function heroHomeParallax() {
-    const heroImg1 = document.querySelector("#hero-img1");
-    if (heroImg1) {
-      gsapWithCSS.to(heroImg1, {
-        y: "100",
-        ease: "power1.out",
-        // easing effect
-        scrollTrigger: {
-          trigger: ".navigation",
-          start: "top",
-          end: "bottom+=700 top",
-          // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
-          scrub: true
-          // smooth catch-up with the scroll
-        }
-      });
+    function isMobile() {
+      return window.matchMedia("(max-width: 767px)").matches;
     }
-    const heroImg2 = document.querySelector("#hero-img2");
-    if (heroImg2) {
-      gsapWithCSS.to(heroImg2, {
-        y: "200",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".navigation",
-          start: "top",
-          end: "bottom+=700 top",
-          // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
-          scrub: true
-        }
-      });
-    }
-    const heroImg3 = document.querySelector("#hero-img3");
-    if (heroImg3) {
-      gsapWithCSS.to(heroImg3, {
-        y: "300",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".navigation",
-          start: "top",
-          end: "bottom+=700 top",
-          // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
-          scrub: true
-        }
-      });
-    }
-    const heroImg4 = document.querySelector("#hero-img4");
-    if (heroImg4) {
-      gsapWithCSS.to(heroImg4, {
-        y: "400",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".navigation",
-          start: "top",
-          end: "bottom+=700 top",
-          // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
-          scrub: true
-        }
-      });
-    }
-    const heroImg5 = document.querySelector("#hero-img5");
-    if (heroImg5) {
-      gsapWithCSS.to(heroImg5, {
-        y: "500",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".navigation",
-          start: "top",
-          end: "bottom+=700 top",
-          // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
-          scrub: true
-        }
-      });
+    if (!isMobile()) {
+      const heroImg1 = document.querySelector("#hero-img1");
+      if (heroImg1) {
+        gsapWithCSS.to(heroImg1, {
+          y: "100",
+          ease: "power1.out",
+          // easing effect
+          scrollTrigger: {
+            trigger: ".navigation",
+            start: "top",
+            end: "bottom+=700 top",
+            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+            scrub: true
+            // smooth catch-up with the scroll
+          }
+        });
+      }
+      const heroImg2 = document.querySelector("#hero-img2");
+      if (heroImg2) {
+        gsapWithCSS.to(heroImg2, {
+          y: "200",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".navigation",
+            start: "top",
+            end: "bottom+=700 top",
+            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+            scrub: true
+          }
+        });
+      }
+      const heroImg3 = document.querySelector("#hero-img3");
+      if (heroImg3) {
+        gsapWithCSS.to(heroImg3, {
+          y: "300",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".navigation",
+            start: "top",
+            end: "bottom+=700 top",
+            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+            scrub: true
+          }
+        });
+      }
+      const heroImg4 = document.querySelector("#hero-img4");
+      if (heroImg4) {
+        gsapWithCSS.to(heroImg4, {
+          y: "400",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".navigation",
+            start: "top",
+            end: "bottom+=700 top",
+            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+            scrub: true
+          }
+        });
+      }
+      const heroImg5 = document.querySelector("#hero-img5");
+      if (heroImg5) {
+        gsapWithCSS.to(heroImg5, {
+          y: "500",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".navigation",
+            start: "top",
+            end: "bottom+=700 top",
+            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+            scrub: true
+          }
+        });
+      }
     }
   }
   var girlOnTop = document.querySelector("#girl-on-top");
