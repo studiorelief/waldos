@@ -142,7 +142,7 @@ export function animateProgressBar() {
               0.03; // Adjust for 3% starting point
 
             // Update the text based on the adjusted progress
-            const adjustedProgress = Math.max(0, progress / 0.96); // Adjust for 96% remaining (99% - 3%)
+            const adjustedProgress = Math.max(0, progress / 0.95); // Adjust for 95% remaining (98% - 3%)
             const currentCount = Math.round(totalCount * adjustedProgress);
             progressText.innerText = `${Math.min(currentCount, totalCount)}`;
           }
@@ -152,7 +152,7 @@ export function animateProgressBar() {
 
     // Animation for progress line
     timeline.to(progressLineFront, {
-      width: '99%', // End at 99% to ensure the counter reaches 117
+      width: '98%', // End at 98% to ensure the counter reaches 116
       duration: 1, // Duration of the animation
       ease: 'power3.inOut', // Smooth easing
       onUpdate: function () {
@@ -162,7 +162,7 @@ export function animateProgressBar() {
               progressLineFront.parentElement.offsetWidth -
             0.03; // Adjust for 3% starting point
 
-          const adjustedProgress = Math.max(0, progress / 0.96); // Adjust for 96% remaining (99% - 3%)
+          const adjustedProgress = Math.max(0, progress / 0.95); // Adjust for 95% remaining (98% - 3%)
           const currentCount = Math.round(totalCount * adjustedProgress);
           progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
           // Remove box-shadow if the width is close to 1%
@@ -175,7 +175,6 @@ export function animateProgressBar() {
     });
   }
 }
-
 //HOME PAGE
 //Hero Parallax
 export function heroHomeParallax() {
@@ -522,7 +521,7 @@ export function animatePhase3() {
   }
 }
 
-// PEPOS PAGE
+// HOME PAGE
 // Boat
 const imgWrapperBoat = document.querySelector('.img-wrapper_boat');
 if (imgWrapperBoat) {
@@ -538,7 +537,6 @@ if (imgWrapperBoat) {
       start: 'top 80%',
       end: 'top 20%',
       scrub: true,
-      markers: false,
     },
   });
 }
@@ -556,7 +554,6 @@ export function initPeposHeroParallax() {
         start: 'top 120',
         end: '100%',
         scrub: true, // smooth catch-up with the scroll
-        markers: false, // show markers for debugging
       },
     });
   }
