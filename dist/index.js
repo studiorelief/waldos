@@ -6776,7 +6776,6 @@
             trigger: ".navigation",
             start: "top",
             end: "bottom+=700 top",
-            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
             scrub: true
           }
         });
@@ -6790,7 +6789,6 @@
             trigger: ".navigation",
             start: "top",
             end: "bottom+=700 top",
-            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
             scrub: true
           }
         });
@@ -6804,7 +6802,6 @@
             trigger: ".navigation",
             start: "top",
             end: "bottom+=700 top",
-            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
             scrub: true
           }
         });
@@ -6818,7 +6815,6 @@
             trigger: ".navigation",
             start: "top",
             end: "bottom+=700 top",
-            // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
             scrub: true
           }
         });
@@ -6859,98 +6855,108 @@
     });
   }
   function peposTokenParallax() {
-    const tokenImg2 = document.querySelector("#token2");
-    if (tokenImg2) {
-      gsapWithCSS.to(tokenImg2, {
-        y: "-100",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".a--button-fat",
-          start: "top",
-          end: "bottom -3000",
-          scrub: true
-        }
-      });
+    function isMobile() {
+      return window.matchMedia("(max-width: 767px)").matches;
     }
-    const tokenImg3 = document.querySelector("#token3");
-    if (tokenImg3) {
-      gsapWithCSS.to(tokenImg3, {
-        y: "-50",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".a--button-fat",
-          start: "top",
-          end: "bottom -3000",
-          scrub: true
-        }
-      });
-    }
-    const tokenImg4 = document.querySelector("#token4");
-    if (tokenImg4) {
-      gsapWithCSS.to(tokenImg4, {
-        y: "300",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".a--button-fat",
-          start: "top",
-          end: "bottom -3000",
-          scrub: true
-        }
-      });
-    }
-    const tokenImg5 = document.querySelector("#token5");
-    if (tokenImg5) {
-      gsapWithCSS.to(tokenImg5, {
-        y: "100",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".a--button-fat",
-          start: "top",
-          end: "bottom -3000",
-          scrub: true
-        }
-      });
+    if (!isMobile()) {
+      const tokenImg2 = document.querySelector("#token2");
+      if (tokenImg2) {
+        gsapWithCSS.to(tokenImg2, {
+          y: "-100",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".a--button-fat",
+            start: "top",
+            end: "bottom -3000",
+            scrub: true
+          }
+        });
+      }
+      const tokenImg3 = document.querySelector("#token3");
+      if (tokenImg3) {
+        gsapWithCSS.to(tokenImg3, {
+          y: "-50",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".a--button-fat",
+            start: "top",
+            end: "bottom -3000",
+            scrub: true
+          }
+        });
+      }
+      const tokenImg4 = document.querySelector("#token4");
+      if (tokenImg4) {
+        gsapWithCSS.to(tokenImg4, {
+          y: "300",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".a--button-fat",
+            start: "top",
+            end: "bottom -3000",
+            scrub: true
+          }
+        });
+      }
+      const tokenImg5 = document.querySelector("#token5");
+      if (tokenImg5) {
+        gsapWithCSS.to(tokenImg5, {
+          y: "100",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".a--button-fat",
+            start: "top",
+            end: "bottom -3000",
+            scrub: true
+          }
+        });
+      }
     }
   }
   function ctaShopParallax() {
-    const heroImg1 = document.querySelector("#cta-img1");
-    if (heroImg1) {
-      gsapWithCSS.to(heroImg1, {
-        y: "-100",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".section_cta-shop",
-          start: "top +900",
-          end: "bottom -500",
-          scrub: true
-        }
-      });
+    function isMobile() {
+      return window.matchMedia("(max-width: 767px)").matches;
     }
-    const heroImg2 = document.querySelector("#cta-img2");
-    if (heroImg2) {
-      gsapWithCSS.to(heroImg2, {
-        y: "-80",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".section_cta-shop",
-          start: "top +900",
-          end: "bottom",
-          scrub: true
-        }
-      });
-    }
-    const heroImg4 = document.querySelector("#cta-img4");
-    if (heroImg4) {
-      gsapWithCSS.to(heroImg4, {
-        y: "180",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".section_cta-shop",
-          start: "top +900",
-          end: "bottom -500",
-          scrub: true
-        }
-      });
+    if (!isMobile()) {
+      const heroImg1 = document.querySelector("#cta-img1");
+      if (heroImg1) {
+        gsapWithCSS.to(heroImg1, {
+          y: "-100",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".section_cta-shop",
+            start: "top +900",
+            end: "bottom -500",
+            scrub: true
+          }
+        });
+      }
+      const heroImg2 = document.querySelector("#cta-img2");
+      if (heroImg2) {
+        gsapWithCSS.to(heroImg2, {
+          y: "-80",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".section_cta-shop",
+            start: "top +900",
+            end: "bottom",
+            scrub: true
+          }
+        });
+      }
+      const heroImg4 = document.querySelector("#cta-img4");
+      if (heroImg4) {
+        gsapWithCSS.to(heroImg4, {
+          y: "180",
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: ".section_cta-shop",
+            start: "top +900",
+            end: "bottom -500",
+            scrub: true
+          }
+        });
+      }
     }
   }
   var roadmapSteps = document.querySelectorAll(".roadmap_step");

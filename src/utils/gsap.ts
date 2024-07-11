@@ -179,9 +179,8 @@ export function animateProgressBar() {
 //HOME PAGE
 //Hero Parallax
 export function heroHomeParallax() {
-  // Fonction pour vérifier si l'appareil est mobile
   function isMobile() {
-    return window.matchMedia('(max-width: 767px)').matches; // Vous pouvez ajuster cette valeur selon vos besoins
+    return window.matchMedia('(max-width: 767px)').matches;
   }
 
   if (!isMobile()) {
@@ -207,7 +206,7 @@ export function heroHomeParallax() {
         scrollTrigger: {
           trigger: '.navigation',
           start: 'top',
-          end: 'bottom+=700 top', // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+          end: 'bottom+=700 top',
           scrub: true,
         },
       });
@@ -221,7 +220,7 @@ export function heroHomeParallax() {
         scrollTrigger: {
           trigger: '.navigation',
           start: 'top',
-          end: 'bottom+=700 top', // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+          end: 'bottom+=700 top',
           scrub: true,
         },
       });
@@ -235,7 +234,7 @@ export function heroHomeParallax() {
         scrollTrigger: {
           trigger: '.navigation',
           start: 'top',
-          end: 'bottom+=700 top', // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+          end: 'bottom+=700 top',
           scrub: true,
         },
       });
@@ -249,7 +248,7 @@ export function heroHomeParallax() {
         scrollTrigger: {
           trigger: '.navigation',
           start: 'top',
-          end: 'bottom+=700 top', // termine 700px après que le bas de l'élément déclencheur atteint le haut de la vue
+          end: 'bottom+=700 top',
           scrub: true,
         },
       });
@@ -284,7 +283,6 @@ if (manSlide) {
   // Initial position offscreen to the right
   gsap.set(manSlide, { x: '-100%' });
 
-  // Animation to move the guy from lefdt to right
   gsap.to(manSlide, {
     x: '0',
     ease: 'power1.out',
@@ -300,119 +298,117 @@ if (manSlide) {
 //HOME PAGE
 //PEPOS TOKEN HEADER - PARALLAX
 export function peposTokenParallax() {
-  const tokenImg2 = document.querySelector('#token2') as HTMLElement;
-  if (tokenImg2) {
-    gsap.to(tokenImg2, {
-      y: '-100',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.a--button-fat',
-        start: 'top',
-        end: 'bottom -3000',
-        scrub: true,
-      },
-    });
+  function isMobile() {
+    return window.matchMedia('(max-width: 767px)').matches;
   }
 
-  const tokenImg3 = document.querySelector('#token3') as HTMLElement;
-  if (tokenImg3) {
-    gsap.to(tokenImg3, {
-      y: '-50',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.a--button-fat',
-        start: 'top',
-        end: 'bottom -3000',
-        scrub: true,
-      },
-    });
-  }
+  if (!isMobile()) {
+    const tokenImg2 = document.querySelector('#token2') as HTMLElement;
+    if (tokenImg2) {
+      gsap.to(tokenImg2, {
+        y: '-100',
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.a--button-fat',
+          start: 'top',
+          end: 'bottom -3000',
+          scrub: true,
+        },
+      });
+    }
 
-  const tokenImg4 = document.querySelector('#token4') as HTMLElement;
-  if (tokenImg4) {
-    gsap.to(tokenImg4, {
-      y: '300',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.a--button-fat',
-        start: 'top',
-        end: 'bottom -3000',
-        scrub: true,
-      },
-    });
-  }
+    const tokenImg3 = document.querySelector('#token3') as HTMLElement;
+    if (tokenImg3) {
+      gsap.to(tokenImg3, {
+        y: '-50',
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.a--button-fat',
+          start: 'top',
+          end: 'bottom -3000',
+          scrub: true,
+        },
+      });
+    }
 
-  const tokenImg5 = document.querySelector('#token5') as HTMLElement;
-  if (tokenImg5) {
-    gsap.to(tokenImg5, {
-      y: '100',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.a--button-fat',
-        start: 'top',
-        end: 'bottom -3000',
-        scrub: true,
-      },
-    });
+    const tokenImg4 = document.querySelector('#token4') as HTMLElement;
+    if (tokenImg4) {
+      gsap.to(tokenImg4, {
+        y: '300',
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.a--button-fat',
+          start: 'top',
+          end: 'bottom -3000',
+          scrub: true,
+        },
+      });
+    }
+
+    const tokenImg5 = document.querySelector('#token5') as HTMLElement;
+    if (tokenImg5) {
+      gsap.to(tokenImg5, {
+        y: '100',
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.a--button-fat',
+          start: 'top',
+          end: 'bottom -3000',
+          scrub: true,
+        },
+      });
+    }
   }
 }
-
 //HOME PAGE
 //CTA SHOP HEADER - PARALLAX
 export function ctaShopParallax() {
-  const heroImg1 = document.querySelector('#cta-img1') as HTMLElement;
-  if (heroImg1) {
-    gsap.to(heroImg1, {
-      y: '-100',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.section_cta-shop',
-        start: 'top +900',
-        end: 'bottom -500',
-        scrub: true,
-      },
-    });
-  }
-  const heroImg2 = document.querySelector('#cta-img2') as HTMLElement;
-  if (heroImg2) {
-    gsap.to(heroImg2, {
-      y: '-80',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.section_cta-shop',
-        start: 'top +900',
-        end: 'bottom',
-        scrub: true,
-      },
-    });
+  function isMobile() {
+    return window.matchMedia('(max-width: 767px)').matches;
   }
 
-  /*const heroImg3 = document.querySelector('#cta-img3') as HTMLElement;
-  if (heroImg3) {
-    gsap.to(heroImg3, {
-      y: '-100',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.section_cta-shop',
-        start: 'top +900',
-        end: 'bottom -500',
-        scrub: true,
-      },
-    });
-  }*/
+  if (!isMobile()) {
+    const heroImg1 = document.querySelector('#cta-img1') as HTMLElement;
+    if (heroImg1) {
+      gsap.to(heroImg1, {
+        y: '-100',
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.section_cta-shop',
+          start: 'top +900',
+          end: 'bottom -500',
+          scrub: true,
+        },
+      });
+    }
 
-  const heroImg4 = document.querySelector('#cta-img4') as HTMLElement;
-  if (heroImg4) {
-    gsap.to(heroImg4, {
-      y: '180',
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: '.section_cta-shop',
-        start: 'top +900',
-        end: 'bottom -500',
-        scrub: true,
-      },
-    });
+    const heroImg2 = document.querySelector('#cta-img2') as HTMLElement;
+    if (heroImg2) {
+      gsap.to(heroImg2, {
+        y: '-80',
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.section_cta-shop',
+          start: 'top +900',
+          end: 'bottom',
+          scrub: true,
+        },
+      });
+    }
+
+    const heroImg4 = document.querySelector('#cta-img4') as HTMLElement;
+    if (heroImg4) {
+      gsap.to(heroImg4, {
+        y: '180',
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: '.section_cta-shop',
+          start: 'top +900',
+          end: 'bottom -500',
+          scrub: true,
+        },
+      });
+    }
   }
 }
 
