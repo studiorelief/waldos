@@ -6,10 +6,11 @@ import Swiper from 'swiper/bundle';
 export function swiperNft() {
   new Swiper('.swiper', {
     direction: 'horizontal',
-    slidesPerView: 'auto',
     spaceBetween: 50, // variable
-    slideActiveClass: 'is-active',
+    slidesPerView: 'auto',
+    //slideActiveClass: 'is-active',
     speed: 1000,
+    loop: true,
     navigation: {
       prevEl: '.swiper-button-prev',
       nextEl: '.swiper-button-next',
