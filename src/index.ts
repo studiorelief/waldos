@@ -11,28 +11,25 @@ import {
   heroHomeParallax,
   hoverNavContainer,
   hoverSocialLink,
-  initPeposHeroParallax,
-  initWeedosCloudParallax,
+  PeposHeroParallax,
   peposTokenParallax,
 } from '$utils/gsap';
-import { swiperGoodies, swiperNft, swiperPepos } from '$utils/swiper';
+import { swiperBook, swiperNft } from '$utils/swiper';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
   swiperNft();
-  swiperPepos();
-  swiperGoodies();
+  swiperBook;
   hoverSocialLink();
   animatePhase2();
   animatePhase3();
   hoverNavContainer();
   animateProgressBar();
   animateMobileProgressBar();
-  initPeposHeroParallax();
-  initWeedosCloudParallax();
   heroHomeParallax();
   addHoverEffect();
   animateIntro();
   ctaShopParallax();
   peposTokenParallax();
+  PeposHeroParallax();
 });
