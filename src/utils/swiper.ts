@@ -32,7 +32,7 @@ export function swiperNft() {
   });
 }
 
-export function swiperPepos() {
+/*export function swiperPepos() {
   new Swiper('.pepos-swiper', {
     direction: 'horizontal',
     slidesPerView: 'auto',
@@ -54,6 +54,20 @@ export function swiperGoodies() {
     spaceBetween: 64, // variable
     slideActiveClass: 'is-active',
     speed: 1000,
+    navigation: {
+      prevEl: '.swiper-button-prev',
+      nextEl: '.swiper-button-next',
+    },
+  });
+}*/
+export function swiperBook() {
+  new Swiper('.lore-book', {
+    direction: 'vertical',
+    slidesPerView: 2, // Affiche 2 slides à la fois
+    centeredSlides: true, // Centre les slides
+    spaceBetween: 0, // Aucun espace entre les slides
+    speed: 1000,
+    loop: true,
     navigation: {
       prevEl: '.swiper-button-prev',
       nextEl: '.swiper-button-next',

@@ -7103,83 +7103,19 @@
       );
     }
   }
-  function initPeposHeroParallax() {
-    const peposHero5 = document.querySelector("#pepos-hero5");
-    if (peposHero5) {
-      gsapWithCSS.to(peposHero5, {
-        y: "300",
+  function PeposHeroParallax() {
+    const peposHero = document.querySelector(".rwa_img-hero");
+    if (peposHero) {
+      gsapWithCSS.to(peposHero, {
+        y: "300px",
+        // Ajoutez 'px' pour éviter les erreurs potentielles
         ease: "power1.out",
         scrollTrigger: {
-          trigger: ".hero_image-wrapper",
-          start: "top 120",
-          end: "100%",
-          scrub: true
-        }
-      });
-    }
-    const peposHero4 = document.querySelector("#pepos-hero4");
-    if (peposHero4) {
-      gsapWithCSS.to(peposHero4, {
-        y: "200",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".hero_image-wrapper",
-          start: "top 120",
-          end: "100%",
-          scrub: true
-        }
-      });
-    }
-    const peposHero3 = document.querySelector("#pepos-hero3");
-    if (peposHero3) {
-      gsapWithCSS.to(peposHero3, {
-        y: "150",
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: ".hero_image-wrapper",
-          start: "top 120",
-          end: "100%",
-          scrub: true
-        }
-      });
-    }
-  }
-  var peposHero2 = document.querySelector("#pepos-hero2");
-  if (peposHero2) {
-    gsapWithCSS.to(peposHero2, {
-      y: "75",
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: ".hero_image-wrapper",
-        start: "top 120",
-        end: "100%",
-        scrub: true
-      }
-    });
-  }
-  function initWeedosCloudParallax() {
-    const weedosCloud = document.querySelector("#weedos-cloud");
-    if (weedosCloud) {
-      gsapWithCSS.to(weedosCloud, {
-        x: "-600",
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: weedosCloud,
-          start: "top 400",
-          end: "100%",
-          scrub: true
-        }
-      });
-    }
-    const weedosCloud1 = document.querySelector("#weedos-cloud1");
-    if (weedosCloud) {
-      gsapWithCSS.to(weedosCloud1, {
-        x: "150",
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: weedosCloud,
-          start: "top 400",
-          end: "100%",
+          trigger: ".section_rwa",
+          start: "top top",
+          // Ajustez le point de départ
+          end: "bottom top",
+          // Ajustez le point de fin
           scrub: true
         }
       });
@@ -16820,30 +16756,17 @@
       }
     });
   }
-  function swiperPepos() {
-    new Swiper(".pepos-swiper", {
-      direction: "horizontal",
-      slidesPerView: "auto",
-      spaceBetween: 50,
-      // variable
-      loop: true,
-      autoplay: {
-        delay: 0
-        // délai de défilement en millisecondes (2000ms = 2s)
-      },
-      centeredSlides: false,
-      slideActiveClass: "is-active",
-      speed: 1500
-    });
-  }
-  function swiperGoodies() {
-    new Swiper(".goodies-swiper", {
-      direction: "horizontal",
-      slidesPerView: "auto",
-      spaceBetween: 64,
-      // variable
-      slideActiveClass: "is-active",
+  function swiperBook() {
+    new Swiper(".lore-book", {
+      direction: "vertical",
+      slidesPerView: 2,
+      // Affiche 2 slides à la fois
+      centeredSlides: true,
+      // Centre les slides
+      spaceBetween: 0,
+      // Aucun espace entre les slides
       speed: 1e3,
+      loop: true,
       navigation: {
         prevEl: ".swiper-button-prev",
         nextEl: ".swiper-button-next"
@@ -16855,21 +16778,19 @@
   window.Webflow ||= [];
   window.Webflow.push(() => {
     swiperNft();
-    swiperPepos();
-    swiperGoodies();
+    swiperBook;
     hoverSocialLink();
     animatePhase2();
     animatePhase3();
     hoverNavContainer();
     animateProgressBar();
     animateMobileProgressBar();
-    initPeposHeroParallax();
-    initWeedosCloudParallax();
     heroHomeParallax();
     addHoverEffect();
     animateIntro();
     ctaShopParallax();
     peposTokenParallax();
+    PeposHeroParallax();
   });
 })();
 /*! Bundled license information:

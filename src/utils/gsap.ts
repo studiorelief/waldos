@@ -602,7 +602,7 @@ export function animatePhase3() {
 
 //PEPOS PAGE
 //Parallax hero
-export function initPeposHeroParallax() {
+/*export function initPeposHeroParallax() {
   const peposHero5 = document.querySelector('#pepos-hero5') as HTMLElement;
   if (peposHero5) {
     gsap.to(peposHero5, {
@@ -686,6 +686,22 @@ export function initWeedosCloudParallax() {
         trigger: weedosCloud,
         start: 'top 400',
         end: '100%',
+        scrub: true,
+      },
+    });
+  }
+}*/
+//Pepos Hero Parallax
+export function PeposHeroParallax() {
+  const peposHero = document.querySelector('.rwa_img-hero') as HTMLElement;
+  if (peposHero) {
+    gsap.to(peposHero, {
+      y: '300px', // Ajoutez 'px' pour éviter les erreurs potentielles
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.section_rwa',
+        start: 'top top', // Ajustez le point de départ
+        end: 'bottom top', // Ajustez le point de fin
         scrub: true,
       },
     });
