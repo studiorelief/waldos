@@ -559,13 +559,14 @@ export function animatePhase2() {
 
     gsap.fromTo(
       elements,
-      { opacity: 0 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
+        y: 20,
         duration: 2,
         scrollTrigger: {
           trigger: roadmapPhase2,
-          start: 'top 80%',
+          start: 'top 90%',
           end: 'bottom 70%',
           toggleActions: 'play none none none',
           scrub: true,
@@ -584,13 +585,14 @@ export function animatePhase3() {
     const elements = [roadmapPhase3, grow3];
     gsap.fromTo(
       elements,
-      { opacity: 0 },
+      { opacity: 0, y: 55 },
       {
         opacity: 1,
+        y: -10,
         duration: 2,
         scrollTrigger: {
           trigger: roadmapPhase3,
-          start: 'top 80%',
+          start: 'top 90%',
           end: 'bottom 70%',
           toggleActions: 'play none none none', // déclenche l'animation uniquement lorsqu'il entre dans la vue
           scrub: true,
@@ -696,12 +698,12 @@ export function PeposHeroParallax() {
   const peposHero = document.querySelector('.rwa_img-hero') as HTMLElement;
   if (peposHero) {
     gsap.to(peposHero, {
-      y: '300px', // Ajoutez 'px' pour éviter les erreurs potentielles
+      y: '300px',
       ease: 'power1.out',
       scrollTrigger: {
         trigger: '.section_rwa',
-        start: 'top top', // Ajustez le point de départ
-        end: 'bottom top', // Ajustez le point de fin
+        start: 'top top',
+        end: 'bottom top',
         scrub: true,
       },
     });
