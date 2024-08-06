@@ -7,6 +7,18 @@
 .swiper .swiper-wrapper {
   transition-timing-function: linear;
 }
+@media (min-width: 768px) {
+  .roadmap_ellipse.large {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+@media (max-width: 767px) {
+  .roadmap_ellipse.small {
+    width: 4rem;
+    height: 4rem;
+  }
+}
 
 /* node_modules/.pnpm/swiper@11.1.4/node_modules/swiper/swiper-bundle.css */
 @font-face {
