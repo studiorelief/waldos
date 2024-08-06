@@ -482,7 +482,7 @@ if (imgWrapperBoat) {
     x: '0',
     ease: 'power1.out',
     scrollTrigger: {
-      trigger: '#id-test',
+      trigger: '#cbd-shop-paragraph',
       start: 'top 400',
       end: 'bottom',
       scrub: true,
