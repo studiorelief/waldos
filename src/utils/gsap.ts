@@ -486,7 +486,6 @@ if (imgWrapperBoat) {
       start: 'top 400',
       end: 'bottom',
       scrub: true,
-      markers: true,
     },
   });
 }
