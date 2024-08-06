@@ -482,10 +482,11 @@ if (imgWrapperBoat) {
     x: '0',
     ease: 'power1.out',
     scrollTrigger: {
-      trigger: '#cbd-shop-paragraph',
+      trigger: '#trigger-boat',
       start: 'top 400',
       end: 'bottom',
       scrub: true,
+      markers: false,
     },
   });
 }
