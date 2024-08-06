@@ -6999,10 +6999,11 @@
       x: "0",
       ease: "power1.out",
       scrollTrigger: {
-        trigger: imgWrapperBoat,
-        start: "top 80%",
-        end: "top 20%",
-        scrub: true
+        trigger: "#id-test",
+        start: "top 400",
+        end: "bottom",
+        scrub: true,
+        markers: true
       }
     });
   }
@@ -7012,12 +7013,15 @@
     const img = ellipse?.querySelector("img");
     const textContent = step.querySelector(".roadmap_text-content");
     if (ellipse) {
+      const largeScreen = window.matchMedia("(min-width: 768px)").matches;
+      const sizeClass = largeScreen ? "large" : "small";
+      ellipse.classList.add(sizeClass);
       gsapWithCSS.fromTo(
         ellipse,
         { width: "2rem", height: "2rem" },
         {
-          width: "6rem",
-          height: "6rem",
+          width: largeScreen ? "6rem" : "3rem",
+          height: largeScreen ? "6rem" : "3rem",
           scrollTrigger: {
             trigger: ellipse,
             start: "top 85%",

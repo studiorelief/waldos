@@ -8,3 +8,18 @@
 .swiper .swiper-wrapper {
   transition-timing-function: linear;
 }
+
+/*Roadmap*/
+@media (min-width: 768px) {
+  .roadmap_ellipse.large {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .roadmap_ellipse.small {
+    width: 4rem;
+    height: 4rem;
+  }
+}

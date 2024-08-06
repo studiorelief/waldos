@@ -482,10 +482,11 @@ if (imgWrapperBoat) {
     x: '0',
     ease: 'power1.out',
     scrollTrigger: {
-      trigger: imgWrapperBoat,
-      start: 'top 80%',
-      end: 'top 20%',
+      trigger: '#id-test',
+      start: 'top 400',
+      end: 'bottom',
       scrub: true,
+      markers: true,
     },
   });
 }
@@ -499,12 +500,19 @@ roadmapSteps.forEach((step) => {
   const textContent = step.querySelector('.roadmap_text-content');
 
   if (ellipse) {
+    // Determine screen size and apply appropriate class
+    const largeScreen = window.matchMedia('(min-width: 768px)').matches;
+    const sizeClass = largeScreen ? 'large' : 'small';
+
+    // Add the class for the appropriate size
+    ellipse.classList.add(sizeClass);
+
     gsap.fromTo(
       ellipse,
       { width: '2rem', height: '2rem' },
       {
-        width: '6rem',
-        height: '6rem',
+        width: largeScreen ? '6rem' : '3rem',
+        height: largeScreen ? '6rem' : '3rem',
         scrollTrigger: {
           trigger: ellipse,
           start: 'top 85%',
