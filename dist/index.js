@@ -6999,11 +6999,11 @@
       x: "0",
       ease: "power1.out",
       scrollTrigger: {
-        trigger: "#id-test",
+        trigger: "#trigger-boat",
         start: "top 400",
         end: "bottom",
         scrub: true,
-        markers: true
+        markers: false
       }
     });
   }
