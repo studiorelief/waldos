@@ -116,14 +116,20 @@ if (backgroundHero) {
 
 // HOME PAGE
 // Progress bar and counter animation
-export function animateProgressBar() {
-  const progressLineFront = document.querySelector('.progress-line_front') as HTMLElement;
-  const progressText = document.querySelector('.progress_anime-text') as HTMLElement;
-  const totalCount = 116;
+function animateProgressBarBase(
+  progressLineSelector: string,
+  progressTextSelector: string,
+  totalCount: number,
+  maxCurrentCount: number,
+  maxProgressPercentage: number
+) {
+  const progressLineFront = document.querySelector(progressLineSelector) as HTMLElement;
+  const progressText = document.querySelector(progressTextSelector) as HTMLElement;
 
   if (progressLineFront && progressText) {
     // Set initial width and opacity
     gsap.set(progressLineFront, { width: '3%', opacity: 1 });
+    gsap.set(progressText, { innerText: 0 }); // Set initial text to 0
 
     // Timeline for animation
     const timeline = gsap.timeline({
@@ -132,108 +138,58 @@ export function animateProgressBar() {
         start: 'top 50%',
         end: 'top -10%',
         scrub: true,
-        onUpdate: function () {
-          if (progressLineFront.parentElement) {
-            // Calculate the progress percentage based on the scroll position
-            const progress =
-              parseFloat(window.getComputedStyle(progressLineFront).width) /
-                progressLineFront.parentElement.offsetWidth -
-              0.03; // Adjust for 3% starting point
+      },
+    });
 
-            // Update the text based on the adjusted progress
-            const adjustedProgress = Math.max(0, progress / 0.96); // Adjust for 96% remaining (99% - 3%)
-            const currentCount = Math.round(totalCount * adjustedProgress);
-            progressText.innerText = `${Math.min(currentCount, totalCount)}`;
-          }
+    // Animation for progress line and text
+    timeline
+      .to(progressLineFront, {
+        width: `${maxProgressPercentage * 100}%`, // Limit to a percentage corresponding to 49/60
+        duration: 1, // Duration of the animation
+        ease: 'power3.inOut', // Smooth easing
+      })
+      .to(
+        progressText,
+        {
+          innerText: maxCurrentCount, // Animate the innerText to maxCurrentCount (49)
+          duration: 1, // Duration of the text animation (same as progress line)
+          ease: 'power3.inOut', // Smooth easing
+          roundProps: 'innerText', // Ensure the text animates with whole numbers
+          onUpdate: function () {
+            progressText.innerText = Math.round(Number(progressText.innerText)).toString();
+          },
         },
-      },
-    });
-
-    // Animation for progress line
-    timeline.to(progressLineFront, {
-      width: '99%', // End at 99% to ensure the counter reaches 117
-      duration: 1, // Duration of the animation
-      ease: 'power3.inOut', // Smooth easing
-      onUpdate: function () {
-        if (progressLineFront.parentElement) {
-          const progress =
-            parseFloat(window.getComputedStyle(progressLineFront).width) /
-              progressLineFront.parentElement.offsetWidth -
-            0.03; // Adjust for 3% starting point
-
-          const adjustedProgress = Math.max(0, progress / 0.96); // Adjust for 96% remaining (99% - 3%)
-          const currentCount = Math.round(totalCount * adjustedProgress);
-          progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
-          // Remove box-shadow if the width is close to 1%
-          const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
-          if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
-            progressLineFront.style.boxShadow = 'none';
-          }
-        }
-      },
-    });
+        0
+      ); // Start the text animation at the same time as the progress line
   }
 }
 
-// HOME PAGE
-// MOBILE - Progress bar and counter animation for mobile
+export function animateProgressBar() {
+  const totalCount = 60; // The total number to be achieved
+  const maxCurrentCount = 49; // The current maximum progress achievable
+  const maxProgressPercentage = maxCurrentCount / totalCount; // Progress percentage corresponding to 49
+
+  animateProgressBarBase(
+    '.progress-line_front',
+    '.progress_anime-text',
+    totalCount,
+    maxCurrentCount,
+    maxProgressPercentage
+  );
+}
+
 export function animateMobileProgressBar() {
-  const progressLineFront = document.querySelector('.progress-line_mobile_front') as HTMLElement;
-  const progressText = document.querySelector('.progress_mobile-anime-text') as HTMLElement;
-  const totalCount = 116;
+  const totalCount = 60; // The total number to be achieved
+  const maxCurrentCount = 49; // The current maximum progress achievable
+  const maxProgressPercentage = maxCurrentCount / totalCount; // Progress percentage corresponding to 49
 
-  if (progressLineFront && progressText) {
-    // Set initial width and opacity
-    gsap.set(progressLineFront, { width: '3%', opacity: 1 });
-
-    // Timeline for animation
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.nft_progress-line-content',
-        start: 'top 50%',
-        end: 'top -10%',
-        scrub: true,
-        onUpdate: function () {
-          if (progressLineFront.parentElement) {
-            // Calculate the progress percentage based on the scroll position
-            const progress =
-              parseFloat(window.getComputedStyle(progressLineFront).width) /
-                progressLineFront.parentElement.offsetWidth -
-              0.03; // Adjust for 3% starting point
-
-            // Update the text based on the adjusted progress
-            const adjustedProgress = Math.max(0, progress / 0.92); // Adjust for 92% remaining (95% - 3%)
-            const currentCount = Math.round(totalCount * adjustedProgress);
-            progressText.innerText = `${Math.min(currentCount, totalCount)}`;
-          }
-        },
-      },
-    });
-
-    // Animation for progress line
-    timeline.to(progressLineFront, {
-      width: '95%', // End at 95% to ensure the counter reaches 116
-      duration: 1, // Duration of the animation
-      ease: 'power3.inOut', // Smooth easing
-      onUpdate: function () {
-        if (progressLineFront.parentElement) {
-          const progress =
-            parseFloat(window.getComputedStyle(progressLineFront).width) /
-              progressLineFront.parentElement.offsetWidth -
-            0.03; // Adjust for 3% starting point
-
-          const adjustedProgress = Math.max(0, progress / 0.92); // Adjust for 92% remaining (95% - 3%)
-          const currentCount = Math.round(totalCount * adjustedProgress);
-          progressText.innerText = `${Math.min(currentCount, totalCount)} / ${totalCount}`;
-          // Remove box-shadow if the width is close to 1%
-          const currentWidth = parseFloat(window.getComputedStyle(progressLineFront).width);
-          if (currentWidth <= progressLineFront.parentElement.offsetWidth * 0.01) {
-            progressLineFront.style.boxShadow = 'none';
-          }
-        }
-      },
-    });
-  }
+  animateProgressBarBase(
+    '.progress-line_mobile_front',
+    '.progress_mobile-anime-text',
+    totalCount,
+    maxCurrentCount,
+    maxProgressPercentage
+  );
 }
 
 //HOME PAGE
