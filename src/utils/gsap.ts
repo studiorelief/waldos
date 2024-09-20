@@ -115,21 +115,18 @@ if (backgroundHero) {
 }
 
 // HOME PAGE
-// Progress bar and counter animation
+// Progress bar animation (counter removed)
 function animateProgressBarBase(
   progressLineSelector: string,
-  progressTextSelector: string,
   totalCount: number,
   maxCurrentCount: number,
   maxProgressPercentage: number
 ) {
   const progressLineFront = document.querySelector(progressLineSelector) as HTMLElement;
-  const progressText = document.querySelector(progressTextSelector) as HTMLElement;
 
-  if (progressLineFront && progressText) {
+  if (progressLineFront) {
     // Set initial width and opacity
     gsap.set(progressLineFront, { width: '3%', opacity: 1 });
-    gsap.set(progressText, { innerText: 0 }); // Set initial text to 0
 
     // Timeline for animation
     const timeline = gsap.timeline({
@@ -141,37 +138,22 @@ function animateProgressBarBase(
       },
     });
 
-    // Animation for progress line and text
-    timeline
-      .to(progressLineFront, {
-        width: `${maxProgressPercentage * 100}%`, // Limit to a percentage corresponding to 49/60
-        duration: 1, // Duration of the animation
-        ease: 'power3.inOut', // Smooth easing
-      })
-      .to(
-        progressText,
-        {
-          innerText: maxCurrentCount, // Animate the innerText to maxCurrentCount (49)
-          duration: 1, // Duration of the text animation (same as progress line)
-          ease: 'power3.inOut', // Smooth easing
-          roundProps: 'innerText', // Ensure the text animates with whole numbers
-          onUpdate: function () {
-            progressText.innerText = Math.round(Number(progressText.innerText)).toString();
-          },
-        },
-        0
-      ); // Start the text animation at the same time as the progress line
+    // Animation for progress line only
+    timeline.to(progressLineFront, {
+      width: `${maxProgressPercentage * 100}%`, // Limit to a percentage corresponding
+      duration: 1, // Duration of the animation
+      ease: 'power3.inOut', // Smooth easing
+    });
   }
 }
 
 export function animateProgressBar() {
   const totalCount = 60; // The total number to be achieved
-  const maxCurrentCount = 49; // The current maximum progress achievable
-  const maxProgressPercentage = maxCurrentCount / totalCount; // Progress percentage corresponding to 49
+  const maxCurrentCount = 60; // The current maximum progress achievable
+  const maxProgressPercentage = maxCurrentCount / totalCount; // Progress percentage corresponding
 
   animateProgressBarBase(
     '.progress-line_front',
-    '.progress_anime-text',
     totalCount,
     maxCurrentCount,
     maxProgressPercentage
@@ -180,12 +162,11 @@ export function animateProgressBar() {
 
 export function animateMobileProgressBar() {
   const totalCount = 60; // The total number to be achieved
-  const maxCurrentCount = 49; // The current maximum progress achievable
+  const maxCurrentCount = 60; // The current maximum progress achievable
   const maxProgressPercentage = maxCurrentCount / totalCount; // Progress percentage corresponding to 49
 
   animateProgressBarBase(
     '.progress-line_mobile_front',
-    '.progress_mobile-anime-text',
     totalCount,
     maxCurrentCount,
     maxProgressPercentage

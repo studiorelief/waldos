@@ -6699,12 +6699,10 @@
       }
     });
   }
-  function animateProgressBarBase(progressLineSelector, progressTextSelector, totalCount, maxCurrentCount, maxProgressPercentage) {
+  function animateProgressBarBase(progressLineSelector, totalCount, maxCurrentCount, maxProgressPercentage) {
     const progressLineFront = document.querySelector(progressLineSelector);
-    const progressText = document.querySelector(progressTextSelector);
-    if (progressLineFront && progressText) {
+    if (progressLineFront) {
       gsapWithCSS.set(progressLineFront, { width: "3%", opacity: 1 });
-      gsapWithCSS.set(progressText, { innerText: 0 });
       const timeline2 = gsapWithCSS.timeline({
         scrollTrigger: {
           trigger: ".nft_progress-line-content",
@@ -6715,37 +6713,20 @@
       });
       timeline2.to(progressLineFront, {
         width: `${maxProgressPercentage * 100}%`,
-        // Limit to a percentage corresponding to 49/60
+        // Limit to a percentage corresponding
         duration: 1,
         // Duration of the animation
         ease: "power3.inOut"
         // Smooth easing
-      }).to(
-        progressText,
-        {
-          innerText: maxCurrentCount,
-          // Animate the innerText to maxCurrentCount (49)
-          duration: 1,
-          // Duration of the text animation (same as progress line)
-          ease: "power3.inOut",
-          // Smooth easing
-          roundProps: "innerText",
-          // Ensure the text animates with whole numbers
-          onUpdate: function() {
-            progressText.innerText = Math.round(Number(progressText.innerText)).toString();
-          }
-        },
-        0
-      );
+      });
     }
   }
   function animateProgressBar() {
     const totalCount = 60;
-    const maxCurrentCount = 49;
+    const maxCurrentCount = 60;
     const maxProgressPercentage = maxCurrentCount / totalCount;
     animateProgressBarBase(
       ".progress-line_front",
-      ".progress_anime-text",
       totalCount,
       maxCurrentCount,
       maxProgressPercentage
@@ -6753,11 +6734,10 @@
   }
   function animateMobileProgressBar() {
     const totalCount = 60;
-    const maxCurrentCount = 49;
+    const maxCurrentCount = 60;
     const maxProgressPercentage = maxCurrentCount / totalCount;
     animateProgressBarBase(
       ".progress-line_mobile_front",
-      ".progress_mobile-anime-text",
       totalCount,
       maxCurrentCount,
       maxProgressPercentage
